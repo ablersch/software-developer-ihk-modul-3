@@ -79,32 +79,7 @@ Beim Erstellen eines neuen WPF Projektes hat man vier Auswahlmöglichkeiten:
 <!-- .slide: class="left" -->
 ### WPF Steuerelemente
 
-* **Schaltflächen:** Button
-
-* **Datenanzeige:** DataGrid, ListView und TreeView
-
-* **Datumsanzeige und -auswahl:** Calendar und DatePicker
-
-* **Dialogfelder:** OpenFileDialog, PrintDialog und SaveFileDialog
-
-* **Eingabe:** TextBox, RichTextBox und PasswordBox
-
-* **Layout:** Border, BulletDecorator, Canvas, DockPanel, Expander,
-    Grid, GridView, GridSplitter, GroupBox, Panel, ResizeGrip,
-    Separator, ScrollBar, ScrollViewer, StackPanel, Thumb, Viewbox,
-    VirtualizingStackPanel, Window und WrapPanel
-
-* **Auswahl:** CheckBox, ComboBox, ListBox, RadioButton und Slider
-
-* **Benutzerinformationen:** AccessText, Label, Popup, ProgressBar, StatusBar, TextBlock und ToolTip
-
-* **Medien:** Image, MediaElement und SoundPlayerAction
-
-* **Menüs:** ContextMenu, Menu und ToolBar
-
-
-<!-- .slide: class="left" -->
-### WPF Steuerelemente
+[Übersicht Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/)
 
 * Jedes Steuerelemente ist eine Klasse.
 
@@ -118,7 +93,7 @@ Beim Erstellen eines neuen WPF Projektes hat man vier Auswahlmöglichkeiten:
 
 
 <!-- .slide: class="left" -->
-### MessageBox
+### [MessageBox](https://docs.microsoft.com/de-de/dotnet/api/system.windows.messagebox?view=netframework-4.8)
 
 * zeigt ein vordefiniertes Nachrichtenfenster an
 
@@ -385,7 +360,7 @@ public partial class MainWindow : Window {
 
 
 <!-- .slide: class="left" -->
-## Datenbindung
+## [Datenbindung](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf)
 
 * Bindungen werden zwischen zwei Elementen definiert. (Datenquelle - Datenziel).
 
@@ -430,7 +405,7 @@ Bindung von Datenquelle zu gebundener Komponente.
 
 * UpdateSourceTrigger: Definiert, wann die Datenquelle aktualisiert werden soll (z.B. jedesmal wenn sich die die Daten ändern).
 
-### Ein Objekt binden.
+### Ein Objekt binden
 
 ```csharp
 Medien medien = new Medien("test", 12345);
