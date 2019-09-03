@@ -1,12 +1,13 @@
 # SQL
 
-Datenbanken mit DotNet.
+Datenbanken mit DotNet
 
 
 <!-- .slide: class="left" -->
 ## ADO.Net
 
 Datenbankzugriffe im .NET Framework werden durch die ADO.Net Klassen abgewickelt. Durch ADO wird die nötige Basisfunktionalität geboten um auf relationale Datenbanken zuzugreifen.
+
 Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeicher. Dazu existieren Klassen, die Verbindung zu einer Datenbank (Microsoft SQL Server, Oracle etc.) herstellen (sogenannte Connection-Klassen), Klassen, die Tabellen im Arbeitsspeicher repräsentieren, und es ermöglichen, mit ihnen zu arbeiten (sogenannte DataTables) und Klassen, die für gesamte Datenbanken im Arbeitsspeicher stehen (sogenannte DataSets).
 
 
@@ -21,8 +22,7 @@ Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeich
 
 Durch die [Connection Klasse](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqlconnection?view=netframework-4.8) wird eine Verbindung zur Datenbank repräsentiert. Sie stellt die Methoden `Open()` und `Close()` bereit zum Herstellen einer Verbindung und zum Schließen dieser. Mittels einer Verbindungszeichenfolge ist es möglich ein solches Objekt zu erstellen.
 
-Um z.B. eine Verbindung mit der lokalen Instanz SQLEXPRESS und der
-Datenbank Northwind aufzubauen könnte man wie folgt vorgehen:
+Um z.B. eine Verbindung mit der lokalen Instanz SQLEXPRESS und der Datenbank Northwind aufzubauen könnte man wie folgt vorgehen:
 
 ```csharp
 connectionString = @"DataSource=.\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=SSPI";
@@ -61,19 +61,21 @@ SqlCommand command = new SqlCommand(queryString, connection);
 
 * `ExecuteScalar()`: Führt Abfrage aus, ruft erste Spalte der ersten Zeile ab (der Rest wird ignoriert).
 
+Note: ExecuteScalar für true/false oder ID Abfragen
+
 
 <!-- .slide: class="left" -->
 ### DataReader Klasse
 
 Der [DataReader](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldatareader?view=netframework-4.8) ermöglicht sequentiellen Lesezugriff auf die Daten. Das Objekt wird durch den Aufruf der Methode `ExecuteReader()` des Command Objektes initialisiert. Man sollte unbedingt sobald der Reader nicht mehr benötigt wird die `Close()` Methode aufrufen, um ungewollte Verbindungsprobleme zu vermeiden.
-Typischerweise verwendet man einen DataReader wenn man nur lesenden
-Zugriff auf Datensätze benötigt, da er einfach am leichtgewichtigsten
-ist. Eine Anwendung des DataReaders könnte wie folgt aussehen:
+
+Typischerweise verwendet man einen DataReader wenn man nur lesenden Zugriff auf Datensätze benötigt, da er einfach am leichtgewichtigsten ist. Eine Anwendung des DataReaders könnte wie folgt aussehen:
 
 ```csharp
 SqlDataReader reader = command.ExecuteReader();
-while(reader.read())
+while(reader.read()) // Solange es Datensätze gibt diese lesen
 {
+    // Zugriff per Spaltenname oder per Index: reader.GetInt32(0);
     Console.WriteLine("ID: {0}", reader["CustomerID"]);
 }
 reader.Close();
@@ -99,9 +101,7 @@ SqlDataAdapter da = new SqlDataAdapter(query, connection);
 da.Fill(ds);
 ```
 
-`Fill()` führt die Abfrage aus und speichert die Ergebnisse in einem
-DataSet. Durch die Methode `Update()` können Änderungen an die Datenbank
-übermittelt werden.
+`Fill()` führt die Abfrage aus und speichert die Ergebnisse in einem DataSet. Durch die Methode `Update()` können Änderungen an die Datenbank übermittelt werden.
 
 
 <!-- .slide: class="left" -->
@@ -121,7 +121,7 @@ using (SqlConnection connection = new SqlConnection(conn))
         {
             while (reader.Read())
             {
-                    Console.WriteLine("GUID: {0} DE: {1} EN: {2}", reader.GetGuid(0),reader.GetString(1), reader.GetString(2));
+                Console.WriteLine("GUID: {0} DE: {1} EN: {2}", reader.GetGuid(0),reader.GetString(1), reader.GetString(2));
             }
         }
     }
@@ -133,21 +133,26 @@ using (SqlConnection connection = new SqlConnection(connectionString))
     connection.Open();
     using (SqlCommand command = new SqlCommand("INSERT INTO Test (Spalte1, Spalte2) VALUES('Entwickler', 'Developer')", connection))
     {
-            // Anzahl beeinflusster Zeilen
-            int rows = command.ExecuteNonQuery();             
-        }
+        // Anzahl beeinflusster Zeilen
+        int rows = command.ExecuteNonQuery();
+    }
 }
 ```
+
+Note: Zeigen **VS** "SQL"
+
+**ÜBUNG** SQL Datenbanken
 
 
 <!-- .slide: class="left" -->
 ## Entity Framework
 
 Das [Entity Framework](https://docs.microsoft.com/de-de/ef/) ist ein Framework für objektrelationale Abbildungen (ORM).
-Ziel ist es, die Verbindungen zu einer relationalen Datenbank so
-zu abstrahieren, dass der Entwickler sich auf die Datenbankeinheit als
-eine Menge von Objekten bzw auf Klassen und ihren Eigenschaften beziehen
-kann.
+
+Ziel ist es, die Verbindungen zu einer relationalen Datenbank so zu abstrahieren, dass der Entwickler sich auf die Datenbankeinheit als eine Menge von Objekten bzw auf Klassen und ihren Eigenschaften beziehen kann.
+
+Note: Klassen werden auf Tabellen, oder auch andersrum, gemappt.
+Bei Java Hibernate bei PHP Doctrine. Über NuGet installieren
 
 
 <!-- .slide: class="left" -->
@@ -155,17 +160,21 @@ kann.
 
 ![Datenzugriff einer Anwendung beim Entity Framework](Images/entityFramework.png)
 
+Note: Zugriff auf die Daten über ADO.NET. Damit ist der Zugriff auch am schnellsten.
+
 
 <!-- .slide: class="left" -->
 ### Vorteile
 
-* Keine manuellen Abfragen wie mit ADO.NET notwendig
+* Keine manuellen Abfragen (SQL Queries) wie mit ADO.NET notwendig
 
 * Einfacher Wechsel von verschiedenen Datenbanktypen ohne Codeanpassung
 
 * Entkopplung zwischen unserer Anwendung und der Logik des Datenzugriffs
 
-* Komfortables Arbeiten mit Objekten
+* Komfortables Arbeiten mit Objekten. Alle Tabellen als Klassen.
+
+Note: Datenzugriff wird ausgelagert (Model, Views, Controller(Logik) Entwurfsmuster MVC)
 
 
 <!-- .slide: class="left" -->
@@ -181,11 +190,11 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen
 <!-- .slide: class="left" -->
 ### Daten abfragen
 
-
-* LINQ-to-Entities (Language-Integrated Query bzw Sprachintegrierte Abfrage): Damit können Daten aus verschiedenen Datenquellen (einfache Liste, ein Wörterbuch,eine XML-Datei oder eine Datenbanktabelle) abgefragt und bearbeitet werden. 
-LINQ gibt es in zwei Syntaxvarianten: Die Abfrage- und die Methodensyntax.
+* LINQ-to-Entities (Language-Integrated Query bzw Sprachintegrierte Abfrage): Damit können Daten aus verschiedenen Datenquellen (einfache Liste, ein Wörterbuch,eine XML-Datei oder eine Datenbanktabelle) abgefragt und bearbeitet werden. LINQ gibt es in zwei Syntaxvarianten: Die Abfrage- und die Methodensyntax.
 
 * Klassisch mit SQL Syntax
+
+Note: Aussprache: Link. Verschiedene LINQ Provider z.B. LINQ-to-SQL, LINQ-to-XML, LINQ-to-DataSets, ...
 
 
 <!-- .slide: class="left" -->
@@ -200,14 +209,12 @@ var names = new List<string>()
     "Joe Doe"  
 };  
 
-
 // Alle Namen holen welche 8 oder weniger Zeichen haben
 // Abfragesyntax
 var shortNames = from name in names where name.Length <= 8 orderby name.Length select name;
 
-
 // Methodensyntax
-var shortNames = names.Where(name => name.Length <= 8).OrderBy(name => name.Length;
+var shortNames = names.Where(name => name.Length <= 8).OrderBy(name => name.Length);
 
 
 foreach (var name in shortNames)  
@@ -216,13 +223,13 @@ foreach (var name in shortNames)
 }
 ```
 
+Note: In nur einer Zeile kann man z.B. alle Namen abfragen welche 8 oder weniger Zeichen lang sind und diese der Länge nach sortieren
+
 
 <!-- .slide: class="left" -->
 #### LINQ Methodensyntax
 
-Bei Lamda Expressions ist auf der linken Seite der Eingabeparameter. Der
-Name ist frei wählbar und der Wert kommt aus der Where Bedingung. Auf
-der rechten Seite steht die Anweisung bzw der Ausdruck.
+Bei Lamda Expressions ist auf der linken Seite der Eingabeparameter. Der Name ist frei wählbar und der Wert kommt aus der Where Bedingung. Auf der rechten Seite steht die Anweisung bzw der Ausdruck.
 
 ```csharp
 name => name.Length <= 8
@@ -239,6 +246,8 @@ List<User> sortedUsers = listOfUsers.OrderBy(user => user.Age)
                                     .ThenByDescending(user => user.Name).ToList();
 ```
 
+Note: Abfrage wird erst ausgeführt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(), ... . D.H es sind Abfragen über mehrere Zeilen möglich
+
 
 <!-- .slide: class="left" -->
 #### LINQ Methodensyntax
@@ -252,5 +261,8 @@ List<User> users = new List<User>()
     new User() { Name = "Another Doe", Age = 15 },
 };
 
-List<string> names = users.Select(user => user.Name).ToList();
+var names = users.Select(user => user.Name).ToList();
 ```
+
+Note: **VS** zeigen: EF hinzufügen und nutzen; zeigen der Klassen und Abfragen mit LINQ.
+**ÜBUNG** EntityFramework

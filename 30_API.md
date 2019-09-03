@@ -16,10 +16,9 @@ API (Application Programming Interface)
 
     * Schnittstelle für andere Programme und Entwickler.
 
-    * Ein Programm kann die Funktionen eines anderen Programms nutzen
-        bzw. einbinden.
+    * Ein Programm kann die Funktionen (Businesslogik) eines anderen Programms nutzen bzw. einbinden.
 
-* Dies kann ein Webservice, ein SDK oder eine Kernel API sein.
+* Dies kann ein Webservice, ein SDK (Software Development Kit) oder eine Kernel API sein.
 
 
 <!-- .slide: class="left" -->
@@ -35,23 +34,35 @@ Ein Webservice (Web-API) ermöglicht eine reine Computer-zu-Computer-Kommunikati
 
 * Der Austausch von Daten und Funktionalität erfolgt unabhängig von der Programmiersprache bzw. Hardware und kann somit in unterschiedlichen Systemen integriert werden.
 
+Note: z.B.:
+* Shopsystem welches Artikel über Webservices abruft.
+* Kamera hat API um diese von dritt Programmen steuern zu lassen
+
 
 <!-- .slide: class="left" -->
 ### Warum Webservices
 
-* Webservices arbeiten mit einer servicebasierten Modellarchitektur.
+* Webservices arbeiten mit einer servicebasierten Modellarchitektur (siehe Diagramm)
 
-* Ist von der Anwendungslogik getrennt.
+* Ist von der Anwendungslogik getrennt und beeinflusst diese nicht
 
-* Webservices verwenden ein textbasiertes Protokoll, das alle Anwendungen verstehen können.
+* Webservices verwenden ein textbasiertes Protokoll, das alle Anwendungen verstehen können
 
-* Sind nicht auf spezielle Protokolle angewiesen.
+* Sind nicht auf spezielle Protokolle angewiesen (meist HTTP)
+
+* Können mit anderen Systemen kommunizieren ohne diese extra anpassen zu müssen (kompatibel zu machen)
+
+* Verbessern und vereinfachen den Informationsfluss zwischen Anwendungen
+
+Note: Jede Anwendung kann andere Programmiersprache haben oder auf anderem OS laufen
 
 
 <!-- .slide: class="left" -->
 ## Servicebasierte Architektur
 
 ![servicebasierte Architektur](images/webservicemodel.png)
+
+Note: Application kann den Service aufrufen/beenden, je nach Bedarf. Benötigt nur die URL für den Abruf. Was im Service gemacht wird ist eine Blackbox
 
 
 <!-- .slide: class="left" -->
@@ -77,6 +88,8 @@ Es gibt verschiedene Implementierungen eines Webservices
 
     * Entfernte Funktionsaufrufe (Interprozesskommunikation)
 
+Note: Bsp für REST Services von Facebook, Twitter, Netflix...
+
 
 <!-- .slide: class="left" -->
 ## REST Webservice abfragen
@@ -93,6 +106,9 @@ using (var httpClient = new HttpClient()) {
 }
 ```
 
+alternativ
+
+
 ```csharp
 public string GetReleases(string url)
 {
@@ -101,3 +117,6 @@ public string GetReleases(string url)
         return response;
 }
 ```
+
+Note: **ÜBUNG** REST Webservice abfragen (zeigen in Console mit HttpClient). Gibt JSON (Java Script Object Notation) zurück (einfaches Textformat für Datenaustausch); Swagger; Deserialisierung: Ein Text welcher für Datenübertragung optimiert ist; NuGet
+**ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")]; Swashbuckle von NuGet

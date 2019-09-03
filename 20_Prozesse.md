@@ -15,7 +15,7 @@ Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnost
 | `Start()`    | startet einen Prozess
 | `CloseMainWindow()`| eine Beenden Anforderung schicken, wartet z. B. auf Benutzerbestätigung
 | `Kill()`| beendet den Prozess sofort ohne auf den Prozess zu warten
-| `Responding)`| gibt an, ob die Benutzeroberfläche reagiert oder nicht (true bzw. false)
+| `Responding`| gibt an, ob die Benutzeroberfläche reagiert oder nicht (true bzw. false)
 
 
 <!-- .slide: class="left" -->
@@ -23,7 +23,6 @@ Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnost
 
 ```csharp
 public MainWindow()  {
-
     InitializeComponent();
 
     string temp = String.Format("ProcessName \t ProcessId \t StartTime\n");
@@ -59,10 +58,12 @@ public MainWindow()  {
 // Startet Explorer in C:\
 Process.Start("C:\\");
 ```
+
 ```csharp
 // Öffnet die txt Datei mit dem Standard Editor
 Process.Start("c:\\aa.txt");
 ```
+
 ```csharp
 // Öffnet Google im Browser
 Process p = Process.Start("http://google.com/");
@@ -75,10 +76,8 @@ p.CloseMainWindow();
 <!-- .slide: class="left" -->
 ## ProcessStartInfo Klasse
 
-Möchten Sie zu einem Prozess weitere Einstellungen vornehmen, sollten
-Sie eine Instanz von [ProcessStartInfo](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo?view=netframework-4.8) verwenden. Diese Klasse speichert Informationen über den Prozess, insbesondere wie er zu starten
+Möchten Sie zu einem Prozess weitere Einstellungen vornehmen, sollten Sie eine Instanz von [ProcessStartInfo](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo?view=netframework-4.8) verwenden. Diese Klasse speichert Informationen über den Prozess, insbesondere wie er zu starten
 hat und seine Konfiguration.
-
 
 | Eigenschaft      | Beschreibung
 | -------------|-------------|
@@ -108,3 +107,6 @@ p.CloseMainWindow();
 // schließt die Anwendung sofort, ohne auf die Anwendung zu warten
 // p.Kill();
 ```
+
+Note: **ÜBUNG** AppStarter
+MSPaint (c:\\windows\\system32\\mspaint32.exe)
