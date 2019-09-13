@@ -118,5 +118,76 @@ public string GetReleases(string url)
 }
 ```
 
-Note: **ÜBUNG** REST Webservice abfragen (zeigen in Console mit HttpClient). Gibt JSON (Java Script Object Notation) zurück (einfaches Textformat für Datenaustausch); Swagger; Deserialisierung: Ein Text welcher für Datenübertragung optimiert ist; NuGet
-**ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")]; Swashbuckle von NuGet
+## Daten umwandeln
+
+REST Webservice liefern Ergebnisse als Text. Meist JSON (Java Script Object Notation) oder XML.
+Um damit arbeiten zu können sollten die Daten in Objekte umgewandelt (deserialisiert) werden. Dazu wird [Json.NET](https://www.newtonsoft.com/json) verwendet. [Dokumentation Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)
+
+```csharp
+// Klasse Account kann über Tools automatisch aus dem Json generiert werden
+public class Account
+{
+    public string Email { get; set; }
+    public bool Active { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public IList<string> Roles { get; set; }
+}
+
+// Json String, z:b. Abfrage Ergebnis eines Webservice
+string json = @"{
+  'Email': 'james@example.com',
+  'Active': true,
+  'CreatedDate': '2013-01-20T00:00:00Z',
+  'Roles': [
+    'User',
+    'Admin'
+  ]
+}";
+
+// Json string wird in ein Objekt der Klasse Account umgewandelt
+Account account = JsonConvert.DeserializeObject<Account>(json);
+```
+
+
+Note:
+**ÜBUNG** REST Webservice abfragen (zeigen in Console mit HttpClient). Gibt JSON zurück (einfaches Textformat für Datenaustausch); Swagger; Deserialisierung: Ein Text welcher für Datenübertragung optimiert ist; NuGet
+
+
+<!-- .slide: class="left" -->
+## REST Webservice erstellen
+
+Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller Methoden bereitstellen.
+
+z.B. EmployeeController; aufrufbar über `http://localhost/api/employee` 
+
+POST – Wird benutzt um einen neuen Mitarbeiter anzulegen
+
+GET - Wird benutzt um eine Liste aller Mitarbeiter abzurufen
+
+PUT - Wird benutzt um eine Mitarbeiter upzudaten
+
+DELETE - Wird benutzt um einen Mitarbeiter zu löschen
+
+
+<!-- .slide: class="left" -->
+## Beispiel Controller Methode
+
+```csharp
+private static List<string> testData = new List<string>(new String[] { "Mitarbeiter1", "Andreas", "Hans", "Eddy" });
+
+// GET: api/Employee
+[ResponseType(typeof(List<string>))]
+public HttpResponseMessage Get()
+{
+    return Request.CreateResponse(HttpStatusCode.OK, testData);
+}
+```
+
+Je nach Ergebnis liefert jede Controller Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode?view=netframework-4.8) zurück der anzeigt ob die Aktion erfolgreich war oder warum nicht.
+
+
+Note::
+**VS** zeigen neues API Projekt; Values Controller; eigenen Controller; Swagger
+
+**ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")]; 
+Swashbuckle von NuGet

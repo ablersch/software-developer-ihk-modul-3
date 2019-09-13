@@ -139,7 +139,7 @@ using (SqlConnection connection = new SqlConnection(connectionString))
 }
 ```
 
-Note: Zeigen **VS** "SQL"
+Note: Zeigen in **VS** arbeiten mit SQL (lokale DB Anlegen, Connection String, Daten schreiben, Daten lesen)
 
 **ÜBUNG** SQL Datenbanken
 

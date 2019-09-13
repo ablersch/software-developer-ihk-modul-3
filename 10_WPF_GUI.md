@@ -10,7 +10,7 @@ GUI erstellen mit WPF
 
 * Seid .Net 3.0 steht WPF (Windows Presentation Foundation) zur Verfügung.
 
-* WinForm wird nicht mehr weiterentwickelt, ist aber noch Bestandteil des .Net Frameworks.
+* WinForms wird nicht mehr weiterentwickelt, ist aber noch Bestandteil des .Net Frameworks.
 
 * Neue Anwendungen sollten mit WPF erstellt werden.
 
@@ -31,8 +31,7 @@ Beschreibungssprache für Oberflächengestaltung
 
 Die WPF API (Application Programming Interface) stellt vordefinierte Steuerelemente (Controls) bereit um Oberflächen zu erstellen.
 
-Die Oberflächen können mit dem Designer von Visual Studio oder auch mit anderen Anwendungen (Microsoft Expression Blend oder XAML Padx) erstellt
-werden. Alle Anwendungen generieren eine XAML Datei die in der Anwendung benutzt werden kann.
+Die Oberflächen können mit dem Designer von Visual Studio oder auch mit anderen Anwendungen (Microsoft Expression Blend oder XAML Padx) erstellt werden. Alle Anwendungen generieren eine XAML Datei die in der Anwendung benutzt werden kann.
 
 Änderungen an der Oberfläche können aber auch direkt in der XAML Datei gemacht werden.
 
@@ -45,6 +44,7 @@ werden. Alle Anwendungen generieren eine XAML Datei die in der Anwendung benutzt
 ![WPF Features](images/WPFFeaturesDiagram.png)
 
 Note:
+
 * zeitbasierte Animationen sind direkt aus WPF möglich
 * Es wird Hardware benutzt anstelle der CPU (Graka, RAM)
 * Vektorbasiertes Rendering (Grafiken)
@@ -72,7 +72,7 @@ Beim Erstellen eines neuen WPF Projektes hat man vier Auswahlmöglichkeiten:
 
 ![Entwurfsumgebung](Images/VSEntwurfsumgebung.png)
 
-Note: Steuerlemente, GUI Designer, XAML Editor und Eigenschaften für Controls
+Note: Steuerelemente, GUI Designer, XAML Editor und Eigenschaften für Controls
 
 
 <!-- .slide: class="left" -->
