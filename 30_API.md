@@ -72,7 +72,7 @@ Es gibt verschiedene Implementierungen eines Webservices
 
 * SOAP (Simple Object Access Protocol)
 
-    * Kann Nachrichten über HTTP aber auch über SMTP usw übertragen
+    * Kann Nachrichten über HTTP aber auch über SMTP usw. übertragen
 
     * Nutzt XML
 
@@ -106,8 +106,7 @@ using (var httpClient = new HttpClient()) {
 }
 ```
 
-alternativ
-
+### Alternativ
 
 ```csharp
 public string GetReleases(string url)
@@ -118,6 +117,8 @@ public string GetReleases(string url)
 }
 ```
 
+
+<!-- .slide: class="left" -->
 ## Daten umwandeln
 
 REST Webservice liefern Ergebnisse als Text. Meist JSON (Java Script Object Notation) oder XML.
@@ -148,7 +149,6 @@ string json = @"{
 Account account = JsonConvert.DeserializeObject<Account>(json);
 ```
 
-
 Note:
 **ÜBUNG** REST Webservice abfragen (zeigen in Console mit HttpClient). Gibt JSON zurück (einfaches Textformat für Datenaustausch); Swagger; Deserialisierung: Ein Text welcher für Datenübertragung optimiert ist; NuGet
 
@@ -158,7 +158,7 @@ Note:
 
 Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller Methoden bereitstellen.
 
-z.B. EmployeeController; aufrufbar über `http://localhost/api/employee` 
+z.B. EmployeeController; aufrufbar über `http://localhost/api/employee`
 
 POST – Wird benutzt um einen neuen Mitarbeiter anzulegen
 
@@ -185,9 +185,8 @@ public HttpResponseMessage Get()
 
 Je nach Ergebnis liefert jede Controller Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode?view=netframework-4.8) zurück der anzeigt ob die Aktion erfolgreich war oder warum nicht.
 
-
 Note::
 **VS** zeigen neues API Projekt; Values Controller; eigenen Controller; Swagger
 
-**ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")]; 
+**ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")];
 Swashbuckle von NuGet
