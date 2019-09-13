@@ -137,9 +137,7 @@ Im neuen Projekt Button welcher Messagebox anzeigt und Anwendung beendet (Close(
 <!-- .slide: class="left" -->
 ## Layout
 
-Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layout angeordnet.
-
-Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/Articles/30904/WPF-Layouts-A-Visual-Quick-Start):
+Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layout angeordnet. [Layouts](https://www.codeproject.com/Articles/30904/WPF-Layouts-A-Visual-Quick-Start):
 
 * **Canvas:** Steuerelemente stellen ihr eigenes Layout bereit. Positionierung mit Koordinaten
 
@@ -217,11 +215,11 @@ Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/A
 
 ![image](Images/LayoutGrid1.png)
 
-![image](Images/LayoutGrid2.png)
-
 
 <!-- .slide: class="left" -->
 ### Grid
+
+![image](Images/LayoutGrid2.png)
 
 ```xml
 <!-- First screenshot -->
@@ -357,7 +355,7 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 </WrapPanel>
 ```
 
-Note: Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch; Beite/Höhe auf "auto" und Margins raus
+Note: Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen
 
 **ÜBUNG** Taschenrechner
 
@@ -392,15 +390,18 @@ Parameter:
 Die Verknüpfung zwischen Ereignis und einem Ereignishandler kann auch im Code festgelegt werden.
 
 ```csharp
-public partial class MainWindow : Window {
-    public MainWindow() {
+public partial class MainWindow : Window
+{
+  public MainWindow()
+  {
     InitializeComponent();
     btnInfo.Click += new RoutedEventHandler(btnInfo_Click);
-    }
+  }
 
-    void btnInfo_Click(object sender, RoutedEventArgs e) {
+  void btnInfo_Click(object sender, RoutedEventArgs e) 
+  {
     MessageBox.Show("Ich bin ein Eventhandler");
-    }
+  }
 }
 ```
 
@@ -412,7 +413,6 @@ System.Windows.Forms Verweis; img.Source = new BitmapImage(new Uri("c:\\..."))
 ## DispatcherTimer Klasse
 
 Der [DispatcherTimer](https://docs.microsoft.com/de-de/dotnet/api/system.windows.threading.dispatchertimer?view=netframework-4.8) kann Aktionen wiederholend in einem bestimmten Intervall ausführen.
-
 
 ```csharp
 public DispatcherTimerSample()
@@ -432,6 +432,7 @@ void timer_Tick(object sender, EventArgs e)
   lblTime.Content = DateTime.Now.ToLongTimeString();
 }
 ```
+
 ```xml
 <Grid>
   <Label Name="lblTime" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" />
@@ -476,15 +477,15 @@ Eigenschaft wird nicht aktualisiert --> !NotifyPropertyChanged bei eigenen Klass
 
 
 <!-- .slide: class="left" -->
-### Binding Eigenschaften
+### Binding Klasse Eigenschaften
 
-Eigenschaften der Binding Klasse. Ein Binding Objekt beschreibt die Bindung von Datenquelle zu gebundener Komponente.
+Ein Binding Objekt beschreibt die Bindung von Datenquelle zu gebundener Komponente.
 
 * ElementName: Gibt den Namen des Steuerelements (der GUI) an, welches als **Datenquelle** dient.
 
 * Path: Path ist die Eigenschaft (Property (Value, Text, Content, ...)) an welche die Daten gebunden werden (optional).
 
-* Mode: Definiert den **Bindungsmodus** (Aktualisierungsmodus) fest. Dieser Mode kann einseitig (OneWay) oder beidseitig (TwoWay) zwischen GUI und Datenobjekt sein. Default ist TwoWay.
+* Mode: Definiert den **Bindungsmodus** (Aktualisierungsmodus). Dieser Mode kann einseitig (OneWay) oder beidseitig (TwoWay) zwischen GUI und Datenobjekt sein.
 
 * Converter: Gibt das Objekt an, welche als Converter (Übersetzer) verwendet werden soll.
 

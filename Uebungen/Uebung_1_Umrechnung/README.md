@@ -12,7 +12,7 @@ TempF2C = ((TempF – 32) * 5) / 9
 TempC2F = (TempF * 9 / 5) + 32
 ```
 
-Überprüfen Sie zusätzlich, ob in dem Eingabefeld etwas eingegeben wurde und ob die Eingabe korrekt war. Runden Sie, wenn nötig, die Ergebnisse auf 2 Nachkommastellen (`Math.Round()` ).
+Überprüfen Sie zusätzlich, ob in dem Eingabefeld etwas eingegeben wurde und ob die Eingabe korrekt war. Runden Sie, wenn nötig, die Ergebnisse auf 2 Nachkommastellen (`Math.Round()`).
 
 ## Beispiel
 
