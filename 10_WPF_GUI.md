@@ -31,17 +31,21 @@ Beschreibungssprache für Oberflächengestaltung
 
 Die WPF API (Application Programming Interface) stellt vordefinierte Steuerelemente (Controls) bereit um Oberflächen zu erstellen.
 
+
+<!-- .slide: class="left" -->
+## WPF
+
 Die Oberflächen können mit dem Designer von Visual Studio oder auch mit anderen Anwendungen (Microsoft Expression Blend oder XAML Padx) erstellt werden. Alle Anwendungen generieren eine XAML Datei die in der Anwendung benutzt werden kann.
 
 Änderungen an der Oberfläche können aber auch direkt in der XAML Datei gemacht werden.
 
-![Steuerelemente direkt in XAML erstellen](images/xaml.png)
+![Steuerelemente direkt in XAML erstellen](Images/xaml.png)
 
 
 <!-- .slide: class="left" -->
 ### WPF Features
 
-![WPF Features](images/WPFFeaturesDiagram.png)
+![WPF Features](Images/WPFFeaturesDiagram.png)
 
 Note:
 
@@ -55,8 +59,6 @@ Note:
 
 <!-- .slide: class="left" -->
 ### WPF Projektvorlagen
-
-Beim Erstellen eines neuen WPF Projektes hat man vier Auswahlmöglichkeiten:
 
 * Die **WPF-Anwendung** entspricht im Wesentlichen einer herkömmlichen Windows-Anwendung. Die charakteristischen Eigenschaften gleichen denen einer WinForm-Anwendung. WPF-Anwendungen werden in einem eigenen Fenster ausgeführt.
 
@@ -76,7 +78,7 @@ Note: Steuerelemente, GUI Designer, XAML Editor und Eigenschaften für Controls
 
 
 <!-- .slide: class="left" -->
-### Bestandteile neues Projekt
+### Bestandteile eines neuen Projekt
 
 Das neue Projekt besteht aus vier Dateien:
 
@@ -98,7 +100,7 @@ Das neue Projekt besteht aus vier Dateien:
 
 * Man hat die Möglichkeit, Steuerelemente in XAML zu definieren oder diese später zur Laufzeit zu erstellen.
 
-* Jedes Steuerelemente hat Eigenschaften und Methoden, um mit den Elementen zu arbeiten.
+* Jedes Steuerelemente hat Eigenschaften und Methoden.
 
 * Um ein Steuerelement anzusprechen, muss dieser Instanz (diesem Steuerelement) ein Name gegeben werden.
 
@@ -133,7 +135,7 @@ Im neuen Projekt Button welcher Messagebox anzeigt und Anwendung beendet (Close(
 <!-- .slide: class="left" -->
 ## Layout
 
-Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layout angeordnet. WPF bietet ein erweiterbares Layoutsystem, sodass kein zusätzlicher Code zum Anpassen des Layouts nötig ist.
+Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layout angeordnet.
 
 Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/Articles/30904/WPF-Layouts-A-Visual-Quick-Start):
 
@@ -177,7 +179,7 @@ Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/A
 
 * untergeordnete Steuerelemente werden an den Rändern des Bereichs ausgerichtet
 
-* dort werden die Steuerelemente in 4 verschiedene Regionen plaziert (top, bottom, left, right)
+* dort werden die Steuerelemente in 4 verschiedenen Regionen plaziert (top, bottom, left, right)
 
 ![DockPanel](Images/LayoutDockPanel.png)
 

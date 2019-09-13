@@ -60,7 +60,7 @@ Note: Jede Anwendung kann andere Programmiersprache haben oder auf anderem OS la
 <!-- .slide: class="left" -->
 ## Servicebasierte Architektur
 
-![servicebasierte Architektur](images/webservicemodel.png)
+![servicebasierte Architektur](Images/webservicemodel.png)
 
 Note: Application kann den Service aufrufen/beenden, je nach Bedarf. Benötigt nur die URL für den Abruf. Was im Service gemacht wird ist eine Blackbox
 
