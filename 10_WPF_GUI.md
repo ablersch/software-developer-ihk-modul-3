@@ -60,7 +60,7 @@ Note:
 <!-- .slide: class="left" -->
 ### WPF Projektvorlagen
 
-* Die **WPF-Anwendung** entspricht im Wesentlichen einer herkömmlichen Windows-Anwendung. Die charakteristischen Eigenschaften gleichen denen einer WinForm-Anwendung. WPF-Anwendungen werden in einem eigenen Fenster ausgeführt.
+* Die **WPF-Anwendung** entspricht im Wesentlichen einer herkömmlichen Windows-Anwendung. Die charakteristischen Eigenschaften gleichen denen einer WinForm-Anwendung.
 
 * **WPF-Browseranwendungen** stellen keine eigenen Fenster bereit. Die Ausgabe erfolgt im Browser. Außerdem werden WPF-Browseranwendungen nicht auf der lokalen Maschine installiert.
 
@@ -94,7 +94,9 @@ Das neue Projekt besteht aus vier Dateien:
 <!-- .slide: class="left" -->
 ### WPF Steuerelemente
 
-[Übersicht Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/)
+[Übersicht Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/control-library)
+
+[Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/)
 
 * Jedes Steuerelemente ist eine Klasse.
 
@@ -149,8 +151,6 @@ Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/A
 
 * **StackPanel:** Steuerelemente werden entweder vertikal oder horizontal gestapelt
 
-* **WrapPanel:** Die Steuerelemente werden der Reihenfolge nach von links nach rechts angeordnet. Wenn sich in der jeweiligen Zeile mehr Steuerelemente befinden als der Raum zulässt, wird ein Zeilenumbruch durchgeführt.
-
 
 <!-- .slide: class="left" -->
 ### Canvas
@@ -160,6 +160,10 @@ Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/A
 * die Positionierung erfolgt über Koordinaten
 
 ![Canvas](Images/LayoutCanvas.png)
+
+
+<!-- .slide: class="left" -->
+### Canvas
 
 ```xml
 <Canvas>
@@ -182,6 +186,10 @@ Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/A
 * dort werden die Steuerelemente in 4 verschiedenen Regionen plaziert (top, bottom, left, right)
 
 ![DockPanel](Images/LayoutDockPanel.png)
+
+
+<!-- .slide: class="left" -->
+### DockPanel
 
 ```xml
 <DockPanel>
@@ -210,6 +218,10 @@ Die wichtigsten Layouts werden [hier kurz gezeigt](https://www.codeproject.com/A
 ![image](Images/LayoutGrid1.png)
 
 ![image](Images/LayoutGrid2.png)
+
+
+<!-- .slide: class="left" -->
+### Grid
 
 ```xml
 <!-- First screenshot -->
@@ -254,6 +266,10 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 
 ![image](Images/LayoutUniformGrid2.png)
 
+
+<!-- .slide: class="left" -->
+### UniformGrid
+
 ```xml
 <UniformGrid>
   <Label Background="Red">Red 1</Label>
@@ -277,6 +293,10 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 * Verschachtelungen sind möglich
 
 ![StackPanel](Images/LayoutStackPanel.png)
+
+
+<!-- .slide: class="left" -->
+### StackPanel
 
 ```xml
 <StackPanel Orientation="Vertical"> <!-- Vertical is the default -->
@@ -304,6 +324,10 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 ![image](Images/LayoutWrapPanelHorizontal.png)
 
 ![image](Images/LayoutWrapPanelVertical.png)
+
+
+<!-- .slide: class="left" -->
+### WrapPanel
 
 ```xml
 <WrapPanel Orientation="Vertical">
