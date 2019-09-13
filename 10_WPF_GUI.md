@@ -24,7 +24,7 @@ GUI erstellen mit WPF
 
 * Präsentations- und Geschäftslogik (Code) wird getrennt
 
-* XAML (Extended Application Markup Language)(gespr. Xemmel)
+* [XAML](https://docs.microsoft.com/de-de/dotnet/framework/wpf/advanced/xaml-overview-wpf) (Extended Application Markup Language)(gespr. Xemmel)
 Beschreibungssprache für Oberflächengestaltung
 
 * XAML wird benutzt um die Oberfläche zu erstellen bzw. zu definieren (ähnlich wie bei ASP.NET Anwendungen)
@@ -96,7 +96,7 @@ Das neue Projekt besteht aus vier Dateien:
 
 [Übersicht Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/control-library)
 
-[Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/)
+[Steuerelemente allgemein](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/)
 
 * Jedes Steuerelemente ist eine Klasse.
 
@@ -139,7 +139,7 @@ Im neuen Projekt Button welcher Messagebox anzeigt und Anwendung beendet (Close(
 
 Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layout angeordnet. [Layouts](https://www.codeproject.com/Articles/30904/WPF-Layouts-A-Visual-Quick-Start):
 
-* **Canvas:** Steuerelemente stellen ihr eigenes Layout bereit. Positionierung mit Koordinaten
+* **Canvas:** Steuerelemente stellen ihr eigenes Layout bereit. Positionierung mit Koordinaten (x und y)
 
 * **DockPanel:** Steuerelemente werden an den Rändern des Bereichs ausgerichtet (angedockt)
 
@@ -213,13 +213,13 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 
 * Elemente können sich über mehrere Zellen oder Spalten hinweg erstrecken (```Span```)
 
-![image](Images/LayoutGrid1.png)
+Grid Beispiel 1            |  Grid Beispiel 2
+:-------------------------:|:-------------------------:
+![image](Images/LayoutGrid1.png)  |  ![image](Images/LayoutGrid2.png)
 
 
 <!-- .slide: class="left" -->
 ### Grid
-
-![image](Images/LayoutGrid2.png)
 
 ```xml
 <!-- First screenshot -->
@@ -319,28 +319,15 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 
 * Untergeordnete Steuerelemente werden der Reihenfolge nach von links nach rechts angeordnet. Wenn sich in der jeweiligen Zeile mehr Steuerelemente befinden, als der Raum zulässt, wird ein Zeilenumbruch durchgeführt.
 
-![image](Images/LayoutWrapPanelHorizontal.png)
-
-![image](Images/LayoutWrapPanelVertical.png)
+WrapPanel horizontal            |  WrapPanel vertikal
+:-------------------------:|:-------------------------:
+![image](Images/LayoutWrapPanelHorizontal.png)  |  ![image](Images/LayoutWrapPanelVertical.png)
 
 
 <!-- .slide: class="left" -->
 ### WrapPanel
 
 ```xml
-<WrapPanel Orientation="Vertical">
-  <Label Height="125" Background="Red">Red 1</Label>
-  <Label Height="100" Background="LightGreen">Green 1</Label>
-  <Label Height="125" Background="LightBlue">Blue 1</Label>
-  <Label Height="50" Background="Yellow">Yellow 1</Label>
-  <Label Height="150" Background="Orange">Orange 1</Label>
-  <Label Height="100" Background="Red">Red 2</Label>
-  <Label Height="150" Background="LightGreen">Green 2</Label>
-  <Label Height="75" Background="LightBlue">Blue 2</Label>
-  <Label Height="50" Background="Yellow">Yellow 2</Label>
-  <Label Height="175" Background="Orange">Orange 2</Label>
-</WrapPanel>
-
 <WrapPanel Orientation="Horizontal"> <!-- Horizontal is the default -->
   <Label Width="125" Background="Red">Red 1</Label>
   <Label Width="100" Background="LightGreen">Green 1</Label>
@@ -353,6 +340,18 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
   <Label Width="50" Background="Yellow">Yellow 2</Label>
   <Label Width="175" Background="Orange">Orange 2</Label>
 </WrapPanel>
+<WrapPanel Orientation="Vertical">
+  <Label Height="125" Background="Red">Red 1</Label>
+  <Label Height="100" Background="LightGreen">Green 1</Label>
+  <Label Height="125" Background="LightBlue">Blue 1</Label>
+  <Label Height="50" Background="Yellow">Yellow 1</Label>
+  <Label Height="150" Background="Orange">Orange 1</Label>
+  <Label Height="100" Background="Red">Red 2</Label>
+  <Label Height="150" Background="LightGreen">Green 2</Label>
+  <Label Height="75" Background="LightBlue">Blue 2</Label>
+  <Label Height="50" Background="Yellow">Yellow 2</Label>
+  <Label Height="175" Background="Orange">Orange 2</Label>
+</WrapPanel>
 ```
 
 Note: Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen
@@ -363,7 +362,7 @@ Note: Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch, Brei
 <!-- .slide: class="left" -->
 ## Ereignisse
 
-Eine Interaktion des Anwenders mit der Oberfläche löst ein Ereignis aus.
+Eine Interaktion des Anwenders mit der Oberfläche löst ein [Ereignis](https://docs.microsoft.com/de-de/dotnet/framework/wpf/advanced/events-wpf) aus.
 
 Ist ein Ergeignishandler registriert wird dieser ausgeführt.
 
@@ -374,14 +373,15 @@ Ist ein Ergeignishandler registriert wird dieser ausgeführt.
 //Code behind
 private void btnClear_Click(object sender, RoutedEventArgs e)
 {
+  (sender as Button).IsEnabled = false;
 }
 ```
 
-Parameter:
+### Parameter
 
-1. Parameter: Object: Referenz auf die ereignisauslösende Komponente (Cast auf das Control).
+1. Parameter (`object`): Referenz auf die ereignisauslösende Komponente (Cast auf das Control).
 
-2. Parameter: Je nach Ereignis unterschiedlicher Datentyp. Stellt ereignisspezifische Daten zur Verfügung.
+2. Parameter (z.B. `RoutedEventArgs`): Je nach Ereignis unterschiedlicher Datentyp. Stellt ereignisspezifische Daten zur Verfügung.
 
 
 ## Ereignisse im Code definieren
@@ -398,7 +398,7 @@ public partial class MainWindow : Window
     btnInfo.Click += new RoutedEventHandler(btnInfo_Click);
   }
 
-  void btnInfo_Click(object sender, RoutedEventArgs e) 
+  void btnInfo_Click(object sender, RoutedEventArgs e)
   {
     MessageBox.Show("Ich bin ein Eventhandler");
   }
@@ -417,7 +417,7 @@ Der [DispatcherTimer](https://docs.microsoft.com/de-de/dotnet/api/system.windows
 ```csharp
 public DispatcherTimerSample()
 {
-  InitializeComponent();
+  // neue Instanz erzeugen
   DispatcherTimer timer = new DispatcherTimer();
   // In welchem Intervall soll er laufen
   timer.Interval = TimeSpan.FromSeconds(1);
@@ -435,7 +435,7 @@ void timer_Tick(object sender, EventArgs e)
 
 ```xml
 <Grid>
-  <Label Name="lblTime" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" />
+  <Label Name="lblTime" HorizontalAlignment="Center" VerticalAlignment="Center" />
 </Grid>
 ```
 
@@ -461,7 +461,7 @@ Note: Eigenschaften mit Controls verbinden
 <!-- .slide: class="left" -->
 ### Binding erstellen
 
-* Binding kann über den Eigenschaften Editor
+* Ein Binding kann über den Eigenschaften Editor
 
 * von Hand
 
@@ -479,15 +479,13 @@ Eigenschaft wird nicht aktualisiert --> !NotifyPropertyChanged bei eigenen Klass
 <!-- .slide: class="left" -->
 ### Binding Klasse Eigenschaften
 
-Ein Binding Objekt beschreibt die Bindung von Datenquelle zu gebundener Komponente.
+Beschreibt die Bindung von Datenquelle zu gebundener Komponente.
 
 * ElementName: Gibt den Namen des Steuerelements (der GUI) an, welches als **Datenquelle** dient.
 
 * Path: Path ist die Eigenschaft (Property (Value, Text, Content, ...)) an welche die Daten gebunden werden (optional).
 
-* Mode: Definiert den **Bindungsmodus** (Aktualisierungsmodus). Dieser Mode kann einseitig (OneWay) oder beidseitig (TwoWay) zwischen GUI und Datenobjekt sein.
-
-* Converter: Gibt das Objekt an, welche als Converter (Übersetzer) verwendet werden soll.
+* Mode: Definiert den **Bindungsmodus** zwischen GUI und Datenobjekt. Dieser kann einseitig (OneWay) oder beidseitig (TwoWay) sein.
 
 * Source: Legt das Objekt fest, welches als Quelle der Datenbindung dient.
 

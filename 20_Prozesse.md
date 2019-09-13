@@ -6,7 +6,7 @@ Mit Windows Prozesse arbeiten.
 <!-- .slide: class="left" -->
 ## Process Klasse
 
-Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnostics.process?view=netframework-4.8) stellt Methoden und Eigenschaften bereit um auf Prozesse zuzugreifen sowie diese zu Starten und zu Stoppen.
+Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnostics.process?view=netframework-4.8) stellt Methoden und Eigenschaften bereit um mit Prozesse zu arbeiten.
 
 | Methode      | Beschreibung
 | -------------|-------------|
@@ -15,7 +15,7 @@ Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnost
 | `Start()`    | startet einen Prozess
 | `CloseMainWindow()`| eine Beenden Anforderung schicken, wartet z. B. auf Benutzerbestätigung
 | `Kill()`| beendet den Prozess sofort ohne auf den Prozess zu warten
-| `Responding`| gibt an, ob die Benutzeroberfläche reagiert oder nicht (true bzw. false)
+| `Responding`| gibt an, ob die Benutzeroberfläche
 
 
 <!-- .slide: class="left" -->
@@ -28,10 +28,10 @@ public MainWindow()  {
     string temp = String.Format("ProcessName \t ProcessId \t StartTime\n");
     ArrayList processList = new ArrayList();
 
-    //Get a list of all running processes on current system
+    // Alle laufenden Prozesse des aktuellen Systems abrufen
     Process[] processes = Process.GetProcesses();
 
-    //Iterate to every process to check if it is out required process
+    // Alle Prozesse durchlaufen und die Daten ausgeben. Es wird ein Fehler geworfen wenn auf den Prozess nicht zugegriffen werden kann
     foreach (Process process in processes) {
         try {   
             processList.Add(process.ProcessName + "\t" + process.Id +"\t"+ process.StartTime + "\n");
@@ -52,7 +52,7 @@ public MainWindow()  {
 
 
 <!-- .slide: class="left" -->
-## Beispiele Prozesse starten
+## Beispiel Prozesse starten
 
 ```csharp
 // Startet Explorer in C:\
