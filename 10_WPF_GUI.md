@@ -117,15 +117,17 @@ Das neue Projekt besteht aus vier Dateien:
 * Das Nachrichtenfenster ist modal, d.h. es kann kein anderes Fenster aktiviert werden, solang bis das Nachrichtenfenster geschlossen wurde.
 
 ```csharp
-MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler", MessageBoxButton.YesNo, MessageBoxImage.Question);
 ```
 
 ```csharp
 string message = "Möchten Sie die Daten speichern?";
-MessageBoxResult result = MessageBox.Show(message,"Meine Anwendung", MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.OK);
+MessageBoxResult result = MessageBox.Show(message,"Meine Anwendung", MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
 if (result == MessageBoxResult.OK)
-{}
+{
+  // TODO
+}
 ```
 
 Note: **VS** zeigen: neues Projekt, Fensterbereiche, Dateien.
@@ -398,6 +400,7 @@ public partial class MainWindow : Window
     btnInfo.Click += new RoutedEventHandler(btnInfo_Click);
   }
 
+  // Ereignishandler
   void btnInfo_Click(object sender, RoutedEventArgs e)
   {
     MessageBox.Show("Ich bin ein Eventhandler");
@@ -405,8 +408,7 @@ public partial class MainWindow : Window
 }
 ```
 
-Note: **VS** zeigen: Event von hand; Menü; Image.Source; Directory.GetFiles;
-System.Windows.Forms Verweis; img.Source = new BitmapImage(new Uri("c:\\..."))
+Note: **VS** zeigen: Event von hand; Menü mit MenüItems geschachtelt; Directory.GetFiles(folderPath, "*.jpg", SearchOption.TopDirectoryOnly); System.Windows.Forms Verweis; img.Source = new BitmapImage(new Uri("c:\\..."))
 
 
 <!-- .slide: class="left" -->
@@ -421,11 +423,13 @@ public DispatcherTimerSample()
   DispatcherTimer timer = new DispatcherTimer();
   // In welchem Intervall soll er laufen
   timer.Interval = TimeSpan.FromSeconds(1);
+  // Event mit dem Eventhandler verknüpfen
   timer.Tick += timer_Tick;
   // Läuft erst wenn die Start() ausgeführt wurde. Zum beenden Stop() ausführen
   timer.Start();
 }
 
+// Eventhandler, wird bei jedem Tick Event ausgelöst
 void timer_Tick(object sender, EventArgs e)
 {
   // Aktuelle Uhrzeit jede Sekunde einem Label zuweisen

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uebung Umrechnung", "Uebung Umrechnung.csproj", "{47A73FD8-C1E4-4799-A959-7785CB24402E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47A73FD8-C1E4-4799-A959-7785CB24402E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A73FD8-C1E4-4799-A959-7785CB24402E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A73FD8-C1E4-4799-A959-7785CB24402E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A73FD8-C1E4-4799-A959-7785CB24402E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC1734B5-4424-40D3-A603-758F0A6DBD03}
+	EndGlobalSection
+EndGlobal

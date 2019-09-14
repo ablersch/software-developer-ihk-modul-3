@@ -156,17 +156,17 @@ Note:
 <!-- .slide: class="left" -->
 ## REST Webservice erstellen
 
-Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller Methoden bereitstellen.
+Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller mehrere Methoden bereitstellen.
 
-z.B. EmployeeController; aufrufbar über `http://localhost/api/employee`
+z.B. EmployeeController: aufrufbar über `http://localhost/api/employee`
 
-POST – Wird benutzt um einen neuen Mitarbeiter anzulegen
+**POST** – Wird benutzt um einen neuen Mitarbeiter anzulegen
 
-GET - Wird benutzt um eine Liste aller Mitarbeiter abzurufen
+**GET** - Wird benutzt um eine Liste aller Mitarbeiter abzurufen
 
-PUT - Wird benutzt um eine Mitarbeiter upzudaten
+**PUT** - Wird benutzt um eine Mitarbeiter upzudaten
 
-DELETE - Wird benutzt um einen Mitarbeiter zu löschen
+**DELETE** - Wird benutzt um einen Mitarbeiter zu löschen
 
 
 <!-- .slide: class="left" -->
