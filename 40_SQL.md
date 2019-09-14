@@ -6,7 +6,7 @@ Datenbanken mit DotNet
 <!-- .slide: class="left" -->
 ## ADO.Net
 
-Datenbankzugriffe im .NET Framework werden durch die ADO.Net Klassen abgewickelt. Durch ADO wird die nötige Basisfunktionalität geboten um auf relationale Datenbanken zuzugreifen.
+Datenbankzugriffe im .NET Framework werden durch die [ADO.Net Klassen](https://docs.microsoft.com/de-de/dotnet/framework/data/adonet/ado-net-overview) abgewickelt. Durch ADO wird die nötige Basisfunktionalität geboten um auf relationale Datenbanken zuzugreifen.
 
 Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeicher. Dazu existieren Klassen, die Verbindung zu einer Datenbank (Microsoft SQL Server, Oracle etc.) herstellen (sogenannte Connection-Klassen), Klassen, die Tabellen im Arbeitsspeicher repräsentieren, und es ermöglichen, mit ihnen zu arbeiten (sogenannte DataTables) und Klassen, die für gesamte Datenbanken im Arbeitsspeicher stehen (sogenannte DataSets).
 
@@ -69,7 +69,7 @@ Note: ExecuteScalar für true/false oder ID Abfragen
 
 Der [DataReader](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldatareader?view=netframework-4.8) ermöglicht sequentiellen Lesezugriff auf die Daten. Das Objekt wird durch den Aufruf der Methode `ExecuteReader()` des Command Objektes initialisiert. Man sollte unbedingt sobald der Reader nicht mehr benötigt wird die `Close()` Methode aufrufen, um ungewollte Verbindungsprobleme zu vermeiden.
 
-Typischerweise verwendet man einen DataReader wenn man nur lesenden Zugriff auf Datensätze benötigt, da er einfach am leichtgewichtigsten ist. Eine Anwendung des DataReaders könnte wie folgt aussehen:
+Typischerweise verwendet man einen DataReader wenn man nur lesenden Zugriff auf Datensätze benötigt. Eine Anwendung des DataReaders könnte wie folgt aussehen:
 
 ```csharp
 SqlDataReader reader = command.ExecuteReader();
@@ -190,7 +190,7 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen
 <!-- .slide: class="left" -->
 ### Daten abfragen
 
-* LINQ-to-Entities (Language-Integrated Query bzw Sprachintegrierte Abfrage): Damit können Daten aus verschiedenen Datenquellen (einfache Liste, ein Wörterbuch,eine XML-Datei oder eine Datenbanktabelle) abgefragt und bearbeitet werden. LINQ gibt es in zwei Syntaxvarianten: Die Abfrage- und die Methodensyntax.
+* LINQ-to-Entities (Language-Integrated Query bzw Sprachintegrierte Abfrage): Damit können Daten aus verschiedenen Datenquellen (einfache Liste, ein Wörterbuch,eine XML-Datei oder eine Datenbanktabelle) abgefragt und bearbeitet werden. [LINQ](https://docs.microsoft.com/de-de/dotnet/csharp/programming-guide/concepts/linq/introduction-to-linq-queries) gibt es in zwei Syntaxvarianten: Die Abfrage- und die Methodensyntax.
 
 * Klassisch mit SQL Syntax
 
@@ -221,6 +221,7 @@ foreach (var name in shortNames)
 {
     Console.WriteLine(name);
 }
+
 ```
 
 Note: In nur einer Zeile kann man z.B. alle Namen abfragen welche 8 oder weniger Zeichen lang sind und diese der Länge nach sortieren
@@ -229,7 +230,7 @@ Note: In nur einer Zeile kann man z.B. alle Namen abfragen welche 8 oder weniger
 <!-- .slide: class="left" -->
 #### LINQ Methodensyntax
 
-Bei Lamda Expressions ist auf der linken Seite der Eingabeparameter. Der Name ist frei wählbar und der Wert kommt aus der Where Bedingung. Auf der rechten Seite steht die Anweisung bzw der Ausdruck.
+Bei Lambda Expressions ist auf der linken Seite der Eingabeparameter. Der Name ist frei wählbar und der Wert kommt aus der Where Bedingung. Auf der rechten Seite steht die Anweisung bzw der Ausdruck.
 
 ```csharp
 name => name.Length <= 8

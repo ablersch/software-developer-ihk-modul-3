@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 
-
 namespace Uebung_Umrechnung{
     /// <summary>
     /// Interaction logic for MainWindow.xaml

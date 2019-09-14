@@ -408,7 +408,13 @@ public partial class MainWindow : Window
 }
 ```
 
-Note: **VS** zeigen: Event von hand; Menü mit MenüItems geschachtelt; Directory.GetFiles(folderPath, "*.jpg", SearchOption.TopDirectoryOnly); System.Windows.Forms Verweis; img.Source = new BitmapImage(new Uri("c:\\..."))
+Note: **VS** zeigen: Event von hand; Menü mit MenüItems geschachtelt; 
+
+Directory.GetFiles(folderPath, "*.jpg", SearchOption.TopDirectoryOnly); System.Windows.Forms Verweis; 
+
+img.Source = new BitmapImage(new Uri("c:\\..."))
+
++= Trägt sich für ein Event ein
 
 
 <!-- .slide: class="left" -->
