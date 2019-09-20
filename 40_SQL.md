@@ -225,13 +225,13 @@ foreach (var name in shortNames)
 
 ```
 
-Note: In nur einer Zeile kann man z.B. alle Namen abfragen welche 8 oder weniger Zeichen lang sind und diese der Länge nach sortieren
+Note: In nur einer Zeile kann man z.B. alle Namen abfragen welche 8 oder weniger Zeichen lang sind und diese der Laenge nach sortieren
 
 
 <!-- .slide: class="left" -->
 #### LINQ Methodensyntax
 
-Bei Lambda Expressions ist auf der linken Seite der Eingabeparameter. Der Name ist frei wählbar und der Wert kommt aus der Where Bedingung. Auf der rechten Seite steht die Anweisung bzw der Ausdruck.
+Bei Lambda Expressions ist auf der linken Seite der Eingabeparameter. Der Name ist frei waehlbar und der Wert kommt aus der Where Bedingung. Auf der rechten Seite steht die Anweisung bzw der Ausdruck.
 
 ```csharp
 
@@ -241,7 +241,9 @@ List<int> numbers = new List<int>()
 {
     1, 7, 2, 61, 14
 };
+```
 
+```csharp
 List<int> sortNum = numbers.OrderBy(number => number).ToList();
 
 
@@ -250,7 +252,7 @@ List<User> sortedUsers = listOfUsers.OrderBy(user => user.Age)
 
 ```
 
-Note: Abfrage wird erst ausgeführt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(), ... . D.H es sind Abfragen über mehrere Zeilen möglich
+Note: Abfrage wird erst ausgefuehrt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(), ... . D.H es sind Abfragen über mehrere Zeilen moeglich
 
 
 <!-- .slide: class="left" -->
