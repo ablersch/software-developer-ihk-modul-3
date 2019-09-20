@@ -234,6 +234,7 @@ Note: In nur einer Zeile kann man z.B. alle Namen abfragen welche 8 oder weniger
 Bei Lambda Expressions ist auf der linken Seite der Eingabeparameter. Der Name ist frei wählbar und der Wert kommt aus der Where Bedingung. Auf der rechten Seite steht die Anweisung bzw der Ausdruck.
 
 ```csharp
+
 name => name.Length <= 8
 
 List<int> numbers = new List<int>()
@@ -246,6 +247,7 @@ List<int> sortNum = numbers.OrderBy(number => number).ToList();
 
 List<User> sortedUsers = listOfUsers.OrderBy(user => user.Age)
             .ThenByDescending(user => user.Name).ToList();
+
 ```
 
 Note: Abfrage wird erst ausgeführt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(), ... . D.H es sind Abfragen über mehrere Zeilen möglich
@@ -267,4 +269,5 @@ var names = users.Select(user => user.Name).ToList();
 ```
 
 Note: **VS** zeigen: EF hinzufügen und nutzen; zeigen der Klassen und Abfragen mit LINQ.
+
 **ÜBUNG** EntityFramework
