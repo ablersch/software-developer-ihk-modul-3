@@ -208,14 +208,15 @@ var names = new List<string>()
     "Jenna Doe",  
     "Joe Doe"  
 };  
+```
 
+```csharp
 // Alle Namen holen welche 8 oder weniger Zeichen haben
 // Abfragesyntax
 var shortNames = from name in names where name.Length <= 8 orderby name.Length select name;
 
 // Methodensyntax
 var shortNames = names.Where(name => name.Length <= 8).OrderBy(name => name.Length);
-
 
 foreach (var name in shortNames)  
 {
@@ -244,7 +245,7 @@ List<int> sortNum = numbers.OrderBy(number => number).ToList();
 
 
 List<User> sortedUsers = listOfUsers.OrderBy(user => user.Age)
-                                    .ThenByDescending(user => user.Name).ToList();
+            .ThenByDescending(user => user.Name).ToList();
 ```
 
 Note: Abfrage wird erst ausgeführt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(), ... . D.H es sind Abfragen über mehrere Zeilen möglich
