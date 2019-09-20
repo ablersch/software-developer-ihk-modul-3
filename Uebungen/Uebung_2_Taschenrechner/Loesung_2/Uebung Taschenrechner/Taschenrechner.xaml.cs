@@ -86,7 +86,7 @@ namespace Uebung_Taschenrechner
             {
                 return;
             }
-            
+
             tbxInput.Text = "";
 
             switch (btnName)
@@ -95,14 +95,17 @@ namespace Uebung_Taschenrechner
                     lblTempValue.Content += " + ";
                     operatorValue = "+";
                     break;
+
                 case "Subtraktion":
                     lblTempValue.Content += " - ";
                     operatorValue = "-";
                     break;
+
                 case "Division":
                     lblTempValue.Content += " / ";
                     operatorValue = "/";
                     break;
+
                 case "Multiplikation":
                     lblTempValue.Content += " * ";
                     operatorValue = "*";

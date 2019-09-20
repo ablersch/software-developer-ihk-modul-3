@@ -519,6 +519,7 @@ DataContext = medien;
 In diesem Fall ist keine explizite Angabe von `ElementName` oder ähnliches notwendig.
 
 Note: Path ist optional
-**VS** zeigen: Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button
+
+**VS** zeigen: DataContext Binding auf Eigenschaft; Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button
 
 **ÜBUNG** Zeichnen
