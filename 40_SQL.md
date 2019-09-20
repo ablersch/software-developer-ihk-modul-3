@@ -245,14 +245,15 @@ List<int> numbers = new List<int>()
 
 ```csharp
 List<int> sortNum = numbers.OrderBy(number => number).ToList();
+```
 
-
+```csharp
 List<User> sortedUsers = listOfUsers.OrderBy(user => user.Age)
             .ThenByDescending(user => user.Name).ToList();
 
 ```
 
-Note: Abfrage wird erst ausgefuehrt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(), ... . D.H es sind Abfragen über mehrere Zeilen moeglich
+Note: Abfrage wird erst ausgefuehrt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(),  D.H es sind Abfragen über mehrere Zeilen moeglich
 
 
 <!-- .slide: class="left" -->
