@@ -520,6 +520,6 @@ In diesem Fall ist keine explizite Angabe von `ElementName` oder ähnliches notw
 
 Note: Path ist optional
 
-**VS** zeigen: DataContext Binding auf Eigenschaft; Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button
+**VS** zeigen: DataContext Binding auf Eigenschaft; Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button; ToolbarTry -> Toolbar -> Button -> Image
 
 **ÜBUNG** Zeichnen

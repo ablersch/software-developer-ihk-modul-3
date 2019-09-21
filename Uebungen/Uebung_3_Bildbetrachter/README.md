@@ -15,7 +15,7 @@ Achten sie darauf, dass Sie folgende Funktionalitäten einbinden:
 ```csharp
 var dialog = new System.Windows.Forms.FolderBrowserDialog();
 System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-folderPath = dialog.SelectedPath;
+string folderPath = dialog.SelectedPath;
 ```
 
 Um die >> und << als Caption für den Button zu nutzen folgende Zeichenfolge verwenden.

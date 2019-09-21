@@ -1,0 +1,37 @@
+﻿<Window x:Class="Uebung_Bildbetrachter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bildbetrachter" Height="607" Width="552">
+    <Grid>
+        <DockPanel>
+            <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="Auto" DockPanel.Dock="Top">
+                <MenuItem HeaderStringFormat="Datei" Header="Datei" Click="MenuItem_Click_1">
+                    <MenuItem Header="beenden" HorizontalAlignment="Left" Width="145"/>
+                </MenuItem>
+            </Menu>
+            <DockPanel DockPanel.Dock="Top" Height="40">
+                <Label Content="Aktueller Pfad:" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label x:Name="lblPath" Content="" Margin="0" VerticalAlignment="Center"/>
+                <Button x:Name="btnChangePath" Content="Pfad ändern" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" Click="btnChangePath_Click" DockPanel.Dock="Right"/>
+            </DockPanel>
+            <DockPanel LastChildFill="False" DockPanel.Dock="Top" VerticalAlignment="Bottom" Margin="0">
+                <Label x:Name="lblImageProgress" Content="Bild 1 von XX" DockPanel.Dock="Bottom" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+            <Image x:Name="imgViewer" Margin="0" DockPanel.Dock="Top" Stretch="Uniform"/>
+            </DockPanel>
+
+
+            <Grid DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Height="40">
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF1ECD9" Offset="0.831"/>
+                    </LinearGradientBrush>
+                </Grid.Background> 
+                <Button x:Name="btnBack" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="20,0,110,0" VerticalAlignment="Center" Width="100" Click="btnBack_Click"/>
+                <Button x:Name="btnDiashow" Content="Start" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="100" Click="btnDiashow_Click" />
+                <Button x:Name="btnNext" Content="&gt;&gt;" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" Width="100" Click="btnNext_Click"  />
+                </Grid>
+        </DockPanel>
+    </Grid>
+</Window>
