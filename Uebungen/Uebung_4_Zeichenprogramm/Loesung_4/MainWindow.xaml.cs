@@ -52,7 +52,7 @@ namespace Uebung_Zeichenprogramm
                     return Brushes.Black;
             }
 
-            // Alternative um den String WErt in eine Farbe umzuwandeln
+            // Alternative um den String Wert in eine Farbe umzuwandeln
             // SolidColorBrush brush = (SolidColorBrush)new BrushConverter().ConvertFromString(value);
         }
 
@@ -73,7 +73,7 @@ namespace Uebung_Zeichenprogramm
                 line.X2 = e.GetPosition(cavDraw).X;
                 line.Y2 = e.GetPosition(cavDraw).Y;
 
-                // Den neuen Punkt zu STartpunkt machen
+                // Den neuen Punkt zu Startpunkt machen
                 currentPoint = e.GetPosition(cavDraw);
 
                 // Line zur GUI hinzufügen
@@ -100,15 +100,11 @@ namespace Uebung_Zeichenprogramm
         /// <param name="e"></param>
         private void cavDraw_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ButtonState == MouseButtonState.Pressed)
-            {
-                currentPoint = e.GetPosition(cavDraw);
-            }
+            currentPoint = e.GetPosition(cavDraw);
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            // TODO Save changes!!!
             Close();
         }
 
@@ -138,7 +134,7 @@ namespace Uebung_Zeichenprogramm
                 {
                     pngEncoder.Save(fs);
                 }
-                MessageBox.Show("Bild erfolgreich gespeichert","Erfolgreich",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Bild erfolgreich gespeichert","Erfolgreich", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             cavDraw.Children.Clear();

@@ -35,7 +35,9 @@ Ein Webservice (Web-API) ermöglicht eine reine Computer-zu-Computer-Kommunikati
 * Der Austausch von Daten und Funktionalität erfolgt unabhängig von der Programmiersprache bzw. Hardware und kann somit in unterschiedlichen Systemen integriert werden.
 
 Note: z.B.:
+
 * Shopsystem welches Artikel über Webservices abruft.
+
 * Kamera hat API um diese von dritt Programmen steuern zu lassen
 
 
@@ -95,13 +97,19 @@ Note: Bsp für REST Services von Facebook, Twitter, Netflix...
 ## REST Webservice abfragen
 
 ```csharp
-using (var httpClient = new HttpClient()) {
-    try {
-        string response = httpClient.GetStringAsync(new Uri(url)).Result;
-        return JsonConvert.DeserializeObject<BookItem>(response);
-    } catch (Exception e)
+public string GetReleases(string url)
+{
+    using (var httpClient = new HttpClient())
     {
-        return null;
+        try
+        {
+            string response = httpClient.GetStringAsync(new Uri(url)).Result;
+            return JsonConvert.DeserializeObject<BookItem>(response);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 }
 ```
@@ -111,9 +119,9 @@ using (var httpClient = new HttpClient()) {
 ```csharp
 public string GetReleases(string url)
 {
-        var client = new WebClient();
-        var response = client.DownloadString(url);
-        return response;
+    var client = new WebClient();
+    var response = client.DownloadString(url);
+    return response;
 }
 ```
 
@@ -122,7 +130,7 @@ public string GetReleases(string url)
 ## Daten umwandeln
 
 REST Webservice liefern Ergebnisse als Text. Meist JSON (Java Script Object Notation) oder XML.
-Um damit arbeiten zu können sollten die Daten in Objekte umgewandelt (deserialisiert) werden. Dazu wird [Json.NET](https://www.newtonsoft.com/json) verwendet. [Dokumentation Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm)
+Um damit arbeiten zu können sollten die Daten in Objekte umgewandelt (deserialisiert) werden. Dazu wird [Json.NET](https://www.newtonsoft.com/json) verwendet. [Dokumentation Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm), [Json to C#](http://json2csharp.com/)
 
 ```csharp
 // Klasse Account kann über Tools automatisch aus dem Json generiert werden
@@ -134,7 +142,7 @@ public class Account
     public IList<string> Roles { get; set; }
 }
 
-// Json String, z:b. Abfrage Ergebnis eines Webservice
+// Json String, z.B. Abfrage Ergebnis eines Webservice
 string json = @"{
   'Email': 'james@example.com',
   'Active': true,
@@ -150,7 +158,13 @@ Account account = JsonConvert.DeserializeObject<Account>(json);
 ```
 
 Note:
-**ÜBUNG** REST Webservice abfragen (zeigen in Console mit HttpClient). Gibt JSON zurück (einfaches Textformat für Datenaustausch); Swagger; Deserialisierung: Ein Text welcher für Datenübertragung optimiert ist; NuGet
+ **VS** zeigen in Console mit HttpClient Rezept API abrufen. Gibt JSON zurück (einfaches Textformat für Datenaustausch)
+
+ Deserialisierung: Ein Text welcher für Datenübertragung optimiert ist
+
+ NuGet
+
+**ÜBUNG** REST Webservice abfragen
 
 
 <!-- .slide: class="left" -->
@@ -185,7 +199,7 @@ public HttpResponseMessage Get()
 
 Je nach Ergebnis liefert jede Controller Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode?view=netframework-4.8) zurück der anzeigt ob die Aktion erfolgreich war oder warum nicht.
 
-Note::
+Note:
 **VS** zeigen neues API Projekt; Values Controller; eigenen Controller; Swagger
 
 **ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")];

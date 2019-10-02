@@ -54,7 +54,5 @@
                 <Canvas x:Name="cavDraw" Margin="2" MouseMove="cavDraw_MouseMove" MouseDown="cavDraw_MouseDown" Background="White"/>
             </TabItem>
         </TabControl>
-
-
     </Grid>
 </Window>
