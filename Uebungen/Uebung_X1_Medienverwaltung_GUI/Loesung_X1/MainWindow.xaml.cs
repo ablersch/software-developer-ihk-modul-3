@@ -27,7 +27,6 @@ namespace Medienauswahl_Aufgabe_GUI {
         {
             var selectedItem = (sender as ListView).SelectedItem;
             if (selectedItem != null) {
-
                 Item editItem = new Item(selectedItem as Medien);
                 editItem.ShowDialog();
             }
