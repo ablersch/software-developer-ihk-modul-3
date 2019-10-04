@@ -1,0 +1,21 @@
+﻿<Window x:Class="Medienauswahl_Aufgabe_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Medienverwaltung" Height="350" Width="525">
+
+
+    <Grid>
+        <ListView x:Name="lstView" HorizontalAlignment="Left" Height="197" Margin="10,113,0,0" VerticalAlignment="Top" Width="497" SelectionChanged="lstView_PreviewMouseLeftButtonDown">
+            <ListView.View >
+                <GridView>
+                    <GridViewColumn Header="Signatur" Width="80" DisplayMemberBinding="{Binding Path=Signatur}" />
+                    <GridViewColumn Header="Titel" Width="170" DisplayMemberBinding="{Binding Path=Titel}"/>
+                    <GridViewColumn Header="Typ" Width="120" DisplayMemberBinding="{Binding Path=Typ}"/>
+                    <GridViewColumn Header="Leihstatus" Width="120" DisplayMemberBinding="{Binding Path=LeihstatusMedien}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnNewItem" Content="neuer Eintrag" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="90" Click="btnNewItem_Click"/>
+
+    </Grid>
+</Window>
