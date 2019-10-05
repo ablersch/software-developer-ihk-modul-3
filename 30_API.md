@@ -97,7 +97,7 @@ Note: Bsp für REST Services von Facebook, Twitter, Netflix...
 ## REST Webservice abfragen
 
 ```csharp
-public string GetReleases(string url)
+public BookItem GetReleases(string url)
 {
     using (var httpClient = new HttpClient())
     {

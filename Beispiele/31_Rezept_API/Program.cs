@@ -5,7 +5,7 @@ using System.Net.Http;
 namespace Rezept_API
 {
     /// <summary>
-    /// The api is accessible at http://www.recipepuppy.com/api/.
+    /// The api is accessible at http://www.recipepuppy.com/about/api/.
     /// For example: http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3
     /// Optional Parameters:
     /// i : comma delimited ingredients

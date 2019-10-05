@@ -1,20 +1,21 @@
-# Übung 6 - Webservice abrufen
+# Webservice abrufen
 
-Erstellen Sie einen WPF Anwendung welche einen REST Webservice abruft.
+Erstellen Sie eine WPF Anwendung welche Daten zu einer TV Serie anzeigt. Als Parameter wird ein Suchwort benötigt womit nach einer Serie gesucht werden kann.
 
-Dieser Webservice benötigt als Parameter eine ISBN und gibt dann zu diesem Buch Infos zurück. Weiteres bitte aus den Screenshots entnehmen.
+[Api Beschreibung](https://www.tvmaze.com/api)
 
-[Beschreibung](https://www.booknomads.com/en/dev)
+http://api.tvmaze.com/search/shows?q=how
 
-[Webservice Url](https://www.booknomads.com/api/v0/isbn/9789000010134)
+## Daten
 
-[Test des Webservice](https://app.swaggerhub.com/apis/BookNomads/book_by_isbn/1.0.0#/default/get_isbn__ISBN_)
+Es sollen folgende Daten zu einer Serie angezeigt werden
 
-Beispiel ISBN's:
-
-* 9789000035526
-* 9789000010134
-
+* Name
+* Type
+* Sprache
+* Status der Serie
+* Bild
+* Sender wo die Serie ausgestrahlt wurde
 
 ## Beispiel
 
@@ -29,4 +30,5 @@ Dazu ist ein Objekt nötig welches die Daten aufnehmen kann.
 
 ## Erweiterung
 
-Zuerst den klassischen Weg ohne Datenbindung benutzen. Danach umstellen auf WPF mit Datenbindung.
+1. Zuerst den klassischen Weg ohne Datenbindung benutzen. Danach umstellen auf WPF mit Datenbindung.
+
