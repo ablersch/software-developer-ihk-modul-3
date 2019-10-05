@@ -8,7 +8,7 @@ Im MainWindow sollen alle vorhandene Medien angezeigt werden. Dazu können Sie e
 
 ### Beispiel
 
-![MainWIndow](Bild1.png)
+![MainWindow](Bild1.png)
 
 ## Neues Element und bearbeiten
 

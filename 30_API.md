@@ -197,10 +197,9 @@ public HttpResponseMessage Get()
 }
 ```
 
-Je nach Ergebnis liefert jede Controller Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode?view=netframework-4.8) zurück der anzeigt ob die Aktion erfolgreich war oder warum nicht.
+Je nach Ergebnis liefert jede Controller Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode?view=netframework-4.8), [Status Code Map](https://restlet.com/http-status-map/) zurück der anzeigt ob die Aktion erfolgreich war oder warum nicht.
 
 Note:
-**VS** zeigen neues API Projekt; Values Controller; eigenen Controller; Swagger
+**VS** zeigen neues API Projekt; Values Controller; eigenen Controller; Swagger (Swashbuckle von NuGet)
 
 **ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")];
-Swashbuckle von NuGet

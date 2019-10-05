@@ -32,3 +32,4 @@ Dazu ist ein Objekt nötig welches die Daten aufnehmen kann.
 
 1. Zuerst den klassischen Weg ohne Datenbindung benutzen. Danach umstellen auf WPF mit Datenbindung.
 
+2. Weitere Suchergebnisse anzeigen und nicht nur das Erste
