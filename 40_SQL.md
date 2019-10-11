@@ -202,6 +202,34 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen:
 
 
 <!-- .slide: class="left" -->
+### Beispiel
+
+Daten lesen
+
+```csharp
+using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
+{
+    var list = context.Benutzer.ToList();
+}
+```
+
+Daten schreiben
+
+```csharp
+using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
+{
+    Benutzer benutzer = new Benutzer();
+    benutzer.Id = Guid.NewGuid();
+    benutzer.Login = "at";
+    benutzer.Nachname = "Ate";
+    benutzer.Vorname = "Tom";
+    context.Benutzer.Add(benutzer);
+    context.SaveChanges();
+}
+```
+
+
+<!-- .slide: class="left" -->
 ### Daten abfragen
 
 * LINQ-to-Entities (Language-Integrated Query bzw Sprachintegrierte Abfrage): Damit können Daten aus verschiedenen Datenquellen (einfache Liste, ein Wörterbuch, eine XML-Datei oder eine Datenbanktabelle) abgefragt und bearbeitet werden. [LINQ](https://docs.microsoft.com/de-de/dotnet/csharp/programming-guide/concepts/linq/introduction-to-linq-queries) gibt es in zwei Syntaxvarianten: Die Abfrage- und die Methodensyntax.
@@ -269,7 +297,7 @@ List<User> sortedUsers = listOfUsers.OrderBy(user => user.Age)
 
 ```
 
-Note: Abfrage wird erst ausgeführt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(),  D.h. es sind Abfragen über mehrere Zeilen moeglich
+Note: Abfrage wird erst ausgeführt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(),  D.h. es sind Abfragen über mehrere Zeilen möglich
 
 
 <!-- .slide: class="left" -->
@@ -286,10 +314,10 @@ List<User> users = new List<User>()
 // Abfragesyntax
 var names = from test in users select test.Name;
 
-//Methodensyntax
+// Methodensyntax
 var names = users.Select(x => x.Name).ToList();
 ```
 
-Note: **VS** zeigen: EF hinzufügen und nutzen; zeigen der Klassen und Abfragen mit LINQ.
+Note: **VS** zeigen: EF hinzufügen  (ADO.Net.. )und nutzen; zeigen der Klassen und Abfragen mit LINQ.
 
 **ÜBUNG** EntityFramework
