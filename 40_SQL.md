@@ -318,6 +318,6 @@ var names = from test in users select test.Name;
 var names = users.Select(x => x.Name).ToList();
 ```
 
-Note: **VS** zeigen: EF hinzufügen  (ADO.Net.. )und nutzen; zeigen der Klassen und Abfragen mit LINQ.
+Note: **VS** zeigen: EF hinzufügen  (ADO.Net Entity Model hinzufügen )und nutzen; zeigen der Klassen und Abfragen mit LINQ.
 
 **ÜBUNG** EntityFramework
