@@ -205,9 +205,9 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen:
 ### Beispiel
 
 ```csharp
-// Daten lesen
 using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 {
+    // Daten lesen
     var list = context.Benutzer.ToList();
 
     // Daten löschen
@@ -223,6 +223,7 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 {
     Benutzer benutzer = new Benutzer();
+    // Guid erzeugen
     benutzer.Id = Guid.NewGuid();
     benutzer.Login = "at";
     benutzer.Nachname = "Ate";
@@ -310,8 +311,12 @@ List<User> users = new List<User>()
 
 // Nur das Feld Name abfragen
 var names = users.Select(x => x.Name).ToList();
+
 // Ein Benutzer mit dem Alter von 8 abfragen. Wird keiner gefunden wird null geliefert
-User temp = users.Where(x=> x. Age == 8).FirstOrDefault();
+User temp = users.Where(x => x.Age == 8).FirstOrDefault();
+
+// Wieviele Elemente gibt es welche ein Alter größer 20 haben
+int count = users.Where(x => x.Age > 20).Count();
 ```
 
 ```csharp
