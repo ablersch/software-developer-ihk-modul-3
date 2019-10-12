@@ -204,18 +204,22 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen:
 <!-- .slide: class="left" -->
 ### Beispiel
 
-Daten lesen
-
 ```csharp
+// Daten lesen
 using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 {
     var list = context.Benutzer.ToList();
+
+    // Daten löschen
+    context.Medien.Remove(list[0]);
+    context.SaveChanges();
+
+    // Daten updaten
+    list[0].Titel = "neuer Titel";
+    context.SaveChanges();
 }
-```
 
-Daten schreiben
-
-```csharp
+// Daten schreiben
 using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 {
     Benutzer benutzer = new Benutzer();
@@ -274,12 +278,11 @@ Note: In nur einer Zeile kann man z.B. alle Namen abfragen welche 8 oder weniger
 <!-- .slide: class="left" -->
 #### LINQ Methodensyntax
 
-Bei [Lambda Expressions](https://docs.microsoft.com/de-de/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) ist auf der linken Seite der Eingabeparameter. Der Name ist frei wählbar und der Wert kommt aus der Where Bedingung. Auf der rechten Seite steht die Anweisung bzw der Ausdruck.
+Bei [Lambda Expressions](https://docs.microsoft.com/de-de/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions) werden anonyme Methoden aufgerufen. [weiteres zu Lambda Expressions](https://www.tutorialsteacher.com/linq/linq-lambda-expression)
+
+![Lambda Expression](Images/LambdaExpressionStructure.png)
 
 ```csharp
-
-name => name.Length <= 8
-
 List<int> numbers = new List<int>()
 {
     1, 7, 2, 61, 14
@@ -288,13 +291,6 @@ List<int> numbers = new List<int>()
 
 ```csharp
 List<int> sortNum = numbers.OrderBy(number => number).ToList();
-```
-
-```csharp
-List<User> sortedUsers = listOfUsers.OrderBy(user => user.Age)
-                                    .ThenByDescending(user => user.Name)
-                                    .ToList();
-
 ```
 
 Note: Abfrage wird erst ausgeführt wenn mit den Daten gearbeitet wird z.B. iterieren, ToList(), Count(),  D.h. es sind Abfragen über mehrere Zeilen möglich
@@ -311,13 +307,20 @@ List<User> users = new List<User>()
     new User() { Name = "Joe Doe", Age = 8 },
     new User() { Name = "Another Doe", Age = 15 },
 };
-// Abfragesyntax
-var names = from test in users select test.Name;
 
-// Methodensyntax
+// Nur das Feld Name abfragen
 var names = users.Select(x => x.Name).ToList();
+// Ein Benutzer mit dem Alter von 8 abfragen. Wird keiner gefunden wird null geliefert
+User temp = users.Where(x=> x. Age == 8).FirstOrDefault();
 ```
 
-Note: **VS** zeigen: EF hinzufügen  (ADO.Net Entity Model hinzufügen )und nutzen; zeigen der Klassen und Abfragen mit LINQ.
+```csharp
+List<User> sortedUsers = users.OrderBy(user => user.Age)
+                              .ThenByDescending(user => user.Name)
+                              .ToList();
+
+```
+
+Note: **VS** zeigen: EF hinzufügen (ADO.Net Entity Model hinzufügen) und nutzen;zeigen der Klassen und Abfragen mit LINQ.
 
 **ÜBUNG** EntityFramework

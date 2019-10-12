@@ -4,9 +4,6 @@
 
 Es sind am gesamten Programm kleiner Anpassungen notwendig damit die Anwendung weiterhin läuft. Ansonsten soll die Grundfunktion der Anwendung gleich bleiben.
 
-## Hinweis
-
-Es ist nicht gewünscht die Daten als Objekte abzuspeichern. D.h. vor dem speichern das Objekt auslesen und die einzelnen Eigenschaften speichern. Beim einlesen genau dasselbe.
 
 ## Connection String
 
