@@ -388,13 +388,15 @@ Note: **VS** zeigen: EF hinzufügen (ADO.Net Entity Model hinzufügen) und nutze
 <!-- .slide: class="left" -->
 ## lokale SQL Server DB
 
-In Visual Studio kann für Entwicklungszwecke eine lokale SQL DB erstellt werden.
+Im Microsoft SQL Server Express kann für Entwicklungszwecke eine [lokale SQL DB](https://docs.microsoft.com/de-de/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15) erstellt werden.
+
+Diese kann direkt aus Visual Studio genutzt werden:
 
 Ansicht --> Sql Server Objekt Explorer öffnen
 
-Bei Rechtsklick auf **Datenbanken** kann eine neue DB erzeugt werden. Bitte den Speicherort der Datei anpassen damit ihr wisst wo die Datenbank liegt!
+Mit Rechtsklick auf **Datenbanken** kann eine neue DB erzeugt werden. Bitte den Speicherort der Datei anpassen damit ihr wisst wo die Datenbank liegt!
 
-Erneut Rechtsklick auf Tabellen innerhalb der neuen Datenbank um eine neue **Tabelle** anzulegen.
+Erneuter Rechtsklick auf Tabellen innerhalb der neuen Datenbank um eine neue **Tabelle** anzulegen.
 
 
 <!-- .slide: class="left" -->
