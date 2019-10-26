@@ -18,6 +18,7 @@ Datenbankzugriffe im .NET Framework werden durch die [ADO.Net Klassen](https://d
 
 Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeicher. Dazu existieren Klassen, die Verbindung zu einer Datenbank (Microsoft SQL Server, Oracle etc.) herstellen (sogenannte Connection-Klassen), Klassen, die Tabellen im Arbeitsspeicher repräsentieren, und es ermöglichen, mit ihnen zu arbeiten (sogenannte DataTables) und Klassen, die für gesamte Datenbanken im Arbeitsspeicher stehen (sogenannte DataSets).
 
+
 <!-- .slide: class="left" -->
 ### Connection Klasse
 
@@ -70,9 +71,9 @@ Note: ExecuteScalar für true/false oder ID Abfragen
 <!-- .slide: class="left" -->
 ### DataReader Klasse
 
-Der [DataReader](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldatareader?view=netframework-4.8) ermöglicht sequentiellen Lesezugriff auf die Daten. Das Objekt wird durch den Aufruf der Methode `ExecuteReader()` des Command Objektes initialisiert. Man sollte sobald der Reader nicht mehr benötigt wird die `Close()` Methode aufrufen, um die Verbindung zu schließen. Der DataReader benötigt eine Verbindung zu Datenbank da die Daten "live" gelesen werden.
+Der [DataReader](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldatareader?view=netframework-4.8) ermöglicht sequentiellen Lesezugriff auf die Daten. Das Objekt wird durch den Aufruf der Methode `ExecuteReader()` des Command Objektes initialisiert. Man sollte sobald der Reader nicht mehr benötigt wird die `Close()` Methode aufrufen, um die Verbindung zu schließen. Der DataReader benötigt eine Verbindung zur Datenbank da die Daten "live" gelesen werden.
 
-Typischerweise verwendet man einen DataReader wenn man nur lesenden Zugriff auf Datensätze benötigt. Eine Anwendung des DataReaders könnte wie folgt aussehen:
+Typischerweise verwendet man einen DataReader wenn man nur lesenden Zugriff auf Datensätze benötigt.
 
 ```csharp
 SqlDataReader reader = command.ExecuteReader();
@@ -114,8 +115,8 @@ Das DataSet kann genutzt werden wenn man folgendes tun möchte:
 * Daten offline oder mehrfach lesen
 * Daten filtern, sortieren oder darin suchen
 * Daten bearbeiten
-* Zeilen hinzufügen (Datensätz hinzufügen)
-* Zeilen löschen
+* Zeilen hinzufügen (Datensätze hinzufügen)
+* Zeilen löschen (datensätze löschen)
 * Daten serialisieren, also z.B. in JSON oder XML umwandeln und versenden
 
 
@@ -174,7 +175,7 @@ Ziel ist es, die Verbindungen zu einer relationalen Datenbank so zu abstrahieren
 
 Note: Klassen werden auf Tabellen, oder auch andersrum, gemappt.
 
-Bei Java Hibernate; bei PHP Doctrine. 
+Bei Java Hibernate; bei PHP Doctrine.
 
 Über NuGet installieren
 
@@ -190,13 +191,15 @@ Note: Zugriff auf die Daten über ADO.NET. Damit ist der Zugriff auch schneller 
 <!-- .slide: class="left" -->
 ### Vorteile
 
-* Keine manuellen Abfragen (SQL Queries) wie mit ADO.NET notwendig
-
-* Einfacher Wechsel von verschiedenen Datenbanktypen ohne Codeanpassung
+* Komfortables Arbeiten mit Objekten da alle Tabellen und Views als Klassen vorhanden sind.
 
 * Entkopplung zwischen unserer Anwendung und der Logik des Datenzugriffs
 
-* Komfortables Arbeiten mit Objekten da alle Tabellen und Views als Klassen vorhanden sind.
+* Erstell-, Lese-, Update-, und Löschaktionen werden vom Entity Framework realisiert
+
+* Keine manuellen Abfragen (SQL Queries) wie mit ADO.NET notwendig
+
+* Einfacher Wechsel von verschiedenen Datenbanktypen ohne Codeanpassung
 
 Note: Datenzugriff wird ausgelagert (Model, Views, Controller(Logik) Entwurfsmuster MVC)
 
