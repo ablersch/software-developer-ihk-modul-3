@@ -18,13 +18,6 @@ Datenbankzugriffe im .NET Framework werden durch die [ADO.Net Klassen](https://d
 
 Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeicher. Dazu existieren Klassen, die Verbindung zu einer Datenbank (Microsoft SQL Server, Oracle etc.) herstellen (sogenannte Connection-Klassen), Klassen, die Tabellen im Arbeitsspeicher repräsentieren, und es ermöglichen, mit ihnen zu arbeiten (sogenannte DataTables) und Klassen, die für gesamte Datenbanken im Arbeitsspeicher stehen (sogenannte DataSets).
 
-
-<!-- .slide: class="left" -->
-### ADO.Net Architektur
-
-![ADO.Net Objektmodell](Images/ADONETArchitecture.png)
-
-
 <!-- .slide: class="left" -->
 ### Connection Klasse
 
@@ -77,7 +70,7 @@ Note: ExecuteScalar für true/false oder ID Abfragen
 <!-- .slide: class="left" -->
 ### DataReader Klasse
 
-Der [DataReader](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldatareader?view=netframework-4.8) ermöglicht sequentiellen Lesezugriff auf die Daten. Das Objekt wird durch den Aufruf der Methode `ExecuteReader()` des Command Objektes initialisiert. Man sollte unbedingt sobald der Reader nicht mehr benötigt wird die `Close()` Methode aufrufen, um ungewollte Verbindungsprobleme zu vermeiden.
+Der [DataReader](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldatareader?view=netframework-4.8) ermöglicht sequentiellen Lesezugriff auf die Daten. Das Objekt wird durch den Aufruf der Methode `ExecuteReader()` des Command Objektes initialisiert. Man sollte sobald der Reader nicht mehr benötigt wird die `Close()` Methode aufrufen, um die Verbindung zu schließen. Der DataReader benötigt eine Verbindung zu Datenbank da die Daten "live" gelesen werden.
 
 Typischerweise verwendet man einen DataReader wenn man nur lesenden Zugriff auf Datensätze benötigt. Eine Anwendung des DataReaders könnte wie folgt aussehen:
 
@@ -94,25 +87,42 @@ reader.Close();
 
 
 <!-- .slide: class="left" -->
-### DataSet Klasse
+### DataAdapter Klasse
 
-Eigentlich ist das [DataSet](https://docs.microsoft.com/de-de/dotnet/api/system.data.dataset?view=netframework-4.8) Objekt eine Datenmenge, die Daten sind allerdings nicht mit der Datenbank verbunden. Im Gegensatz zum DataReader kann man beliebig auf die Daten zugreifen. Es ist möglich zu sortieren, zu suchen und zu filtern.
+Die Klasse [DataAdapter](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldataadapter?view=netframework-4.8) dient als Brücke zwischen den Daten in der Datenbank und einem **DataSet**, das offline verfügbar ist. Der DataAdapter befüllt das DataSet und kann die in einem DataSet zwischengespeicherten Änderungen an die Datenbank übertragen.
 
-![ADO.Net Dataset](Images/Dataset.png)
+```csharp
+DataSet dataSet = new DataSet();
+SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+dataAdapter.Fill(dataSet);
+```
+
+`Fill()` führt die Abfrage aus und speichert die Ergebnisse in einem DataSet.
+
+Durch `Update()` können Änderungen an die Datenbank übermittelt werden.
 
 
 <!-- .slide: class="left" -->
-### DataAdapter Klasse
+### DataSet Klasse
 
-Die Klasse [DataAdapter](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldataadapter?view=netframework-4.8) dient als Brücke zwischen den Daten in der Datenbank und einem DataSet, das offline verfügbar ist. Der DataAdapter kann in einem DataSet zwischengespeicherte Änderungen an die Datenbank übermitteln. Im Gegensatz zu einem Command Objekt wird das Öffnen und das Schließen der Verbindung durch den DataAdapter verwaltet.
+Das [DataSet](https://docs.microsoft.com/de-de/dotnet/api/system.data.dataset?view=netframework-4.8) speichert alle Daten die der Query liefert temporär im Speicher. D.h. man kann mit den Daten weiter arbeiten ohne Verbindung zur Datenbank. Mit dem DataSet können Daten gelesen und bearbeitet werden. [DataReader vs DataSet](https://msdn.microsoft.com/en-us/magazine/cc188717.aspx)
 
-```csharp
-DataSet ds = new DataSet();
-SqlDataAdapter da = new SqlDataAdapter(query, connection);
-da.Fill(ds);
-```
+Im Gegensatz zu einem Command Objekt wird das Öffnen und das Schließen der Verbindung durch den DataAdapter realisiert.
 
-`Fill()` führt die Abfrage aus und speichert die Ergebnisse in einem DataSet. Durch die Methode `Update()` können Änderungen an die Datenbank übermittelt werden.
+Das DataSet kann genutzt werden wenn man folgendes tun möchte:
+
+* Daten offline oder mehrfach lesen
+* Daten filtern, sortieren oder darin suchen
+* Daten bearbeiten
+* Zeilen hinzufügen (Datensätz hinzufügen)
+* Zeilen löschen
+* Daten serialisieren, also z.B. in JSON oder XML umwandeln und versenden
+
+
+<!-- .slide: class="left" -->
+### ADO.Net Architektur
+
+![ADO.Net Objektmodell](Images/ADONETArchitecture.png)
 
 
 <!-- .slide: class="left" -->
@@ -262,6 +272,10 @@ Neue Verbindung hinzufügen:
 * Authentifizierung wenn benötigt
 * Datenbank auf welche zugegriffen werden soll
 
+
+<!-- .slide: class="left" -->
+### Entity Framework einrichten
+
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen3.png)
 
 
@@ -374,8 +388,6 @@ Note: **VS** zeigen: EF hinzufügen (ADO.Net Entity Model hinzufügen) und nutze
 In Visual Studio kann für Entwicklungszwecke eine lokale SQL DB erstellt werden.
 
 Ansicht --> Sql Server Objekt Explorer öffnen
-
-![Lokale SQL DB](Images/Lokale_SQL_DB.png)
 
 Bei Rechtsklick auf **Datenbanken** kann eine neue DB erzeugt werden. Bitte den Speicherort der Datei anpassen damit ihr wisst wo die Datenbank liegt!
 
