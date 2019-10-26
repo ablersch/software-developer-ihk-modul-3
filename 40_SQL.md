@@ -241,7 +241,6 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 2. Im Projekt neues Element hinzufügen
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen1.png)
-
 3. DB first oder Code first
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen2.png)
@@ -250,15 +249,14 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 <!-- .slide: class="left" -->
 ### Entity Framework einrichten
 
-3. Neue Verbindung hinzufügen:
+1. Neue Verbindung hinzufügen:
     * Datenquelle z.B. SQL Server wählen
     * Servername
     * Authentifizierung wenn benötigt
     * Datenbank auf welche zugegriffen werden soll
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen3.png)
-
-4. Nun können die gewünschten Tabellen und Ansichten gewählt werden
+2. Nun können die gewünschten Tabellen und Ansichten gewählt werden
 
 
 <!-- .slide: class="left" -->
