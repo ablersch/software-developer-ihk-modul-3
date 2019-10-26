@@ -237,11 +237,17 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 <!-- .slide: class="left" -->
 ### Entity Framework einrichten
 
-1. Datenbank muss bestehen (SQL Server, lokale DB in Visual Studio, SQlite, ...)
-2. Im Projekt neues Element hinzufügen
+* Datenbank muss bestehen (SQL Server, lokale DB in Visual Studio, ...)
+
+* Im Projekt neues Element hinzufügen
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen1.png)
-3. DB first oder Code first
+
+
+<!-- .slide: class="left" -->
+### Entity Framework einrichten
+
+* DB first oder Code first
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen2.png)
 
@@ -249,14 +255,20 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 <!-- .slide: class="left" -->
 ### Entity Framework einrichten
 
-1. Neue Verbindung hinzufügen:
-    * Datenquelle z.B. SQL Server wählen
-    * Servername
-    * Authentifizierung wenn benötigt
-    * Datenbank auf welche zugegriffen werden soll
+Neue Verbindung hinzufügen:
+
+* Datenquelle z.B. SQL Server wählen
+* Servername
+* Authentifizierung wenn benötigt
+* Datenbank auf welche zugegriffen werden soll
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen3.png)
-2. Nun können die gewünschten Tabellen und Ansichten gewählt werden
+
+
+<!-- .slide: class="left" -->
+### Entity Framework einrichten
+
+* Nun können die gewünschten Tabellen und Ansichten gewählt werden
 
 
 <!-- .slide: class="left" -->

@@ -5,7 +5,8 @@ namespace Lokale_SQL_DB
 {
     class Program
     {
-        static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=LokaleDb;";
+        //static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=LokaleDb;";
+        static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\lbcbla2\Source\IHK-Repos\software-developer-ihk-modul-3\Beispiele\44_Lokale_SQL_DB\Lokale SQL DB\LokaleDb.mdf"";Integrated Security=True";
 
         static void Main(string[] args)
         {
