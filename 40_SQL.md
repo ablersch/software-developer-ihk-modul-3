@@ -235,6 +235,33 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 
 
 <!-- .slide: class="left" -->
+### Entity Framework einrichten
+
+1. Datenbank muss bestehen (SQL Server, lokale DB in Visual Studio, SQlite, ...)
+2. Im Projekt neues Element hinzufügen
+
+![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen1.png)
+
+3. DB first oder Code first
+
+![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen2.png)
+
+
+<!-- .slide: class="left" -->
+### Entity Framework einrichten
+
+3. Neue Verbindung hinzufügen:
+    * Datenquelle z.B. SQL Server wählen
+    * Servername
+    * Authentifizierung wenn benötigt
+    * Datenbank auf welche zugegriffen werden soll
+
+![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen3.png)
+
+4. Nun können die gewünschten Tabellen und Ansichten gewählt werden
+
+
+<!-- .slide: class="left" -->
 ### Daten abfragen
 
 * LINQ-to-Entities (Language-Integrated Query bzw Sprachintegrierte Abfrage): Damit können Daten aus verschiedenen Datenquellen (einfache Liste, ein Wörterbuch, eine XML-Datei oder eine Datenbanktabelle) abgefragt und bearbeitet werden. [LINQ](https://docs.microsoft.com/de-de/dotnet/csharp/programming-guide/concepts/linq/introduction-to-linq-queries) gibt es in zwei Syntaxvarianten: Die Abfrage- und die Methodensyntax.
@@ -329,3 +356,34 @@ List<User> sortedUsers = users.OrderBy(user => user.Age)
 Note: **VS** zeigen: EF hinzufügen (ADO.Net Entity Model hinzufügen) und nutzen;zeigen der Klassen und Abfragen mit LINQ.
 
 **ÜBUNG** EntityFramework
+
+
+<!-- .slide: class="left" -->
+## lokale SQL Server DB
+
+In Visual Studio kann für Entwicklungszwecke eine lokale SQL DB erstellt werden.
+
+Ansicht --> Sql Server Objekt Explorer öffnen
+
+![Lokale SQL DB](Images/Lokale_SQL_DB.png)
+
+Bei Rechtsklick auf **Datenbanken** kann eine neue DB erzeugt werden. Bitte den Speicherort der Datei anpassen damit ihr wisst wo die Datenbank liegt!
+
+Erneut Rechtsklick auf Tabellen innerhalb der neuen Datenbank um eine neue **Tabelle** anzulegen.
+
+
+<!-- .slide: class="left" -->
+### Projekt auf anderem Computer kopieren
+
+1. Die mdf und ldf Dateien (Datenbankdateien) ebenfalls mit kopieren.
+
+2. Die mdf und ldf Datei im Visual Studio dem Projekt hinzufügen.
+
+3. Im Projekt auf die mdf Datei klicken. Somit öffnet sich der SQL Server Objekt Explorer.
+
+4. Nun muss noch der verwendete Connection String in eurem Projekt angepasst werden.
+    1. Im SQL Server Objekt Explorer rechtsklick auf eure mdf Datei und Eigenschaften wählen.
+    2. Im Eigenschaften Fenster kann dann der Connection String (Verbindungszeichenfolge) kopiert werden.
+    3. Diesen in euer Projekt übernehmen.
+
+5. Jetzt sollte euer Projekt mit der lokalen DB auch auf einem anderen Computer laufen.
