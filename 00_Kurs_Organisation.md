@@ -60,16 +60,16 @@ Samstags:
 
 
 <!-- .slide: class="left" -->
-## Projektarbeit
+## Projektarbeit Anforderungen
 
-Das Projekt muss als reines Softwareprojekt mit einem Zeitaufwand von 30-32
-Stunden ausgeführt werden. Es muss eine Projektdokumentation erstellt und
-abgegeben werden welche folgende Bestandteile beinhaltet:
-
-* Ist-Analyse
-* Soll-Zustandsbeschreibung
-* Ziel/Aufgabe der Anwendung
-* Dokumentation der Anwendung
+* Softwareprojekt
+* Zeitaufwand von 30-32 Stunden
+* Code ist übersichtlich gestaltet
+* Es werden sinnvoll Klassen und Methoden genutzt
+* Sinnvolle Namensgebung von Variablen
+* Alle Methoden sind mit XML Kommentare versehen
+* Programm ist lauffähig
+* Dokumentation zum Projekt
 
 
 <!-- .slide: class="left" -->
@@ -94,12 +94,24 @@ Die Themenbereiche für Ihre Projektarbeit leiten sich ab
 
 **Beispiele möglicher Projekte:**
 
-* FTP-Server und Client (Light-Version)
-* Chat-Client-Server (Light-Version)
-* Zeit (Stempelung)-Server und Client (Light-Version)
+* Datenkonverter
+* Webservice
 * Projekt-Datenbank
-* Zeiterfassung- und Auswertung (Datenbank)
+* Zeiterfassung
+* Datenauswertung
 * Passwort-Manager
 * Einfaches Dokumentenverwaltungssystem
 * Zeitmanagement
 * Reisekosten
+
+
+<!-- .slide: class="left" -->
+### Projektpräsentation
+
+Das Projekt soll kurz präsentiert werden
+
+* 5-10 min
+* vorstellen des Programms in der Gruppe
+* Was wurde gut gelöst?
+* Wurden besondere Techniken verwendet?
+* Wo gab es Probleme?
