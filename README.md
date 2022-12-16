@@ -1,22 +1,11 @@
-<<<<<<< HEAD
 # Modul III - C# Aufbau
-=======
-# Modul II - C# Grundlagen
->>>>>>> d3653cd6b88b27e7215a43841b82f36ef2382a9e
 
 Diese Repository beinhaltet die Unterlagen für den Kurs **Software Developer IHK**
 
 ## Material
 
-<<<<<<< HEAD
 * [Im Browser](https://ablersch.github.io/software-developer-ihk-modul-3)
 * [Druckversion](https://ablersch.github.io/software-developer-ihk-modul-3?print-pdf)
-=======
-* [Im Browser](https://ablersch.github.io/software-developer-ihk-modul-2)
-* [Druckversion](https://ablersch.github.io/software-developer-ihk-modul-2?print-pdf)
-
-Optimiert für Chrome!
->>>>>>> d3653cd6b88b27e7215a43841b82f36ef2382a9e
 
 ## Erstellen und ausführen
 
@@ -28,20 +17,9 @@ Optimiert für Chrome!
 
 ## Inhalt
 
-<<<<<<< HEAD
 * GUIs mit WPF
 * Prozesse
 * API's und Webservices
 * SQL mit ADO.Net und Entity Framework
-=======
-* Objektorientierung
-* Auflistungen
-* Namensräume
-* Casting
-* Fehlerbehandlung
-* Dateioperationen
-* Interfaces und abstrakte Klassen
-* Hilfestellungen und Tipps für Visual Studio
->>>>>>> d3653cd6b88b27e7215a43841b82f36ef2382a9e
 
 Mit Übungsaufgaben zu den einzelnen Themen.
