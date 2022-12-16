@@ -2,6 +2,7 @@
 
 Datenbanken mit DotNet
 
+---
 
 <!-- .slide: class="left" -->
 ## Datenbank
@@ -10,6 +11,7 @@ Eine Datenbank ist ein elektronisches Verwaltungssystem, das besonders mit groß
 
 Es können Datenbestände aus verschiedenen Teilmengen zusammengestellt und bedarfsgerecht für Anwendungsprogramme und deren Benutzern angezeigt werden.
 
+---
 
 <!-- .slide: class="left" -->
 ## ADO.Net
@@ -18,6 +20,7 @@ Datenbankzugriffe im .NET Framework werden durch die [ADO.Net Klassen](https://d
 
 Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeicher. Dazu existieren Klassen, die Verbindung zu einer Datenbank (Microsoft SQL Server, Oracle etc.) herstellen (sogenannte Connection-Klassen), Klassen, die Tabellen im Arbeitsspeicher repräsentieren, und es ermöglichen, mit ihnen zu arbeiten (sogenannte DataTables) und Klassen, die für gesamte Datenbanken im Arbeitsspeicher stehen (sogenannte DataSets).
 
+---
 
 <!-- .slide: class="left" -->
 ### Connection Klasse
@@ -26,11 +29,12 @@ Durch die [Connection Klasse](https://docs.microsoft.com/de-de/dotnet/api/system
 
 Um z.B. eine Verbindung mit der lokalen DB und der Datenbank "Test" aufzubauen könnte man wie folgt vorgehen:
 
-```csharp
-string connectionString = @"Server = (localdb)\.;Initial Catalog=Test; Integrated Security = true;";
+```csharp []
+var connectionString = @"Server = (localdb)\.;Initial Catalog=Test; Integrated Security = true;";
 SqlConnection connection = new SqlConnection(connectionString);
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### Command Klasse
@@ -38,7 +42,7 @@ SqlConnection connection = new SqlConnection(connectionString);
 Die Klasse [SqlCommand](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqlcommand?view=netframework-4.8) dient zum Ausführen von Abfragen im ADO.Net Objektmodell. Es gibt verschiedene Möglichkeiten ein Command Objekt zu
 erzeugen:
 
-```csharp
+```csharp []
 // Methode des Connection-Objekts
 SqlCommand command = connection.CreateCommand();
 
@@ -55,6 +59,7 @@ command.CommandText = queryString;
 SqlCommand command = new SqlCommand(queryString, connection);
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### Command Klasse Methoden
@@ -67,6 +72,7 @@ SqlCommand command = new SqlCommand(queryString, connection);
 
 Note: ExecuteScalar für true/false oder ID Abfragen
 
+---
 
 <!-- .slide: class="left" -->
 ### DataReader Klasse
@@ -75,7 +81,7 @@ Der [DataReader](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclie
 
 Typischerweise verwendet man einen DataReader wenn man nur lesenden Zugriff auf Datensätze benötigt.
 
-```csharp
+```csharp []
 SqlDataReader reader = command.ExecuteReader();
 while(reader.read()) // Solange es Datensätze gibt diese lesen
 {
@@ -86,13 +92,14 @@ while(reader.read()) // Solange es Datensätze gibt diese lesen
 reader.Close();
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### DataAdapter Klasse
 
 Die Klasse [DataAdapter](https://docs.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqldataadapter?view=netframework-4.8) dient als Brücke zwischen den Daten in der Datenbank und einem **DataSet**, das offline verfügbar ist. Der DataAdapter befüllt das DataSet und kann die in einem DataSet zwischengespeicherten Änderungen an die Datenbank übertragen.
 
-```csharp
+```csharp []
 DataSet dataSet = new DataSet();
 SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
 dataAdapter.Fill(dataSet);
@@ -102,6 +109,7 @@ dataAdapter.Fill(dataSet);
 
 Durch `Update()` können Änderungen an die Datenbank übermittelt werden.
 
+---
 
 <!-- .slide: class="left" -->
 ### DataSet Klasse
@@ -119,18 +127,20 @@ Das DataSet kann genutzt werden wenn man folgendes tun möchte:
 * Zeilen löschen (datensätze löschen)
 * Daten serialisieren, also z.B. in JSON oder XML umwandeln und versenden
 
+---
 
 <!-- .slide: class="left" -->
 ### ADO.Net Architektur
 
 ![ADO.Net Objektmodell](Images/ADONETArchitecture.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### Beispiel
 
-```csharp
-string conn = @"Data Source=PC-DOZ-602\SQLEXPRESS; Initial Catalog=SoftwareDeveloper; User Id=user; Password=pw;";
+```csharp []
+var conn = @"Data Source=PC-DOZ-602\SQLEXPRESS; Initial Catalog=SoftwareDeveloper; User Id=user; Password=pw;";
 
 // Daten lesen
 using (SqlConnection connection = new SqlConnection(conn))
@@ -165,6 +175,7 @@ Note: Zeigen in **VS** arbeiten mit SQL (lokale DB Anlegen, Connection String, D
 
 **ÜBUNG** SQL Datenbanken
 
+---
 
 <!-- .slide: class="left" -->
 ## Entity Framework
@@ -179,14 +190,17 @@ Bei Java Hibernate; bei PHP Doctrine.
 
 Über NuGet installieren
 
+---
 
 <!-- .slide: class="left" -->
 ### Architektur
 
 ![Datenzugriff einer Anwendung beim Entity Framework](Images/entityFramework.png)
 
+
 Note: Zugriff auf die Daten über ADO.NET. Damit ist der Zugriff auch schneller wie mit Entity Framework.
 
+---
 
 <!-- .slide: class="left" -->
 ### Vorteile
@@ -203,6 +217,7 @@ Note: Zugriff auf die Daten über ADO.NET. Damit ist der Zugriff auch schneller 
 
 Note: Datenzugriff wird ausgelagert (Model, Views, Controller(Logik) Entwurfsmuster MVC)
 
+---
 
 <!-- .slide: class="left" -->
 ### verschiedene Ansätze
@@ -213,11 +228,12 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen:
 
 * **Code-First**: Es wird zuerst der Code erstellt indem die Klassen und Eigenschaften definiert werden. Daraufhin wird die Datenbank mit ihren Tabellen, Feldern und Abhängigkeiten erzeugt.
 
+---
 
 <!-- .slide: class="left" -->
 ### Beispiel
 
-```csharp
+```csharp []
 using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 {
     // Daten lesen
@@ -246,6 +262,7 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 }
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### Entity Framework einrichten
@@ -256,17 +273,19 @@ using (SoftwareDeveloperEntities context = new SoftwareDeveloperEntities())
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen1.png)
 
+---
 
 <!-- .slide: class="left" -->
-### Entity Framework einrichten
+### DB first oder Code first
 
 * DB first oder Code first
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen2.png)
 
+---
 
 <!-- .slide: class="left" -->
-### Entity Framework einrichten
+### Neue Verbindung
 
 Neue Verbindung hinzufügen:
 
@@ -275,18 +294,23 @@ Neue Verbindung hinzufügen:
 * Authentifizierung wenn benötigt
 * Datenbank auf welche zugegriffen werden soll
 
+---
 
 <!-- .slide: class="left" -->
-### Entity Framework einrichten
+### Verbindungseinstellungen
 
 ![neues Element hinzufügen](Images/EntityFrameworkHinzufuegen3.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### Entity Framework einrichten
 
 * Nun können die gewünschten Tabellen und Ansichten gewählt werden
 
+TODO more oder Bild
+
+---
 
 <!-- .slide: class="left" -->
 ### Daten abfragen
@@ -297,6 +321,7 @@ Note: **VS** zeigen: EF hinzufügen (ADO.Net Entity Model hinzufügen) und nutze
 
 **ÜBUNG** EntityFramework
 
+---
 
 <!-- .slide: class="left" -->
 ## lokale SQL Server DB
@@ -311,6 +336,7 @@ Mit Rechtsklick auf **Datenbanken** kann eine neue DB erzeugt werden. Bitte den 
 
 Erneuter Rechtsklick auf Tabellen innerhalb der neuen Datenbank um eine neue **Tabelle** anzulegen.
 
+---
 
 <!-- .slide: class="left" -->
 ### Projekt auf anderem Computer kopieren

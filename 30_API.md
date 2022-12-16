@@ -2,6 +2,7 @@
 
 Über API zu REST Webservices
 
+---
 
 <!-- .slide: class="left" -->
 ## Was ist eine API
@@ -20,6 +21,7 @@ API (Application Programming Interface)
 
 * Dies kann ein Webservice, ein SDK (Software Development Kit) oder eine Kernel API sein.
 
+---
 
 <!-- .slide: class="left" -->
 ## Was ist ein Webservice
@@ -40,6 +42,7 @@ Note: z.B.:
 
 * Kamera hat API um diese von dritt Programmen steuern zu lassen
 
+---
 
 <!-- .slide: class="left" -->
 ### Warum Webservices
@@ -58,6 +61,7 @@ Note: z.B.:
 
 Note: Jede Anwendung kann andere Programmiersprache haben oder auf anderem OS laufen
 
+---
 
 <!-- .slide: class="left" -->
 ## Servicebasierte Architektur
@@ -66,6 +70,7 @@ Note: Jede Anwendung kann andere Programmiersprache haben oder auf anderem OS la
 
 Note: Application kann den Service aufrufen/beenden, je nach Bedarf. Benötigt nur die URL für den Abruf. Was im Service gemacht wird ist eine Blackbox
 
+---
 
 <!-- .slide: class="left" -->
 ## verschiedene Implementierungen
@@ -92,18 +97,19 @@ Es gibt verschiedene Implementierungen eines Webservices
 
 Note: Bsp für REST Services von Facebook, Twitter, Netflix...
 
+---
 
 <!-- .slide: class="left" -->
 ## REST Webservice abfragen
 
-```csharp
+```csharp []
 public BookItem GetReleases(string url)
 {
     using (var httpClient = new HttpClient())
     {
         try
         {
-            string response = httpClient.GetStringAsync(new Uri(url)).Result;
+            var response = httpClient.GetStringAsync(new Uri(url)).Result;
             return JsonConvert.DeserializeObject<BookItem>(response);
         }
         catch (Exception e)
@@ -116,7 +122,7 @@ public BookItem GetReleases(string url)
 
 ### Alternativ
 
-```csharp
+```csharp []
 public string GetReleases(string url)
 {
     var client = new WebClient();
@@ -125,6 +131,7 @@ public string GetReleases(string url)
 }
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ## Daten umwandeln
@@ -132,7 +139,7 @@ public string GetReleases(string url)
 REST Webservice liefern Ergebnisse als Text. Meist JSON (Java Script Object Notation) oder XML.
 Um damit arbeiten zu können sollten die Daten in Objekte umgewandelt (deserialisiert) werden. Dazu wird [Json.NET](https://www.newtonsoft.com/json) verwendet. [Dokumentation Json.NET](https://www.newtonsoft.com/json/help/html/Introduction.htm), [Json to C#](http://json2csharp.com/)
 
-```csharp
+```csharp []
 // Klasse Account kann über Tools automatisch aus dem Json generiert werden
 public class Account
 {
@@ -166,6 +173,7 @@ Note:
 
 **ÜBUNG** REST Webservice abfragen
 
+---
 
 <!-- .slide: class="left" -->
 ## REST Webservice erstellen
@@ -182,11 +190,12 @@ z.B. EmployeeController: aufrufbar über `http://localhost/api/employee`
 
 **DELETE** - Wird benutzt um einen Mitarbeiter zu löschen
 
+---
 
 <!-- .slide: class="left" -->
 ## Beispiel Controller Methode
 
-```csharp
+```csharp []
 private static List<string> testData = new List<string>(new String[] { "Mitarbeiter1", "Andreas", "Hans", "Eddy" });
 
 // GET: api/Employee

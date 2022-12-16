@@ -2,18 +2,20 @@
 
 GUI erstellen mit WPF
 
+---
 
 <!-- .slide: class="left" -->
 ## GUI
 
 * Mit Einführung des .Net Frameworks ist die Windows Forms API mit dabei.
 
-* Seid .Net 3.0 steht WPF (Windows Presentation Foundation) zur Verfügung.
+* Seid .Net Framework 3.0 steht WPF (Windows Presentation Foundation) zur Verfügung.
 
 * WinForms wird nicht mehr weiterentwickelt, ist aber noch Bestandteil des .Net Frameworks.
 
 * Neue Anwendungen sollten mit WPF erstellt werden.
 
+---
 
 <!-- .slide: class="left" -->
 ## WPF
@@ -31,6 +33,7 @@ Beschreibungssprache für Oberflächengestaltung
 
 Die WPF API (Application Programming Interface) stellt vordefinierte Steuerelemente (Controls) bereit um Oberflächen zu erstellen.
 
+---
 
 <!-- .slide: class="left" -->
 ## WPF
@@ -41,6 +44,7 @@ Die Oberflächen können mit dem Designer von Visual Studio oder auch mit andere
 
 ![Steuerelemente direkt in XAML erstellen](Images/xaml.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### WPF Features
@@ -56,6 +60,7 @@ Note:
 * Elemente können mit dem Fenster vergrößert werden
 * Es können Templates definiert werden
 
+---
 
 <!-- .slide: class="left" -->
 ### WPF Projektvorlagen
@@ -68,6 +73,7 @@ Note:
 
 * Mit der **WPF-Benutzersteuerelementbibliothek** (Custom Control) hat man ebenfalls die Möglichkeit eigene Steuerelemente zu entwickeln (mehr Aufwand als User Control). Vorteil: Ein Custom Control kann durch Templates angepasst werden.
 
+---
 
 <!-- .slide: class="left" -->
 ### Entwurfsumgebung in Visual Studio
@@ -76,6 +82,7 @@ Note:
 
 Note: Steuerelemente, GUI Designer, XAML Editor und Eigenschaften für Controls
 
+---
 
 <!-- .slide: class="left" -->
 ### Bestandteile eines neuen Projekt
@@ -90,6 +97,7 @@ Das neue Projekt besteht aus vier Dateien:
 
 * **App.xaml.cs:** Code-Behind-Datei zur App.xaml
 
+---
 
 <!-- .slide: class="left" -->
 ### WPF Steuerelemente
@@ -108,6 +116,7 @@ Das neue Projekt besteht aus vier Dateien:
 
 * Bei der Namensgebung sollten immer 2-3 Buchstaben des Steuerelementtyp als Präfix dem Namen vorangestellt werden (z.B. lblUeberschrift, btnDownload).
 
+---
 
 <!-- .slide: class="left" -->
 ### [MessageBox](https://docs.microsoft.com/de-de/dotnet/api/system.windows.messagebox?view=netframework-4.8)
@@ -116,13 +125,15 @@ Das neue Projekt besteht aus vier Dateien:
 
 * Das Nachrichtenfenster ist modal, d.h. es kann kein anderes Fenster aktiviert werden, solang bis das Nachrichtenfenster geschlossen wurde.
 
-```csharp
-MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler", MessageBoxButton.YesNo, MessageBoxImage.Question);
+```csharp []
+MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler",
+  MessageBoxButton.YesNo, MessageBoxImage.Question);
 ```
 
-```csharp
-string message = "Möchten Sie die Daten speichern?";
-MessageBoxResult result = MessageBox.Show(message,"Meine Anwendung", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+```csharp []
+var message = "Möchten Sie die Daten speichern?";
+var result = MessageBox.Show(message,"Meine Anwendung",
+  MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
 if (result == MessageBoxResult.OK)
 {
@@ -135,6 +146,7 @@ Im neuen Projekt Button welcher Messagebox anzeigt und Anwendung beendet (Close(
 
 **ÜBUNG** Umrechnung
 
+---
 
 <!-- .slide: class="left" -->
 ## Layout
@@ -151,6 +163,7 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 
 * **StackPanel:** Steuerelemente werden entweder vertikal oder horizontal gestapelt
 
+---
 
 <!-- .slide: class="left" -->
 ### Canvas
@@ -161,11 +174,12 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 
 ![Canvas](Images/LayoutCanvas.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### Canvas
 
-```xml
+```xml []
 <Canvas>
   <!-- default coordinates 0,0 from top left; like WinForms -->
   <Label Background="Red">Red 1</Label>
@@ -177,6 +191,7 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 </Canvas>
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### DockPanel
@@ -187,11 +202,12 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 
 ![DockPanel](Images/LayoutDockPanel.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### DockPanel
 
-```xml
+```xml []
 <DockPanel>
   <Label DockPanel.Dock="Top" Height="100" Background="Red">Red 1</Label>
   <Label DockPanel.Dock="Left" Background="LightGreen">Green 1</Label>
@@ -203,6 +219,7 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 </DockPanel>
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### Grid
@@ -219,11 +236,12 @@ Grid Beispiel 1            |  Grid Beispiel 2
 :-------------------------:|:-------------------------:
 ![image](Images/LayoutGrid1.png)  |  ![image](Images/LayoutGrid2.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### Grid
 
-```xml
+```xml []
 <!-- First screenshot -->
 <Grid>
   <!-- Using default column and row configurations -->
@@ -256,6 +274,7 @@ Grid Beispiel 1            |  Grid Beispiel 2
 
 Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 
+---
 
 <!-- .slide: class="left" -->
 ### UniformGrid
@@ -266,11 +285,12 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 
 ![image](Images/LayoutUniformGrid2.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### UniformGrid
 
-```xml
+```xml []
 <UniformGrid>
   <Label Background="Red">Red 1</Label>
   <Label Background="LightGreen">Green 1</Label>
@@ -284,6 +304,7 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 </UniformGrid>
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### StackPanel
@@ -294,11 +315,12 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 
 ![StackPanel](Images/LayoutStackPanel.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### StackPanel
 
-```xml
+```xml []
 <StackPanel Orientation="Vertical"> <!-- Vertical is the default -->
   <Label Background="Red">Red 1</Label>
   <Label Background="LightGreen">Green 1</Label>
@@ -315,6 +337,7 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 </StackPanel>
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ### WrapPanel
@@ -325,11 +348,12 @@ WrapPanel horizontal            |  WrapPanel vertikal
 :-------------------------:|:-------------------------:
 ![image](Images/LayoutWrapPanelHorizontal.png)  |  ![image](Images/LayoutWrapPanelVertical.png)
 
+---
 
 <!-- .slide: class="left" -->
 ### WrapPanel
 
-```xml
+```xml []
 <WrapPanel Orientation="Horizontal"> <!-- Horizontal is the default -->
   <Label Width="125" Background="Red">Red 1</Label>
   <Label Width="100" Background="LightGreen">Green 1</Label>
@@ -360,6 +384,7 @@ Note: Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch, Brei
 
 **ÜBUNG** Taschenrechner
 
+---
 
 <!-- .slide: class="left" -->
 ## Ereignisse
@@ -368,7 +393,7 @@ Eine Interaktion des Anwenders mit der Oberfläche löst ein [Ereignis](https://
 
 Ist ein Ergeignishandler registriert wird dieser ausgeführt.
 
-```csharp
+```csharp []
 // XAML Code
 <Button x:Name="btnClear" Content="Löschen" Click="btnClear_Click"/>
 
@@ -385,13 +410,14 @@ private void btnClear_Click(object sender, RoutedEventArgs e)
 
 2. Parameter (z.B. `RoutedEventArgs`): Je nach Ereignis unterschiedlicher Datentyp. Stellt ereignisspezifische Daten zur Verfügung.
 
+---
 
 ## Ereignisse im Code definieren
 <!-- .slide: class="left" -->
 
 Die Verknüpfung zwischen Ereignis und einem Ereignishandler kann auch im Code festgelegt werden.
 
-```csharp
+```csharp []
 public partial class MainWindow : Window
 {
   public MainWindow()
@@ -416,13 +442,14 @@ img.Source = new BitmapImage(new Uri("c:\\..."))
 
 += Trägt sich für ein Event ein
 
+---
 
 <!-- .slide: class="left" -->
 ## DispatcherTimer Klasse
 
 Der [DispatcherTimer](https://docs.microsoft.com/de-de/dotnet/api/system.windows.threading.dispatchertimer?view=netframework-4.8) kann Aktionen wiederholend in einem bestimmten Intervall ausführen.
 
-```csharp
+```csharp []
 public DispatcherTimerSample()
 {
   // neue Instanz erzeugen
@@ -443,7 +470,7 @@ void timer_Tick(object sender, EventArgs e)
 }
 ```
 
-```xml
+```xml []
 <Grid>
   <Label Name="lblTime" HorizontalAlignment="Center" VerticalAlignment="Center" />
 </Grid>
@@ -451,6 +478,7 @@ void timer_Tick(object sender, EventArgs e)
 
 Note: **ÜBUNG** Bildbetrachter
 
+---
 
 <!-- .slide: class="left" -->
 ## [Datenbindung](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf)
@@ -467,6 +495,7 @@ Note: **ÜBUNG** Bildbetrachter
 
 Note: Eigenschaften mit Controls verbinden
 
+---
 
 <!-- .slide: class="left" -->
 ### Binding erstellen
@@ -477,7 +506,7 @@ Note: Eigenschaften mit Controls verbinden
 
 * oder auch im Code mit der Klasse Binding erstellt werden
 
-```xml
+```xml []
 <TextBox x:Name="tbxValue2" Text="{Binding Path=Text, ElementName=tbxValue1}"/>
 ```
 
@@ -485,6 +514,7 @@ Note: **VS** zeigen: neues Projekt mit Textbox, Button und Elementdatenbindung. 
 
 Eigenschaft wird nicht aktualisiert --> !NotifyPropertyChanged bei eigenen Klassen.
 
+---
 
 <!-- .slide: class="left" -->
 ### Binding Klasse Eigenschaften
@@ -501,17 +531,18 @@ Beschreibt die Bindung von Datenquelle zu gebundener Komponente.
 
 * UpdateSourceTrigger: Definiert, wann die Datenquelle aktualisiert werden soll (z.B. jedesmal wenn sich die die Daten ändern).
 
+---
 
 <!-- .slide: class="left" -->
 ### Ein Objekt binden
 
-```csharp
-Medien medien = new Medien("test", 12345);
+```csharp []
+var medien = new Medien("test", 12345);
 // Datenquelle festlegen
 DataContext = medien;
 ```
 
-```xml
+```xml []
 <TextBox x:Name="textBox" Text="{Binding Titel}"/>
 <TextBox Text="{Binding Path=Signatur , Mode=OneWay}"/>
 ```

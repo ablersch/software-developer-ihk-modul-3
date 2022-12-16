@@ -2,6 +2,7 @@
 
 Mit Windows Prozesse arbeiten.
 
+---
 
 <!-- .slide: class="left" -->
 ## Process Klasse
@@ -17,16 +18,17 @@ Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnost
 | `Kill()`| beendet den Prozess sofort ohne auf den Prozess zu warten
 | `Responding`| gibt an, ob die Benutzeroberfläche
 
+---
 
 <!-- .slide: class="left" -->
 ## Prozesse auflisten
 
-```csharp
+```csharp []
 public MainWindow()  {
     InitializeComponent();
 
-    string temp = String.Format("ProcessName \t ProcessId \t StartTime\n");
-    ArrayList processList = new ArrayList();
+    var temp = String.Format("ProcessName \t ProcessId \t StartTime\n");
+    var processList = new ArrayList();
 
     // Alle laufenden Prozesse des aktuellen Systems abrufen
     Process[] processes = Process.GetProcesses();
@@ -43,35 +45,37 @@ public MainWindow()  {
     }
     processList.Sort();
 
-    foreach (String element in processList) {
+    foreach (var element in processList) {
         temp += element;
     }
     txbProcess.Text = temp;
 }
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ## Beispiel Prozesse starten
 
-```csharp
+```csharp []
 // Startet Explorer in C:\
 Process.Start("C:\\");
 ```
 
-```csharp
+```csharp []
 // Öffnet die txt Datei mit dem Standard Editor
 Process.Start("c:\\aa.txt");
 ```
 
-```csharp
+```csharp []
 // Öffnet Google im Browser
-Process p = Process.Start("http://google.com/");
+var p = Process.Start("http://google.com/");
 p.CloseMainWindow();
 // Es ist besser wenn man keinen speziellen Browser festlegt!!!
 // Process.Start("iexplore.exe", "http://www.google.com");
 ```
 
+---
 
 <!-- .slide: class="left" -->
 ## ProcessStartInfo Klasse
@@ -87,16 +91,17 @@ hat und seine Konfiguration.
 | `WindowStyle`| Fenster als versteckt kennzeichnen
 | `WorkingDirectory`| Arbeitsverzeichnis definieren
 
+---
 
 <!-- .slide: class="left" -->
 ## Beispiel ProcessStartInfo
 
-```csharp
-ProcessStartInfo startInfo = new ProcessStartInfo();
+```csharp []
+var startInfo = new ProcessStartInfo();
 startInfo.FileName = "c:\\windows\\system32\\mspaint.exe";
 startInfo.Arguments = "c:\\Bild.jpg";
 
-Process p = new Process();
+var p = new Process();
 p = Process.Start(startInfo);
 
 Console.WriteLine("Press Key to Close");
