@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RootNamespace>Menu_Toolbar</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="clear.png" />
+    <None Remove="line.png" />
+    <None Remove="new.png" />
+    <None Remove="save.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="clear.png" />
+    <Resource Include="line.png" />
+    <Resource Include="new.png" />
+    <Resource Include="save.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

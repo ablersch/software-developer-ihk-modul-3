@@ -5,49 +5,105 @@ GUI erstellen mit WPF
 ---
 
 <!-- .slide: class="left" -->
-## GUI
+## Kurs Organisation
 
-* Mit Einführung des .Net Frameworks ist die Windows Forms API mit dabei.
+* [Skript und Übungen](https://github.com/ablersch/software-developer-ihk-modul-3) von GitHub (https://github.com/ablersch)
+* [Stundenplan](https://ablersch.github.io/software-developer-ihk-modul-1/Stundenplan_SoftwareDeveloper.pdf)
 
-* Seid .Net Framework 3.0 steht WPF (Windows Presentation Foundation) zur Verfügung.
+---
 
-* WinForms wird nicht mehr weiterentwickelt, ist aber noch Bestandteil des .Net Frameworks.
+<!-- .slide: class="left" -->
+## Projektarbeit
 
-* Neue Anwendungen sollten mit WPF erstellt werden.
+Das Projekt muss als reines Softwareprojekt mit einem Zeitaufwand von ca. 30
+Stunden ausgeführt werden. Es muss eine Projektdokumentation erstellt und
+abgegeben werden welche folgende Bestandteile beinhaltet:
+
+* Ziel der Anwendung
+* Aufbau der Anwendung
+* Dokumentation der Anwendung
+
+Die Anwendung muss beim Dozenten ausführbar sein. D.h. notwendige Abhängigkeiten (Datenbanken, Dateien, Konfiguration) mit abgeben.
+
+---
+
+<!-- .slide: class="left" -->
+### Ziel der Projekte
+
+Bearbeitung einer programmiertechnischen Aufgaben- bzw. Fragestellung, die
+
+* Selbständig oder in der Gruppe (wird das Projekt in der Gruppe erarbeitet muss definiert werden wer für welchen Teil zuständig ist)
+* in der vorgegebenen Zeit
+* unter Berücksichtigung des Kenntnisstandes 
+
+bearbeitet wird.
+
+---
+
+<!-- .slide: class="left" -->
+### Themenbereiche
+
+Die Themenbereiche für die Projektarbeit leiten sich ab
+
+* aus den Inhalten des Kurses
+* aus angrenzenden Themengebieten
+
+**Beispiele möglicher Projekte:**
+
+* Zeit (Stempelung)-Server und Client (Light-Version)
+* Projekt-Datenbank
+* Zeiterfassung- und Auswertung (Datenbank)
+* Passwort-Manager
+* Einfaches Dokumentenverwaltungssystem
+* Zeitmanagement
+* Reisekosten
+* ...
+
+---
+
+<!-- .slide: class="left" -->
+## UI-Frameworks
+
+* **Windows Forms (WinForms)**: Ein älteres, einfaches Framework, das häufig für kleine bis mittelgroße Anwendungen genutzt wird.
+  
+* **Windows Presentation Foundation (WPF)**: Ein leistungsfähigeres und moderneres Framework für Desktop-Anwendungen, das auf XAML (eXtensible Application Markup Language) basiert.
+
+* **MAUI (Multiplatform App UI)**: Ein relativ neues Framework, das es ermöglicht, plattformübergreifende Anwendungen für Windows, MacOS, iOS und Android zu entwickeln.
+
+* **Blazor Hybrid**: Nutzt Webtechnologien (HTML, CSS, Blazor) zur Erstellung von Desktop-Anwendungen.
 
 ---
 
 <!-- .slide: class="left" -->
 ## WPF
 
-* WPF ist ein Grafik-Framework (Teil des .Net Frameworks 3.0)
+* UI- und Logik-Code wird getrennt
+* WPF verwendet [XAML](https://docs.microsoft.com/de-de/dotnet/framework/wpf/advanced/xaml-overview-wpf) als deklarative Sprache zur Definition der Benutzeroberfläche.
+* einfache Verbindung von UI-Elementen mit Datenquellen (z.B. Objekten oder Datenbanken) über Data Binding.
+* das Aussehen von Steuerelementen kann vollständig mit Styles anpasst werden.
+* Viele Layouts zur Anordnung von UI-Elementen
+* eingebaute Unterstützung für Animationen (z.B. Bewegung, Transparenzänderung, ...)
+* arbeitet mit Ereignissen, um Benutzerinteraktionen (z.B. Mausklicks, Tastendrücke) zu verarbeiten
 
-* Möglichkeit 2D und 3D Grafiken mit Unterstützung von Direct3D anzuzeigen (Grafikkarte wird für die Berechnung benutzt Performancegewinn)
-
-* Präsentations- und Geschäftslogik (Code) wird getrennt
-
-* [XAML](https://docs.microsoft.com/de-de/dotnet/framework/wpf/advanced/xaml-overview-wpf) (Extended Application Markup Language)(gespr. Xemmel)
-Beschreibungssprache für Oberflächengestaltung
-
-* XAML wird benutzt um die Oberfläche zu erstellen bzw. zu definieren (ähnlich wie bei ASP.NET Anwendungen)
-
-Die WPF API (Application Programming Interface) stellt vordefinierte Steuerelemente (Controls) bereit um Oberflächen zu erstellen.
+Note:
+* WPF unterstützt das MVVM-Entwurfsmuster, das eine klare Trennung von UI (View) und Logik/Daten (ViewModel und Model) ermöglicht. Das erleichtert die Wartbarkeit und Testbarkeit von Anwendungen.
+* Nur für Windows
 
 ---
 
 <!-- .slide: class="left" -->
-## WPF
+## UI
 
-Die Oberflächen können mit dem Designer von Visual Studio oder auch mit anderen Anwendungen (Microsoft Expression Blend oder XAML Padx) erstellt werden. Alle Anwendungen generieren eine XAML Datei die in der Anwendung benutzt werden kann.
+Die Oberflächen können mit dem Designer von Visual Studio oder auch mit anderen Anwendungen (Blend oder XAML Studio) erstellt werden. Alle Anwendungen generieren eine XAML-Datei die in der Anwendung benutzt werden kann.
 
-Änderungen an der Oberfläche können aber auch direkt in der XAML Datei gemacht werden.
+Änderungen an der Oberfläche können aber auch direkt in der XAML-Datei gemacht werden.
 
 ![Steuerelemente direkt in XAML erstellen](Images/xaml.png)
 
 ---
 
 <!-- .slide: class="left" -->
-### WPF Features
+### WPF-Features
 
 ![WPF Features](Images/WPFFeaturesDiagram.png)
 
@@ -63,24 +119,9 @@ Note:
 ---
 
 <!-- .slide: class="left" -->
-### WPF Projektvorlagen
-
-* Die **WPF-Anwendung** entspricht im Wesentlichen einer herkömmlichen Windows-Anwendung. Die charakteristischen Eigenschaften gleichen denen einer WinForm-Anwendung.
-
-* **WPF-Browseranwendungen** stellen keine eigenen Fenster bereit. Die Ausgabe erfolgt im Browser. Außerdem werden WPF-Browseranwendungen nicht auf der lokalen Maschine installiert.
-
-* Mit der **Benutzerdefinierte WPF-Steuerelementbibliothek** (User Control) hat man die Möglichkeit, ein eigenes Steuerelement zu entwickeln. Vereinfacht gesagt, wird das neue Control dabei aus mehreren bestehenden Controls gebildet.
-
-* Mit der **WPF-Benutzersteuerelementbibliothek** (Custom Control) hat man ebenfalls die Möglichkeit eigene Steuerelemente zu entwickeln (mehr Aufwand als User Control). Vorteil: Ein Custom Control kann durch Templates angepasst werden.
-
----
-
-<!-- .slide: class="left" -->
 ### Entwurfsumgebung in Visual Studio
 
 ![Entwurfsumgebung](Images/VSEntwurfsumgebung.png)
-
-Note: Steuerelemente, GUI Designer, XAML Editor und Eigenschaften für Controls
 
 ---
 
@@ -100,11 +141,7 @@ Das neue Projekt besteht aus vier Dateien:
 ---
 
 <!-- .slide: class="left" -->
-### WPF Steuerelemente
-
-[Übersicht Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/control-library)
-
-[Steuerelemente allgemein](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/)
+### Steuerelemente
 
 * Jedes Steuerelemente ist eine Klasse.
 
@@ -116,23 +153,28 @@ Das neue Projekt besteht aus vier Dateien:
 
 * Bei der Namensgebung sollten immer 2-3 Buchstaben des Steuerelementtyp als Präfix dem Namen vorangestellt werden (z.B. lblUeberschrift, btnDownload).
 
+[Übersicht Steuerelemente](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/control-library) und 
+[Steuerelemente allgemein](https://docs.microsoft.com/de-de/dotnet/framework/wpf/controls/)
+
 ---
 
 <!-- .slide: class="left" -->
-### [MessageBox](https://docs.microsoft.com/de-de/dotnet/api/system.windows.messagebox?view=netframework-4.8)
+### MessageBox
 
-* zeigt ein vordefiniertes Nachrichtenfenster an
+* Die [MessageBox](https://learn.microsoft.com/de-de/dotnet/api/system.windows.messagebox) zeigt ein vordefiniertes Nachrichtenfenster an
 
 * Das Nachrichtenfenster ist modal, d.h. es kann kein anderes Fenster aktiviert werden, solang bis das Nachrichtenfenster geschlossen wurde.
 
-```csharp []
-MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler",
+```csharp
+MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler", 
   MessageBoxButton.YesNo, MessageBoxImage.Question);
 ```
 
-```csharp []
+Mit Auswertung des gedrückten Buttons:
+
+```csharp
 var message = "Möchten Sie die Daten speichern?";
-var result = MessageBox.Show(message,"Meine Anwendung",
+var result = MessageBox.Show(message, "Meine Anwendung",
   MessageBoxButton.OKCancel, MessageBoxImage.Question);
 
 if (result == MessageBoxResult.OK)
@@ -141,36 +183,38 @@ if (result == MessageBoxResult.OK)
 }
 ```
 
-Note: **VS** zeigen: neues Projekt, Fensterbereiche, Dateien.
-Im neuen Projekt Button welcher Messagebox anzeigt und Anwendung beendet (Close(), Name Control, Event Button, Text Content Caption). Alle mit machen.
-
-**ÜBUNG** Umrechnung
+Note: 
+* In **VS** zeigen (alle mit machen) 
+  * neues Projekt
+  * Fensterbereiche
+  * Dateien
+  * GUI Designer
+  * Eigenschaften für Controls
+  * Im neuen Projekt `Button` welcher `Messagebox` anzeigt und Anwendung beendet (`Close(),` Name Control, Event Button, Text Content Caption). 
+* **ÜBUNG** Umrechnung
 
 ---
 
 <!-- .slide: class="left" -->
-## Layout
+## Layout-Steuerelemente
 
-Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layout angeordnet. [Layouts](https://www.codeproject.com/Articles/30904/WPF-Layouts-A-Visual-Quick-Start):
+In WPF gibt es mehrere Layout-Steuerelemente (Panels), die für die Anordnung von UI-Elementen verwendet werden. Jedes Layout-Element hat seine spezifische Funktion.
 
-* **Canvas:** Steuerelemente stellen ihr eigenes Layout bereit. Positionierung mit Koordinaten (x und y)
-
-* **DockPanel:** Steuerelemente werden an den Rändern des Bereichs ausgerichtet (angedockt)
-
-* **Grid:** Steuerelemente werden anhand von Zeilen und Spalten positioniert. Ergibt dann eine Art Tabellenstruktur
-
-* **UniformGrid:** ähnlich einem Grid, nur dass alle Zellen die gleiche Größe haben
-
-* **StackPanel:** Steuerelemente werden entweder vertikal oder horizontal gestapelt
+| **Layout**       | **Anwendungsfall**  | **Besonderheiten** |
+|------------------|---------------------|--------------------|
+| **Canvas** | Absolute Positionierung mit Koordinaten (x und y) | Ideal für Spiele oder frei angeordnete Elemente |
+| **DockPanel** | Ausrichtung an Rändern | Menüs, Toolbars, etc. |
+| **Grid** | Komplexe Layouts  | Flexibel und dynamisch|
+| **UniformGrid**   | Gleichmäßige Verteilung | Für gleichförmige Layouts z.B. Schachbretter |
+| **StackPanel** | Lineare Anordnung (vertikal/horizontal)  | Einfach und schnell |
+| **WrapPanel** | Dynamische Anordnung bei begrenztem Platz | Elemente "umwickeln" |
 
 ---
 
 <!-- .slide: class="left" -->
 ### Canvas
 
-* untergeordnete Steuerelemente stellen ihr eigenes Layout bereit
-
-* die Positionierung erfolgt über Koordinaten
+Ein `Canvas` erlaubt die absolute Positionierung von Elementen basierend auf Koordinaten.
 
 ![Canvas](Images/LayoutCanvas.png)
 
@@ -179,9 +223,9 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 <!-- .slide: class="left" -->
 ### Canvas
 
-```xml []
+```xml
 <Canvas>
-  <!-- default coordinates 0,0 from top left; like WinForms -->
+  <!-- Standard Koordinaten 0,0 (von oben links) -->
   <Label Background="Red">Red 1</Label>
   <Label Canvas.Right="50" Background="LightGreen">Green 1</Label>
   <Label Canvas.Top="100" Canvas.Left="100" Background="LightBlue">Blue 1</Label>
@@ -196,9 +240,7 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 <!-- .slide: class="left" -->
 ### DockPanel
 
-* untergeordnete Steuerelemente werden an den Rändern des Bereichs ausgerichtet
-
-* dort werden die Steuerelemente in 4 verschiedenen Regionen plaziert (top, bottom, left, right)
+Ein `DockPanel` richtet seine Kinder an den Rändern (oben, unten, links, rechts) aus.
 
 ![DockPanel](Images/LayoutDockPanel.png)
 
@@ -207,14 +249,15 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 <!-- .slide: class="left" -->
 ### DockPanel
 
-```xml []
+```xml
 <DockPanel>
   <Label DockPanel.Dock="Top" Height="100" Background="Red">Red 1</Label>
   <Label DockPanel.Dock="Left" Background="LightGreen">Green 1</Label>
   <Label DockPanel.Dock="Right" Background="LightBlue">Blue 1</Label>
   <Label DockPanel.Dock="Bottom" Background="LightBlue">Blue 2</Label>
   <Label DockPanel.Dock="Bottom" Height="50" Background="Yellow">Yellow 1</Label>
-  <Label Width="100" Background="Orange">Orange 1</Label>   <!-- default is to fill -->
+  <Label Width="100" Background="Orange">Orange 1</Label>   
+  <!-- Standard ist "Fill" -->
   <Label Background="LightGreen">Green 2</Label>
 </DockPanel>
 ```
@@ -224,13 +267,11 @@ Beim Erstellen einer Benutzeroberfläche werden die Steuerelemente in einem Layo
 <!-- .slide: class="left" -->
 ### Grid
 
-* untergeordnete Steuerelemente werden anhand von Zeilen und Spalten positioniert. Ähnlich einer Tabelle
+Ein `Grid` teilt den verfügbaren Platz in Zeilen und Spalten auf.
 
 * arbeitet mit statisch definierten Spalten und Zeilen
-
 * jede Zelle kann eine spezifische Höhe und Breite erhalten
-
-* Elemente können sich über mehrere Zellen oder Spalten hinweg erstrecken (```Span```)
+* Elemente können sich über mehrere Zellen oder Spalten hinweg erstrecken (`Span`)
 
 Grid Beispiel 1            |  Grid Beispiel 2
 :-------------------------:|:-------------------------:
@@ -241,10 +282,10 @@ Grid Beispiel 1            |  Grid Beispiel 2
 <!-- .slide: class="left" -->
 ### Grid
 
-```xml []
-<!-- First screenshot -->
+```xml
+<!-- Erster Screenshot -->
 <Grid>
-  <!-- Using default column and row configurations -->
+  <!-- Standard Spalten und Zeilen Knfiguration -->
   <Grid.ColumnDefinitions>
     <ColumnDefinition />
     <ColumnDefinition />
@@ -262,24 +303,23 @@ Grid Beispiel 1            |  Grid Beispiel 2
   <Label Grid.Column="1" Grid.Row="1" Background="Yellow">Yellow 1</Label>
   <Label Grid.Column="0" Grid.Row="2" Background="Orange">Orange 1</Label>
 </Grid>
-
-<!-- 2nd screenshot uses ColumnSpan and RowSpan -->
-<Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
-
-       Background="Red">Red 1</Label>
-<Label Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" 
-
-       Background="LightGreen">Green 1</Label>
 ```
 
-Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
+```xml
+<!-- Zweiter Screenshot nutzt ColumnSpan und RowSpan -->
+<Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Background="Red">Red 1</Label>
+<Label Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Background="LightGreen">Green 1</Label>
+```
+
+Note: 
+* **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 
 ---
 
 <!-- .slide: class="left" -->
 ### UniformGrid
 
-* ähnlich wie ein Grid, nur dass alle Zellen genau gleich groß sind
+Ein `UniformGrid` teilt den verfügbaren Platz gleichmäßig auf, sodass alle Kinder die gleiche Größe haben.
 
 ![image](Images/LayoutUniformGrid1.png)
 
@@ -309,9 +349,7 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 <!-- .slide: class="left" -->
 ### StackPanel
 
-* untergeordnete Steuerelemente werden entweder vertikal oder horizontal gestapelt
-
-* Verschachtelungen sind möglich
+Ein `StackPanel` ordnet seine Kinder in einer einzigen Richtung (vertikal oder horizontal) an. Verschachtelungen sind möglich.
 
 ![StackPanel](Images/LayoutStackPanel.png)
 
@@ -320,10 +358,12 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 <!-- .slide: class="left" -->
 ### StackPanel
 
-```xml []
-<StackPanel Orientation="Vertical"> <!-- Vertical is the default -->
+```xml
+<!-- Vertikal ist der Standard -->
+<StackPanel Orientation="Vertical">
   <Label Background="Red">Red 1</Label>
   <Label Background="LightGreen">Green 1</Label>
+  <!-- Verschachtelung -->
   <StackPanel Orientation="Horizontal">
     <Label Background="Red">Red 2</Label>
     <Label Background="LightGreen">Green 2</Label>
@@ -342,7 +382,14 @@ Note: **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
 <!-- .slide: class="left" -->
 ### WrapPanel
 
-* Untergeordnete Steuerelemente werden der Reihenfolge nach von links nach rechts angeordnet. Wenn sich in der jeweiligen Zeile mehr Steuerelemente befinden, als der Raum zulässt, wird ein Zeilenumbruch durchgeführt.
+Ein `WrapPanel` platziert Kinder nebeneinander und "umwickelt" sie, wenn der verfügbare Platz nicht ausreicht.
+
+Untergeordnete Steuerelemente werden der Reihenfolge nach von links nach rechts angeordnet. Wenn sich in der jeweiligen Zeile mehr Steuerelemente befinden, als der Raum zulässt, wird ein Zeilenumbruch durchgeführt.
+
+---
+
+<!-- .slide: class="left" -->
+### WrapPanel
 
 WrapPanel horizontal            |  WrapPanel vertikal
 :-------------------------:|:-------------------------:
@@ -353,8 +400,9 @@ WrapPanel horizontal            |  WrapPanel vertikal
 <!-- .slide: class="left" -->
 ### WrapPanel
 
-```xml []
-<WrapPanel Orientation="Horizontal"> <!-- Horizontal is the default -->
+```xml
+<!-- Horizontal ist der Standard -->
+<WrapPanel Orientation="Horizontal"> 
   <Label Width="125" Background="Red">Red 1</Label>
   <Label Width="100" Background="LightGreen">Green 1</Label>
   <Label Width="125" Background="LightBlue">Blue 1</Label>
@@ -366,6 +414,8 @@ WrapPanel horizontal            |  WrapPanel vertikal
   <Label Width="50" Background="Yellow">Yellow 2</Label>
   <Label Width="175" Background="Orange">Orange 2</Label>
 </WrapPanel>
+```
+```xml
 <WrapPanel Orientation="Vertical">
   <Label Height="125" Background="Red">Red 1</Label>
   <Label Height="100" Background="LightGreen">Green 1</Label>
@@ -380,20 +430,29 @@ WrapPanel horizontal            |  WrapPanel vertikal
 </WrapPanel>
 ```
 
-Note: Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen
-
-**ÜBUNG** Taschenrechner
+Note: 
+* Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen
+* **ÜBUNG** Taschenrechner
 
 ---
 
 <!-- .slide: class="left" -->
 ## Ereignisse
 
-Eine Interaktion des Anwenders mit der Oberfläche löst ein [Ereignis](https://docs.microsoft.com/de-de/dotnet/framework/wpf/advanced/events-wpf) aus.
+Sie ermöglichen es, auf Benutzerinteraktionen wie Mausklicks, Tastatureingaben oder Änderungen von Steuerelementen zu reagieren.
 
-Ist ein Ergeignishandler registriert wird dieser ausgeführt.
+**Wichtige Begriffe:**
 
-```csharp []
+**Ereignisauslöser (Event Trigger):** Ein Ereignis, das z. B. durch einen Klick ausgelöst wird.
+
+**Ereignishandler:** Eine Methode, die ausgeführt wird, wenn das Ereignis ausgelöst wird.
+
+---
+
+<!-- .slide: class="left" -->
+### Beispiel
+
+```csharp
 // XAML Code
 <Button x:Name="btnClear" Content="Löschen" Click="btnClear_Click"/>
 
@@ -404,25 +463,25 @@ private void btnClear_Click(object sender, RoutedEventArgs e)
 }
 ```
 
-### Parameter
+1. **Parameter (`object`):** Referenz auf die ereignisauslösende Komponente (Cast auf das Control).
 
-1. Parameter (`object`): Referenz auf die ereignisauslösende Komponente (Cast auf das Control).
-
-2. Parameter (z.B. `RoutedEventArgs`): Je nach Ereignis unterschiedlicher Datentyp. Stellt ereignisspezifische Daten zur Verfügung.
+2. **Parameter (z.B. `RoutedEventArgs`):** Je nach Ereignis unterschiedlicher Datentyp. Stellt ereignisspezifische Daten zur Verfügung.
 
 ---
 
-## Ereignisse im Code definieren
 <!-- .slide: class="left" -->
+## Ereignisse im Code definieren
 
 Die Verknüpfung zwischen Ereignis und einem Ereignishandler kann auch im Code festgelegt werden.
 
-```csharp []
+```csharp
 public partial class MainWindow : Window
 {
   public MainWindow()
   {
+    // Lädt die in der XAML-Datei (MainWindow.xaml) definierten UI-Elemente.
     InitializeComponent();
+    // Ereignishandler für das Click-Ereignis des Buttons btnInfo hinzufügen.
     btnInfo.Click += new RoutedEventHandler(btnInfo_Click);
   }
 
@@ -434,20 +493,19 @@ public partial class MainWindow : Window
 }
 ```
 
-Note: **VS** zeigen: Event von hand; Menü mit MenüItems geschachtelt; 
-
-Directory.GetFiles(folderPath, "*.jpg", SearchOption.TopDirectoryOnly); System.Windows.Forms Verweis; 
-
-img.Source = new BitmapImage(new Uri("c:\\..."))
-
-+= Trägt sich für ein Event ein
+Note: 
+* **VS** zeigen: 
+  * Event von Hand
+  * Menü mit MenüItems geschachtelt
+    * `Directory.GetFiles(folderPath, "*.jpg", SearchOption.TopDirectoryOnly);`
+    * img.Source = new BitmapImage(new Uri("c:\\..."))
 
 ---
 
 <!-- .slide: class="left" -->
-## DispatcherTimer Klasse
+## DispatcherTimer-Klasse
 
-Der [DispatcherTimer](https://docs.microsoft.com/de-de/dotnet/api/system.windows.threading.dispatchertimer?view=netframework-4.8) kann Aktionen wiederholend in einem bestimmten Intervall ausführen.
+Der [`DispatcherTimer`](https://learn.microsoft.com/de-de/dotnet/api/system.windows.threading.dispatchertimer) kann Aktionen wiederholend in einem bestimmten Intervall ausführen.
 
 ```csharp []
 public DispatcherTimerSample()
@@ -462,7 +520,7 @@ public DispatcherTimerSample()
   timer.Start();
 }
 
-// Eventhandler, wird bei jedem Tick Event ausgelöst
+// Eventhandler, wird bei jedem Tick-Event ausgelöst
 void timer_Tick(object sender, EventArgs e)
 {
   // Aktuelle Uhrzeit jede Sekunde einem Label zuweisen
@@ -470,7 +528,7 @@ void timer_Tick(object sender, EventArgs e)
 }
 ```
 
-```xml []
+```xml
 <Grid>
   <Label Name="lblTime" HorizontalAlignment="Center" VerticalAlignment="Center" />
 </Grid>
@@ -481,76 +539,136 @@ Note: **ÜBUNG** Bildbetrachter
 ---
 
 <!-- .slide: class="left" -->
-## [Datenbindung](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf)
+## DataBinding
 
+Das [DataBinding](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf) ermöglicht die Verknüpfung von Datenquellen (z.B. Objekte, Listen oder Datenbanken) mit UI-Elementen (z.B. `TextBox`, `ListView`). 
+
+Es bietet eine flexible Möglichkeit, Daten dynamisch anzuzeigen und zu aktualisieren, ohne dass eine manuelle Synchronisation zwischen UI und Datenmodell erforderlich ist.
+
+Note: 
+* Warum Datenbindung:
+  * Automatische Synchronisation von UI zu Datenmodell
+  * Trennung von Logik und Darstellung
+
+---
+
+<!-- .slide: class="left" -->
+### Wie funktioniert DataBinding in WPF?
+
+1. Datenquelle (Data Source)
+   * Kann jedes beliebige .NET-Objekt sein (z.B. eine Eigenschaft, eine Liste, ein Model-Objekt).
+   * Beispiele:
+     * Einzelnes Objekt: Bindung an eine Eigenschaft eines Objekts.
+     * Sammlung: Bindung an Listen oder ObservableCollection.
+     * Datenbank: Bindung an Datenbankdaten über LINQ oder EF.
+
+2. Binding-Objekt
+     * Beschreibt die Verknüpfung zwischen der Datenquelle und dem UI-Element.
+     * Definiert:
+       * Quelle (Source): Das Datenobjekt.
+       * Pfad (Path): Welche Eigenschaft der Quelle gebunden wird.
+       * Modus (Mode): Gibt an, ob die Bindung unidirektional, bidirektional oder nur einmalig ist.
+  
+3. Ziel (Target)
+   * Ein UI-Element (z. B. `TextBox`, `Label`, `ListBox`), dessen Eigenschaft gebunden wird (z. B. `Text`, `Content`, `ItemsSource`).
+
+Note:
 * Bindungen werden zwischen zwei Elementen definiert. (Datenquelle - Datenziel).
-
 * Im Datenziel wird eine Eigenschaft an eine Datenquelle gebunden.
-
 * Dabei kann die Datenquelle:
-
     * Die Eigenschaft eines anderen Elements (z. B. eines Steuerelement) sein (Element-Bindung).
-
     * oder eine Datenbindung sein (C\# Objekt, Auflistung, Datenbank, XML Datei, \...)
 
-Note: Eigenschaften mit Controls verbinden
+---
+
+<!-- .slide: class="left" -->
+### Binding-Klasse Eigenschaften
+
+Beschreibt die Bindung von Datenquelle zur gebundenen Komponente.
+
+* **ElementName:** Gibt den Namen des Steuerelements (der UI) an, welches als Datenquelle dient.
+
+* **Path:** Path ist die Eigenschaft (`Value`, `Text`, `Content`, ...) an welche die Daten gebunden werden (optional).
+
+* **Mode:** Definiert den Bindungsmodus zwischen UI und Datenobjekt. Dieser kann einseitig (`OneWay`) oder beidseitig (`TwoWay`) sein.
+
+* **Source:** Legt das Objekt fest, welches als Quelle der Datenbindung dient.
+
+* **UpdateSourceTrigger:** Definiert, wann die Datenquelle aktualisiert werden soll (z.B. jedesmal wenn sich die die Daten ändern).
+
+Note:
+* OneWay: Daten fließen nur von der Quelle (Source) zum Ziel (UI-Element).
+* TwoWay: Daten fließen in beide Richtungen
+* OneTime: Daten werden nur einmalig von der Quelle ins Ziel geladen.
+* OneWayToSource: Daten fließen nur vom Ziel (UI) zur Quelle (Daten).
 
 ---
 
 <!-- .slide: class="left" -->
-### Binding erstellen
+### Warum wird `INotifyPropertyChanged` benötigt?
 
-* Ein Binding kann über den Eigenschaften Editor
+Wenn eine Eigenschaft eines Objekts geändert wird, muss die Benutzeroberfläche (z.B. ein `TextBox` oder `Label`) darüber informiert werden, dass sich die zugrunde liegenden Daten geändert haben. Ohne `INotifyPropertyChanged` würde die UI nicht automatisch aktualisiert, da das Binding sonst keinen Mechanismus hat, um Änderungen mitzubekommen.
 
-* von Hand
 
-* oder auch im Code mit der Klasse Binding erstellt werden
+Das Interface definiert ein Ereignis namens `PropertyChanged`, das ausgelöst wird, wenn sich der Wert einer Eigenschaft ändert. UI-Elemente, die an diese Eigenschaft gebunden sind, "lauschen" auf dieses Ereignis. Sobald das Ereignis ausgelöst wird, aktualisiert die WPF-Bindungs-Engine automatisch die betroffenen UI-Elemente.
 
-```xml []
-<TextBox x:Name="tbxValue2" Text="{Binding Path=Text, ElementName=tbxValue1}"/>
+---
+
+<!-- .slide: class="left" -->
+### Beispiel: Ein Objekt binden
+
+```csharp
+public class Medien : INotifyPropertyChanged
+{
+  private string _titel;
+
+  public string Titel
+  {
+    get { return _titel; }
+    set
+    {
+      // Sicher stellen das sich der Wert geändert hat
+      if (_titel != value)
+      {
+        _titel = value;
+        // Das Ereignis auslösen, um die UI zu informieren
+        OnPropertyChanged(nameof(Titel));
+      }
+    }
+  }
+
+  public event PropertyChangedEventHandler PropertyChanged;
+
+  protected void OnPropertyChanged(string propertyName)
+  {
+    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+  }
+}
 ```
 
-Note: **VS** zeigen: neues Projekt mit Textbox, Button und Elementdatenbindung. Content vom Button an Textbox binden.
-
-Eigenschaft wird nicht aktualisiert --> !NotifyPropertyChanged bei eigenen Klassen.
-
 ---
 
 <!-- .slide: class="left" -->
-### Binding Klasse Eigenschaften
+### Beispiel: Ein Objekt binden
 
-Beschreibt die Bindung von Datenquelle zu gebundener Komponente.
-
-* ElementName: Gibt den Namen des Steuerelements (der GUI) an, welches als **Datenquelle** dient.
-
-* Path: Path ist die Eigenschaft (Property (Value, Text, Content, ...)) an welche die Daten gebunden werden (optional).
-
-* Mode: Definiert den **Bindungsmodus** zwischen GUI und Datenobjekt. Dieser kann einseitig (OneWay) oder beidseitig (TwoWay) sein.
-
-* Source: Legt das Objekt fest, welches als Quelle der Datenbindung dient.
-
-* UpdateSourceTrigger: Definiert, wann die Datenquelle aktualisiert werden soll (z.B. jedesmal wenn sich die die Daten ändern).
-
----
-
-<!-- .slide: class="left" -->
-### Ein Objekt binden
-
-```csharp []
+```csharp
 var medien = new Medien("test", 12345);
 // Datenquelle festlegen
 DataContext = medien;
 ```
 
-```xml []
-<TextBox x:Name="textBox" Text="{Binding Titel}"/>
-<TextBox Text="{Binding Path=Signatur , Mode=OneWay}"/>
+```xml
+<TextBox Text="{Binding Titel}"/>
 ```
 
 In diesem Fall ist keine explizite Angabe von `ElementName` oder ähnliches notwendig.
 
-Note: Path ist optional
-
-**VS** zeigen: DataContext Binding auf Eigenschaft; Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button; ToolbarTry -> Toolbar -> Button -> Image
-
-**ÜBUNG** Zeichnen
+Note: 
+* Path ist optional
+* **VS** zeigen: 
+  * neues Projekt mit Textbox, Button und Elementdatenbindung. 
+  * `Content` vom `Button` an Textbox binden.
+  * Eigenschaft wird nicht aktualisiert --> `INotifyPropertyChanged` bei eigenen Klassen.
+*  DataContext Binding auf Eigenschaft; 
+*  Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button; ToolbarTry -> Toolbar -> Button -> Image
+* **ÜBUNG** Zeichnen

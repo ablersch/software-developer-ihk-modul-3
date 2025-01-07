@@ -19,7 +19,8 @@ Diese Repository beinhaltet die Unterlagen für den Kurs **Software Developer IH
 
 * GUIs mit WPF
 * Prozesse
+* SQL mit Entity Framework
 * API's und Webservices
-* SQL mit ADO.Net und Entity Framework
+
 
 Mit Übungsaufgaben zu den einzelnen Themen.

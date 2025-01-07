@@ -5,9 +5,9 @@ Mit Windows Prozesse arbeiten.
 ---
 
 <!-- .slide: class="left" -->
-## Process Klasse
+## Process-Klasse
 
-Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnostics.process?view=netframework-4.8) stellt Methoden und Eigenschaften bereit um mit Prozesse zu arbeiten.
+Die Klasse [`Process`](https://docs.microsoft.com/de-de/dotnet/api/system.diagnostics.process) stellt Methoden und Eigenschaften bereit um mit Prozesse zu arbeiten.
 
 | Methode      | Beschreibung
 | -------------|-------------|
@@ -16,12 +16,15 @@ Die Klasse [Process](https://docs.microsoft.com/de-de/dotnet/api/system.diagnost
 | `Start()`    | startet einen Prozess
 | `CloseMainWindow()`| eine Beenden Anforderung schicken, wartet z. B. auf Benutzerbestätigung
 | `Kill()`| beendet den Prozess sofort ohne auf den Prozess zu warten
-| `Responding`| gibt an, ob die Benutzeroberfläche
+| `Responding`| gibt an, ob die Benutzeroberfläche reagiert
+
+Note:
+* `true`, wenn die Benutzeroberfläche des zugeordneten Prozesses auf das System reagiert; andernfalls `false`.
 
 ---
 
 <!-- .slide: class="left" -->
-## Prozesse auflisten
+## Beispiel Prozesse auflisten
 
 ```csharp []
 public MainWindow()  {
@@ -34,18 +37,21 @@ public MainWindow()  {
     Process[] processes = Process.GetProcesses();
 
     // Alle Prozesse durchlaufen und die Daten ausgeben. Es wird ein Fehler geworfen wenn auf den Prozess nicht zugegriffen werden kann
-    foreach (Process process in processes) {
-        try {   
+    foreach (Process process in processes) 
+    {
+        try 
+        {   
             processList.Add(process.ProcessName + "\t" + process.Id +"\t"+ process.StartTime + "\n");
         }
-        catch (Exception e) {
-          // Kein Zugriff auf diese Prozesse
+        catch (Exception e) 
+        {
           // TODO
         }
     }
     processList.Sort();
 
-    foreach (var element in processList) {
+    foreach (var element in processList) 
+    {
         temp += element;
     }
     txbProcess.Text = temp;
@@ -57,30 +63,30 @@ public MainWindow()  {
 <!-- .slide: class="left" -->
 ## Beispiel Prozesse starten
 
-```csharp []
+```csharp
 // Startet Explorer in C:\
 Process.Start("C:\\");
 ```
 
-```csharp []
+```csharp
 // Öffnet die txt Datei mit dem Standard Editor
 Process.Start("c:\\aa.txt");
 ```
 
-```csharp []
+```csharp
 // Öffnet Google im Browser
 var p = Process.Start("http://google.com/");
 p.CloseMainWindow();
-// Es ist besser wenn man keinen speziellen Browser festlegt!!!
+// Es ist besser wenn man keinen speziellen Browser festlegt!
 // Process.Start("iexplore.exe", "http://www.google.com");
 ```
 
 ---
 
 <!-- .slide: class="left" -->
-## ProcessStartInfo Klasse
+## ProcessStartInfo-Klasse
 
-Möchten Sie zu einem Prozess weitere Einstellungen vornehmen, sollten Sie eine Instanz von [ProcessStartInfo](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo?view=netframework-4.8) verwenden. Diese Klasse speichert Informationen über den Prozess, insbesondere wie er zu starten
+Möchten Sie zu einem Prozess weitere Einstellungen vornehmen, sollten Sie eine Instanz von [`ProcessStartInfo`](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.processstartinfo) verwenden. Diese Klasse speichert Informationen über den Prozess, insbesondere wie er zu starten
 hat und seine Konfiguration.
 
 | Eigenschaft      | Beschreibung
@@ -94,7 +100,7 @@ hat und seine Konfiguration.
 ---
 
 <!-- .slide: class="left" -->
-## Beispiel ProcessStartInfo
+## Beispiel
 
 ```csharp []
 var startInfo = new ProcessStartInfo();
@@ -113,5 +119,7 @@ p.CloseMainWindow();
 // p.Kill();
 ```
 
-Note: **ÜBUNG** AppStarter
-MSPaint (c:\\windows\\system32\\mspaint32.exe)
+Note: 
+
+* **ÜBUNG** AppStarter
+  * MSPaint (c:\\windows\\system32\\mspaint32.exe)
