@@ -80,13 +80,13 @@ Die Themenbereiche für die Projektarbeit leiten sich ab
 * UI- und Logik-Code wird getrennt
 * WPF verwendet [XAML](https://docs.microsoft.com/de-de/dotnet/framework/wpf/advanced/xaml-overview-wpf) als deklarative Sprache zur Definition der Benutzeroberfläche.
 * einfache Verbindung von UI-Elementen mit Datenquellen (z.B. Objekten oder Datenbanken) über Data Binding.
-* das Aussehen von Steuerelementen kann vollständig mit Styles anpasst werden.
-* Viele Layouts zur Anordnung von UI-Elementen
-* eingebaute Unterstützung für Animationen (z.B. Bewegung, Transparenzänderung, ...)
-* arbeitet mit Ereignissen, um Benutzerinteraktionen (z.B. Mausklicks, Tastendrücke) zu verarbeiten
+* das Aussehen von Steuerelementen kann vollständig mit Styles angepasst werden.
+* Viele Layouts zur Anordnung von UI-Elementen.
+* eingebaute Unterstützung für Animationen (z.B. Bewegung, Transparenzänderung, ...).
+* arbeitet mit Ereignissen, um Benutzerinteraktionen (z.B. Mausklicks, Tastendrücke) zu verarbeiten.
 
 Note:
-* WPF unterstützt das MVVM-Entwurfsmuster, das eine klare Trennung von UI (View) und Logik/Daten (ViewModel und Model) ermöglicht. Das erleichtert die Wartbarkeit und Testbarkeit von Anwendungen.
+* WPF unterstützt das MVVM-Entwurfsmuster (Model View ViewModel), das eine klare Trennung von UI (View) und Logik/Daten (ViewModel und Model) ermöglicht. Das erleichtert die Wartbarkeit und Testbarkeit von Anwendungen.
 * Nur für Windows
 
 ---
@@ -94,7 +94,7 @@ Note:
 <!-- .slide: class="left" -->
 ## UI
 
-Die Oberflächen können mit dem Designer von Visual Studio oder auch mit anderen Anwendungen (Blend oder XAML Studio) erstellt werden. Alle Anwendungen generieren eine XAML-Datei die in der Anwendung benutzt werden kann.
+Die Oberflächen können mit dem Designer von Visual Studio erstellt werden. Dieser generiert eine XAML-Datei die in der Anwendung benutzt werden kann.
 
 Änderungen an der Oberfläche können aber auch direkt in der XAML-Datei gemacht werden.
 
@@ -110,7 +110,7 @@ Die Oberflächen können mit dem Designer von Visual Studio oder auch mit andere
 Note:
 
 * zeitbasierte Animationen sind direkt aus WPF möglich
-* Es wird Hardware benutzt anstelle der CPU (Graka, RAM)
+* Es wird Hardware benutzt anstelle der CPU (Grafikkarte, RAM)
 * Vektorbasiertes Rendering (Grafiken)
 * Elemente aus der GUI können autom. Elemente aus dem Code beeinflussen (oder andersrum)
 * Elemente können mit dem Fenster vergrößert werden
@@ -143,13 +143,11 @@ Das neue Projekt besteht aus vier Dateien:
 <!-- .slide: class="left" -->
 ### Steuerelemente
 
-* Jedes Steuerelemente ist eine Klasse.
+* Steuerelemente können in XAML definiert oder später zur Laufzeit erstellt werden.
 
-* Man hat die Möglichkeit, Steuerelemente in XAML zu definieren oder diese später zur Laufzeit zu erstellen.
+* Jedes Steuerelemente ist eine Klasse und hat Eigenschaften und Methoden.
 
-* Jedes Steuerelemente hat Eigenschaften und Methoden.
-
-* Um ein Steuerelement anzusprechen, muss dieser Instanz (diesem Steuerelement) ein Name gegeben werden.
+* Um ein Steuerelement anzusprechen, muss der Instanz (dem Steuerelement) ein Name gegeben werden.
 
 * Bei der Namensgebung sollten immer 2-3 Buchstaben des Steuerelementtyp als Präfix dem Namen vorangestellt werden (z.B. lblUeberschrift, btnDownload).
 
@@ -161,21 +159,20 @@ Das neue Projekt besteht aus vier Dateien:
 <!-- .slide: class="left" -->
 ### MessageBox
 
-* Die [MessageBox](https://learn.microsoft.com/de-de/dotnet/api/system.windows.messagebox) zeigt ein vordefiniertes Nachrichtenfenster an
+* Die [MessageBox](https://learn.microsoft.com/de-de/dotnet/api/system.windows.messagebox) zeigt ein vordefiniertes Nachrichtenfenster an.
 
 * Das Nachrichtenfenster ist modal, d.h. es kann kein anderes Fenster aktiviert werden, solang bis das Nachrichtenfenster geschlossen wurde.
 
 ```csharp
 MessageBox.Show("Bitte nur Zahlen eingeben", "Fehler", 
-  MessageBoxButton.YesNo, MessageBoxImage.Question);
+  MessageBoxButton.OK, MessageBoxImage.Information);
 ```
 
 Mit Auswertung des gedrückten Buttons:
 
 ```csharp
 var message = "Möchten Sie die Daten speichern?";
-var result = MessageBox.Show(message, "Meine Anwendung",
-  MessageBoxButton.OKCancel, MessageBoxImage.Question);
+var result = MessageBox.Show(message, "Datei", MessageBoxButton.OKCancel);
 
 if (result == MessageBoxResult.OK)
 {
@@ -184,10 +181,10 @@ if (result == MessageBoxResult.OK)
 ```
 
 Note: 
-* In **VS** zeigen (alle mit machen) 
-  * neues Projekt
-  * Fensterbereiche
-  * Dateien
+* In **VS** zeigen und alle mit machen:
+  * neues WPF-Projekt erstellen
+  * Dateien (App.xaml, MainWindows.xaml, Code-Behind, Projektdatei)
+  * Fensterbereiche (Toolbox, Desginer, Properties)
   * GUI Designer
   * Eigenschaften für Controls
   * Im neuen Projekt `Button` welcher `Messagebox` anzeigt und Anwendung beendet (`Close(),` Name Control, Event Button, Text Content Caption). 
@@ -221,7 +218,7 @@ Ein `Canvas` erlaubt die absolute Positionierung von Elementen basierend auf Koo
 ---
 
 <!-- .slide: class="left" -->
-### Canvas
+### Beispiel Canvas
 
 ```xml
 <Canvas>
@@ -240,14 +237,14 @@ Ein `Canvas` erlaubt die absolute Positionierung von Elementen basierend auf Koo
 <!-- .slide: class="left" -->
 ### DockPanel
 
-Ein `DockPanel` richtet seine Kinder an den Rändern (oben, unten, links, rechts) aus.
+Ein `DockPanel` richtet seine Kinder an den Rändern (oben, unten, links, rechts) aus. Es wird der gesamte Platz, welcher das `DockPanel` erhalten hat genutzt.
 
 ![DockPanel](Images/LayoutDockPanel.png)
 
 ---
 
 <!-- .slide: class="left" -->
-### DockPanel
+### Beispiel DockPanel
 
 ```xml
 <DockPanel>
@@ -269,23 +266,23 @@ Ein `DockPanel` richtet seine Kinder an den Rändern (oben, unten, links, rechts
 
 Ein `Grid` teilt den verfügbaren Platz in Zeilen und Spalten auf.
 
-* arbeitet mit statisch definierten Spalten und Zeilen
-* jede Zelle kann eine spezifische Höhe und Breite erhalten
-* Elemente können sich über mehrere Zellen oder Spalten hinweg erstrecken (`Span`)
+* arbeitet mit statisch definierten Spalten und Zeilen.
+* jede Zelle kann eine spezifische Höhe und Breite erhalten.
+* Elemente können sich über mehrere Zellen (zeilen oder Spalten) hinweg erstrecken (`Span`).
 
-Grid Beispiel 1            |  Grid Beispiel 2
+Grid Beispiel 1            |  Grid Beispiel (mit Span) 2
 :-------------------------:|:-------------------------:
 ![image](Images/LayoutGrid1.png)  |  ![image](Images/LayoutGrid2.png)
 
 ---
 
 <!-- .slide: class="left" -->
-### Grid
+### Beispiel Grid
 
 ```xml
 <!-- Erster Screenshot -->
 <Grid>
-  <!-- Standard Spalten und Zeilen Knfiguration -->
+  <!-- Standard Spalten und Zeilen Kofiguration -->
   <Grid.ColumnDefinitions>
     <ColumnDefinition />
     <ColumnDefinition />
@@ -312,7 +309,7 @@ Grid Beispiel 1            |  Grid Beispiel 2
 ```
 
 Note: 
-* **VS** zeigen Grid mit Spalten und Zeilen anlegen + Span
+* In **VS** zeigen Grid mit Spalten, Zeilen und Span anlegen mit dem Designer.
 
 ---
 
@@ -328,9 +325,9 @@ Ein `UniformGrid` teilt den verfügbaren Platz gleichmäßig auf, sodass alle Ki
 ---
 
 <!-- .slide: class="left" -->
-### UniformGrid
+### Beispiel UniformGrid
 
-```xml []
+```xml
 <UniformGrid>
   <Label Background="Red">Red 1</Label>
   <Label Background="LightGreen">Green 1</Label>
@@ -356,7 +353,7 @@ Ein `StackPanel` ordnet seine Kinder in einer einzigen Richtung (vertikal oder h
 ---
 
 <!-- .slide: class="left" -->
-### StackPanel
+### Beispiel StackPanel
 
 ```xml
 <!-- Vertikal ist der Standard -->
@@ -389,7 +386,7 @@ Untergeordnete Steuerelemente werden der Reihenfolge nach von links nach rechts 
 ---
 
 <!-- .slide: class="left" -->
-### WrapPanel
+### Beispiel WrapPanel
 
 WrapPanel horizontal            |  WrapPanel vertikal
 :-------------------------:|:-------------------------:
@@ -398,11 +395,11 @@ WrapPanel horizontal            |  WrapPanel vertikal
 ---
 
 <!-- .slide: class="left" -->
-### WrapPanel
+### Beispiel WrapPanel
 
 ```xml
 <!-- Horizontal ist der Standard -->
-<WrapPanel Orientation="Horizontal"> 
+<WrapPanel> 
   <Label Width="125" Background="Red">Red 1</Label>
   <Label Width="100" Background="LightGreen">Green 1</Label>
   <Label Width="125" Background="LightBlue">Blue 1</Label>
@@ -431,7 +428,7 @@ WrapPanel horizontal            |  WrapPanel vertikal
 ```
 
 Note: 
-* Layout automatisch Anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen
+* Layout automatisch anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen
 * **ÜBUNG** Taschenrechner
 
 ---
@@ -452,10 +449,10 @@ Sie ermöglichen es, auf Benutzerinteraktionen wie Mausklicks, Tastatureingaben 
 <!-- .slide: class="left" -->
 ### Beispiel
 
-```csharp
-// XAML Code
+```xml
 <Button x:Name="btnClear" Content="Löschen" Click="btnClear_Click"/>
-
+```
+```csharp
 //Code behind
 private void btnClear_Click(object sender, RoutedEventArgs e)
 {
@@ -494,11 +491,11 @@ public partial class MainWindow : Window
 ```
 
 Note: 
+* Name des Ereignishandler sollte Name des Controls und das Event beinhalten.
 * **VS** zeigen: 
   * Event von Hand
   * Menü mit MenüItems geschachtelt
-    * `Directory.GetFiles(folderPath, "*.jpg", SearchOption.TopDirectoryOnly);`
-    * img.Source = new BitmapImage(new Uri("c:\\..."))
+    * Height = 25, Add Items = "MenuItems", geschachtelt weiteres "MenuItem"
 
 ---
 
@@ -507,11 +504,11 @@ Note:
 
 Der [`DispatcherTimer`](https://learn.microsoft.com/de-de/dotnet/api/system.windows.threading.dispatchertimer) kann Aktionen wiederholend in einem bestimmten Intervall ausführen.
 
-```csharp []
+```csharp
 public DispatcherTimerSample()
 {
   // neue Instanz erzeugen
-  DispatcherTimer timer = new DispatcherTimer();
+  var timer = new DispatcherTimer();
   // In welchem Intervall soll er laufen
   timer.Interval = TimeSpan.FromSeconds(1);
   // Event mit dem Eventhandler verknüpfen
@@ -534,7 +531,8 @@ void timer_Tick(object sender, EventArgs e)
 </Grid>
 ```
 
-Note: **ÜBUNG** Bildbetrachter
+Note: 
+* **ÜBUNG** Bildbetrachter
 
 ---
 
