@@ -24,6 +24,7 @@ internal class Medien : INotifyPropertyChanged
         }
     }
 
+    // Aktualisiert sich nicht automatisch da kein Aufruf von OnPropertyChanged.
     public string Titel { get; set; }
 
     protected void OnPropertyChanged(string propertyName)

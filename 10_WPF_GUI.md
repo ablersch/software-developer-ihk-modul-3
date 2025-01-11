@@ -206,7 +206,7 @@ In WPF gibt es mehrere Layout-Steuerelemente (Panels), die für die Anordnung vo
 | **Grid** | Komplexe Layouts  | Flexibel und dynamisch|
 | **UniformGrid**   | Gleichmäßige Verteilung | Für gleichförmige Layouts z.B. Schachbretter |
 | **StackPanel** | Lineare Anordnung (vertikal/horizontal)  | Einfach und schnell |
-| **WrapPanel** | Dynamische Anordnung bei begrenztem Platz | Elemente "umwickeln" |
+| **WrapPanel** | Dynamische Anordnung (vertikal/horizontal) bei begrenztem Platz | Elemente brechen um |
 
 ---
 
@@ -493,7 +493,7 @@ public partial class MainWindow : Window
 ```
 
 Note: 
-* Name des Ereignishandler sollte Name des Controls und das Event beinhalten.
+* Name des Ereignishandler sollte Name des Controls und des Events beinhalten.
 * **VS** zeigen: 
   * Event von Hand
   * Menü mit MenüItems geschachtelt

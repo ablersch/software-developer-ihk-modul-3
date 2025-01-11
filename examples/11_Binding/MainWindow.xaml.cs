@@ -20,7 +20,7 @@ public partial class MainWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        textBox.Text = "Button geklickt";
+        medien.Titel = "Button geklickt";
         medien.Signatur = 111;
     }
 }

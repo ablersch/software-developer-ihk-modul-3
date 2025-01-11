@@ -32,8 +32,10 @@ public partial class MainWindow : Window
         doubleAnimation.By = 0;
         doubleAnimation.Duration = new Duration(TimeSpan.FromSeconds(1));
         doubleAnimation.RepeatBehavior = RepeatBehavior.Forever;
+
         RotateTransform rotateTransform = new RotateTransform();
         rectangle1.RenderTransform = rotateTransform;
+
         rotateTransform.BeginAnimation(RotateTransform.AngleProperty, doubleAnimation);
     }
 }
