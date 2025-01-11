@@ -1,0 +1,18 @@
+﻿<Window x:Class="Umrechnung.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Umrechnung"
+        mc:Ignorable="d"
+        Title="Umrechnung" Height="235.87" Width="343.478">
+    <Grid>
+        <TextBox x:Name="tbxGrad" HorizontalAlignment="Left" Height="23" Margin="176,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" />
+        <Label x:Name="lblGrad" Content="Grad" HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" />
+        <Button x:Name="btnC2F" Content="Celsius zu Fahrenheit" Margin="22,125,183,0" Click="btnC2F_Click" Height="22" VerticalAlignment="Top" />
+        <Button x:Name="btnF2C" Content="Fahrenheit zu Celsius" HorizontalAlignment="Left" Margin="176,125,0,0" VerticalAlignment="Top" Width="134" Click="btnF2C_Click" />
+        <Button x:Name="btnExit" Content="Exit" HorizontalAlignment="Left" Margin="22,163,0,0" VerticalAlignment="Top" Width="288" Click="btnExit_Click" />
+        <Label x:Name="lblErgebnis" Content="Ergebnis" HorizontalAlignment="Left" Margin="22,73,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="tbxResult" HorizontalAlignment="Left" Height="23" Margin="176,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" FontWeight="Bold" IsReadOnly="True" TextAlignment="Center" />
+    </Grid>
+</Window>
