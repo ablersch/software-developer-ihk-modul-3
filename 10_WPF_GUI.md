@@ -188,7 +188,8 @@ Note:
   * Im neuen Projekt `Button` welcher `Messagebox` anzeigt und Anwendung beendet `Close(),` 
     * Name Control
     * Event Button
-    * Text Content Caption 
+    * Text Content Caption
+    * Icon für die Anwendung hinterlegen. Projekteigenschaften --> Icon
 * **ÜBUNG** Umrechnung
 
 ---
@@ -429,7 +430,7 @@ WrapPanel horizontal            |  WrapPanel vertikal
 ```
 
 Note: 
-* Layout automatisch anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen
+* Layout automatisch anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen.
 * **ÜBUNG** Taschenrechner
 
 ---
