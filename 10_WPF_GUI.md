@@ -184,10 +184,11 @@ Note:
 * In **VS** zeigen und alle mit machen:
   * neues WPF-Projekt erstellen
   * Dateien (App.xaml, MainWindows.xaml, Code-Behind, Projektdatei)
-  * Fensterbereiche (Toolbox, Desginer, Properties)
-  * GUI Designer
-  * Eigenschaften für Controls
-  * Im neuen Projekt `Button` welcher `Messagebox` anzeigt und Anwendung beendet (`Close(),` Name Control, Event Button, Text Content Caption). 
+  * Fensterbereiche (Toolbox, UI-Designer, Eigenschaften der Controls)
+  * Im neuen Projekt `Button` welcher `Messagebox` anzeigt und Anwendung beendet `Close(),` 
+    * Name Control
+    * Event Button
+    * Text Content Caption 
 * **ÜBUNG** Umrechnung
 
 ---
@@ -268,7 +269,7 @@ Ein `Grid` teilt den verfügbaren Platz in Zeilen und Spalten auf.
 
 * arbeitet mit statisch definierten Spalten und Zeilen.
 * jede Zelle kann eine spezifische Höhe und Breite erhalten.
-* Elemente können sich über mehrere Zellen (zeilen oder Spalten) hinweg erstrecken (`Span`).
+* Elemente können sich über mehrere Zellen (Zeilen oder Spalten) hinweg erstrecken (`Span`).
 
 Grid Beispiel 1            |  Grid Beispiel (mit Span) 2
 :-------------------------:|:-------------------------:
@@ -537,9 +538,9 @@ Note:
 ---
 
 <!-- .slide: class="left" -->
-## DataBinding
+## Data binding
 
-Das [DataBinding](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf) ermöglicht die Verknüpfung von Datenquellen (z.B. Objekte, Listen oder Datenbanken) mit UI-Elementen (z.B. `TextBox`, `ListView`). 
+Das [Data binding](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf) ermöglicht die Verknüpfung von Datenquellen (z.B. Objekte, Listen oder Datenbanken) mit UI-Elementen (z.B. `TextBox`, `ListView`, ...). 
 
 Es bietet eine flexible Möglichkeit, Daten dynamisch anzuzeigen und zu aktualisieren, ohne dass eine manuelle Synchronisation zwischen UI und Datenmodell erforderlich ist.
 
@@ -551,7 +552,7 @@ Note:
 ---
 
 <!-- .slide: class="left" -->
-### Wie funktioniert DataBinding in WPF?
+### Wie funktioniert Data binding in WPF?
 
 1. Datenquelle (Data Source)
    * Kann jedes beliebige .NET-Objekt sein (z.B. eine Eigenschaft, eine Liste, ein Model-Objekt).
