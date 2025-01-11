@@ -206,7 +206,7 @@ In WPF gibt es mehrere Layout-Steuerelemente (Panels), die für die Anordnung vo
 | **Grid** | Komplexe Layouts  | Flexibel und dynamisch|
 | **UniformGrid**   | Gleichmäßige Verteilung | Für gleichförmige Layouts z.B. Schachbretter |
 | **StackPanel** | Lineare Anordnung (vertikal/horizontal)  | Einfach und schnell |
-| **WrapPanel** | Dynamische Anordnung (vertikal/horizontal) bei begrenztem Platz | Elemente brechen um |
+| **WrapPanel** | Dynamische Anordnung (vertikal/horizontal) | Elemente brechen um |
 
 ---
 
@@ -381,7 +381,7 @@ Ein `StackPanel` ordnet seine Kinder in einer einzigen Richtung (vertikal oder h
 <!-- .slide: class="left" -->
 ### WrapPanel
 
-Ein `WrapPanel` platziert Kinder nebeneinander und "umwickelt" sie, wenn der verfügbare Platz nicht ausreicht.
+Ein `WrapPanel` platziert Kinder vertikal oder horizontal, wenn der verfügbare Platz nicht ausreicht wird umgebrochen.
 
 Untergeordnete Steuerelemente werden der Reihenfolge nach von links nach rechts angeordnet. Wenn sich in der jeweiligen Zeile mehr Steuerelemente befinden, als der Raum zulässt, wird ein Zeilenumbruch durchgeführt.
 
@@ -430,7 +430,7 @@ WrapPanel horizontal            |  WrapPanel vertikal
 ```
 
 Note: 
-* Layout automatisch anpassen an Grid: Horizontal und vertikal Stretch, Breite + Höhe auf "auto" und Margins entfernen.
+* Element automatisch anpassen an Grid-Zelle: horizontaler und vertikaler Stretch, Breite + Höhe auf "auto" und Margins entfernen.
 * **ÜBUNG** Taschenrechner
 
 ---
@@ -452,26 +452,27 @@ Sie ermöglichen es, auf Benutzerinteraktionen wie Mausklicks, Tastatureingaben 
 ### Beispiel
 
 ```xml
+<!-- CLick ist der Ereignisauslöser -->
 <Button x:Name="btnClear" Content="Löschen" Click="btnClear_Click"/>
 ```
 ```csharp
-//Code behind
+// Code behind, Ereignishandler
 private void btnClear_Click(object sender, RoutedEventArgs e)
 {
   (sender as Button).IsEnabled = false;
 }
 ```
 
-1. **Parameter (`object`):** Referenz auf die ereignisauslösende Komponente (Cast auf das Control).
+1. **Parameter (`object`):** Das Objekt, das das Event ausgelöst hat. Dadurch ist ein Cast auf das Steuerlement möglich.
 
-2. **Parameter (z.B. `RoutedEventArgs`):** Je nach Ereignis unterschiedlicher Datentyp. Stellt ereignisspezifische Daten zur Verfügung.
+2. **Parameter (z.B. `RoutedEventArgs`):** Zusätzliche Informationen über das Event (z. B. Details zum Klick). Je nach Ereignis unterschiedlicher Datentyp und ereignisspezifische Daten.
 
 ---
 
 <!-- .slide: class="left" -->
 ## Ereignisse im Code definieren
 
-Die Verknüpfung zwischen Ereignis und einem Ereignishandler kann auch im Code festgelegt werden.
+Die Verknüpfung zwischen Ereignis und einem Ereignishandler kann auch im Code erfolgen.
 
 ```csharp
 public partial class MainWindow : Window
@@ -480,7 +481,7 @@ public partial class MainWindow : Window
   {
     // Lädt die in der XAML-Datei (MainWindow.xaml) definierten UI-Elemente.
     InitializeComponent();
-    // Ereignishandler für das Click-Ereignis des Buttons btnInfo hinzufügen.
+    // Registrieren des Ereignishandler für das Click-Ereignis des Buttons.
     btnInfo.Click += new RoutedEventHandler(btnInfo_Click);
   }
 
@@ -493,6 +494,11 @@ public partial class MainWindow : Window
 ```
 
 Note: 
+* Der Operator `+= ` wird verwendet, um einen Event-Handler an ein Event anzuhängen. Es bedeutet: „Registriere diese Methode (btnInfo_Click) als Reaktion, wenn das Event Click ausgelöst wird.“
+  * Mehrere Event-Handler können an dasselbe Event gehängt werden. 
+  * Das Gegenteil wäre `-=`, um einen Event-Handler wieder vom Event zu entfernen.
+* `new RoutedEventHandler(btnInfo_Click)`:
+Hier wird eine neue Instanz des Delegates RoutedEventHandler erstellt. Dieser Delegate beschreibt eine Methode, die mit einem Event des Typs RoutedEventArgs arbeitet.
 * Name des Ereignishandler sollte Name des Controls und des Events beinhalten.
 * **VS** zeigen: 
   * Event von Hand
@@ -539,7 +545,7 @@ Note:
 ---
 
 <!-- .slide: class="left" -->
-## Data binding
+## Data Binding
 
 Das [Data binding](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf) ermöglicht die Verknüpfung von Datenquellen (z.B. Objekte, Listen oder Datenbanken) mit UI-Elementen (z.B. `TextBox`, `ListView`, ...). 
 
