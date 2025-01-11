@@ -436,6 +436,75 @@ Note:
 ---
 
 <!-- .slide: class="left" -->
+## Toolbar
+
+Die `ToolBar` ist eine einzelne Werkzeugleiste, die Schaltflächen, Menüs oder andere Steuerelemente enthalten kann. Sie wird in der Regel als Kind eines `ToolBarTray` verwendet, kann aber auch alleinstehend genutzt werden.
+
+**Eigenschaften**:
+
+* Enthält einzelne Steuerelemente wie Buttons, ToggleButtons, ComboBoxes, etc.
+* Unterstützt Drag-and-Drop, um die ToolBar innerhalb eines `ToolBarTray` zu verschieben.
+* Fügt zusätzliche Stile und Layoutfunktionen für ihre Inhalte hinzu (z. B. angepasste Größen und Spacing).
+
+---
+
+<!-- .slide: class="left" -->
+## ToolBarTray
+
+Der `ToolBarTray` ist ein Container für mehrere `ToolBar`-Instanzen. Er ermöglicht es, mehrere Werkzeugleisten horizontal oder vertikal zu arrangieren. Außerdem können Toolbars innerhalb des Trays verschoben oder ausgerichtet werden.
+
+**Eigenschaften**:
+
+* Kann mehrere `ToolBar`-Elemente enthalten.
+* Unterstützt das Anordnen der Werkzeugleisten in verschiedenen Zeilen/Spalten.
+* Ermöglicht Benutzern das Neupositionieren der Toolbars (wenn Drag-and-Drop aktiviert ist).
+
+**Eigenschaften von ToolBar**:
+
+* **Band**: Gibt an, in welcher "Zeile" die Toolbar platziert wird.
+* **BandIndex**: Gibt die Position innerhalb der Zeile an.
+
+---
+
+<!-- .slide: class="left" -->
+## Beispiel ToolBarTray und ToolBar
+
+```xml
+<ToolBarTray>
+    <ToolBar Band="0" BandIndex="0">
+        <Button Content="Schneiden" />
+        <Button Content="Kopieren" />
+        <Button Content="Einfügen" />
+    </ToolBar>
+    <ToolBar Band="1" BandIndex="0">
+        <Button Content="Suchen" />
+        <Button Content="Ersetzen" />
+        <Button x:Name="btnSave">
+          <Image Source="save.png" Height="20" Width="20" />
+      </Button>
+    </ToolBar>
+</ToolBarTray>
+```
+
+---
+
+<!-- .slide: class="left" -->
+## ToolBarPanel
+
+Das `ToolBarPanel` ist der Standard-Layout-Container, den eine `ToolBarTray` intern verwendet. Es ist für die Anordnung von Toolbars zuständig. Normalerweise arbeitet man nicht direkt mit einem `ToolBarPanel`, da es automatisch von der `ToolBarTray` verwaltet wird.
+
+**Eigenschaften**:
+
+* Verwaltet das Layout der Toolbars in einem `ToolBarTray`.
+* Arbeitet mit `Band` und `BandIndex`, um die Positionen von Toolbars zu steuern.
+* Wird selten direkt in XAML oder Code verwendet.
+
+Note:
+* Zeigen anhand des Beispiel "12_Menu_Toolbar".
+
+---
+
+<!-- .slide: class="left" -->
 ## Ereignisse
 
 Sie ermöglichen es, auf Benutzerinteraktionen wie Mausklicks, Tastatureingaben oder Änderungen von Steuerelementen zu reagieren.
