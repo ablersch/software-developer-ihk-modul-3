@@ -500,7 +500,11 @@ Das `ToolBarPanel` ist der Standard-Layout-Container, den eine `ToolBarTray` int
 * Wird selten direkt in XAML oder Code verwendet.
 
 Note:
-* Zeigen anhand des Beispiel "12_Menu_Toolbar".
+* In **VS** zeigen:
+  * anhand des Beispiel "12_Menu_Toolbar"
+  * Menü mit MenüItems geschachtelt
+    * Height = 25, 
+    * Add Items = "MenuItems", geschachtelt weiteres "MenuItem"
 
 ---
 
@@ -521,7 +525,7 @@ Sie ermöglichen es, auf Benutzerinteraktionen wie Mausklicks, Tastatureingaben 
 ### Beispiel
 
 ```xml
-<!-- CLick ist der Ereignisauslöser -->
+<!-- Click ist der Ereignisauslöser -->
 <Button x:Name="btnClear" Content="Löschen" Click="btnClear_Click"/>
 ```
 ```csharp
@@ -563,16 +567,13 @@ public partial class MainWindow : Window
 ```
 
 Note: 
-* Der Operator `+= ` wird verwendet, um einen Event-Handler an ein Event anzuhängen. Es bedeutet: „Registriere diese Methode (btnInfo_Click) als Reaktion, wenn das Event Click ausgelöst wird.“
+* Der Operator `+= ` wird verwendet, um einen Event-Handler an ein Event anzuhängen. Es bedeutet: "Registriere diese Methode (`btnInfo_Click`) als Reaktion, wenn das Event Click ausgelöst wird."
   * Mehrere Event-Handler können an dasselbe Event gehängt werden. 
   * Das Gegenteil wäre `-=`, um einen Event-Handler wieder vom Event zu entfernen.
 * `new RoutedEventHandler(btnInfo_Click)`:
-Hier wird eine neue Instanz des Delegates RoutedEventHandler erstellt. Dieser Delegate beschreibt eine Methode, die mit einem Event des Typs RoutedEventArgs arbeitet.
+Dabei wird eine neue Instanz des Delegates `RoutedEventHandler` erstellt. Dieser Delegate beschreibt eine Methode, die mit einem Event des Typs `RoutedEventArgs` arbeitet.
 * Name des Ereignishandler sollte Name des Controls und des Events beinhalten.
-* **VS** zeigen: 
-  * Event von Hand
-  * Menü mit MenüItems geschachtelt
-    * Height = 25, Add Items = "MenuItems", geschachtelt weiteres "MenuItem"
+* In **VS** zeigen, Event von Hand registrieren.
 
 ---
 
@@ -616,7 +617,7 @@ Note:
 <!-- .slide: class="left" -->
 ## Data Binding
 
-Das [Data binding](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf) ermöglicht die Verknüpfung von Datenquellen (z.B. Objekte, Listen oder Datenbanken) mit UI-Elementen (z.B. `TextBox`, `ListView`, ...). 
+Das [Data Binding](https://docs.microsoft.com/de-de/dotnet/framework/wpf/data/data-binding-wpf) ermöglicht die Verknüpfung von Datenquellen (z.B. Objekte, Listen oder Datenbanken) mit UI-Elementen (z.B. `TextBox`, `ListView`, ...). 
 
 Es bietet eine flexible Möglichkeit, Daten dynamisch anzuzeigen und zu aktualisieren, ohne dass eine manuelle Synchronisation zwischen UI und Datenmodell erforderlich ist.
 
@@ -628,13 +629,13 @@ Note:
 ---
 
 <!-- .slide: class="left" -->
-### Wie funktioniert Data binding in WPF?
+### Wie funktioniert Data Binding in WPF?
 
 1. Datenquelle (Data Source)
-   * Kann jedes beliebige .NET-Objekt sein (z.B. eine Eigenschaft, eine Liste, ein Model-Objekt).
+   * Kann jedes beliebige .NET-Objekt sein (z.B. eine Eigenschaft, eine Liste, ein Objekt).
    * Beispiele:
      * Einzelnes Objekt: Bindung an eine Eigenschaft eines Objekts.
-     * Sammlung: Bindung an Listen oder ObservableCollection.
+     * Sammlung: Bindung an Listen oder `ObservableCollection`.
      * Datenbank: Bindung an Datenbankdaten über LINQ oder EF.
 
 2. Binding-Objekt
@@ -653,6 +654,7 @@ Note:
 * Dabei kann die Datenquelle:
     * Die Eigenschaft eines anderen Elements (z. B. eines Steuerelement) sein (Element-Bindung).
     * oder eine Datenbindung sein (C\# Objekt, Auflistung, Datenbank, XML Datei, \...)
+* `ObservableCollection<T>`: Änderungen an der Sammlung sollen automatisch in der UI reflektiert werden. (UI wird bei Änderungen an der Collection aktualisiert)
 
 ---
 
@@ -676,13 +678,14 @@ Note:
 * TwoWay: Daten fließen in beide Richtungen
 * OneTime: Daten werden nur einmalig von der Quelle ins Ziel geladen.
 * OneWayToSource: Daten fließen nur vom Ziel (UI) zur Quelle (Daten).
+* Default: Default ist ja nach Eigenschaft unterschiedlich.
 
 ---
 
 <!-- .slide: class="left" -->
 ### Warum wird `INotifyPropertyChanged` benötigt?
 
-Wenn eine Eigenschaft eines Objekts geändert wird, muss die Benutzeroberfläche (z.B. ein `TextBox` oder `Label`) darüber informiert werden, dass sich die zugrunde liegenden Daten geändert haben. Ohne `INotifyPropertyChanged` würde die UI nicht automatisch aktualisiert, da das Binding sonst keinen Mechanismus hat, um Änderungen mitzubekommen.
+Wenn eine Eigenschaft eines Objekts geändert wird, muss die Benutzeroberfläche (z.B. eine `TextBox` oder `Label`) darüber informiert werden, dass sich die zugrunde liegenden Daten geändert haben. Ohne `INotifyPropertyChanged` würde die UI nicht automatisch aktualisiert, da das Binding sonst keinen Mechanismus hat, um Änderungen mitzubekommen.
 
 
 Das Interface definiert ein Ereignis namens `PropertyChanged`, das ausgelöst wird, wenn sich der Wert einer Eigenschaft ändert. UI-Elemente, die an diese Eigenschaft gebunden sind, "lauschen" auf dieses Ereignis. Sobald das Ereignis ausgelöst wird, aktualisiert die WPF-Bindungs-Engine automatisch die betroffenen UI-Elemente.
@@ -744,6 +747,7 @@ Note:
   * neues Projekt mit Textbox, Button und Elementdatenbindung. 
   * `Content` vom `Button` an Textbox binden.
   * Eigenschaft wird nicht aktualisiert --> `INotifyPropertyChanged` bei eigenen Klassen.
+  * Unterschied zu `ObservableCollection` zeigen mit "14_ObservableCollection"
 *  DataContext Binding auf Eigenschaft; 
 *  Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button; ToolbarTry -> Toolbar -> Button -> Image
-* **ÜBUNG** Zeichnen
+* **ÜBUNG** Formular

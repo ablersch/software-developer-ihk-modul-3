@@ -2,7 +2,7 @@
 
 namespace Binding;
 
-internal class Medien : INotifyPropertyChanged
+public class Medien : INotifyPropertyChanged
 {
     private int signatur;
 
@@ -25,6 +25,7 @@ internal class Medien : INotifyPropertyChanged
     }
 
     // Aktualisiert sich nicht automatisch da kein Aufruf von OnPropertyChanged.
+    // Deshlab wird eine Änderung nicht an die UI weitergegeben.
     public string Titel { get; set; }
 
     protected void OnPropertyChanged(string propertyName)

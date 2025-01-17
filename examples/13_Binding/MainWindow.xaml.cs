@@ -7,20 +7,24 @@ namespace Binding;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private Medien medien;
-
     public MainWindow()
     {
         InitializeComponent();
 
-        medien = new Medien("Medium 1", 12345);
+        TestMedium = new Medien("Medium 1", 12345);
+
         // Datenquelle festlegen
-        DataContext = medien;
+        DataContext = TestMedium;
+
+        // Gesamtes Fenster (Zugriff im XAML über das Objekt: TestMedium)
+        //DataContext = this;
     }
+
+    public Medien TestMedium { get; set; }
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        medien.Titel = "Button geklickt";
-        medien.Signatur = 111;
+        TestMedium.Titel = "Button geklickt";
+        TestMedium.Signatur = 111;
     }
 }
