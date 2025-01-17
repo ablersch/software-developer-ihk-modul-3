@@ -665,7 +665,7 @@ Beschreibt die Bindung von Datenquelle zur gebundenen Komponente.
 
 * **ElementName:** Gibt den Namen des Steuerelements (der UI) an, welches als Datenquelle dient.
 
-* **Path:** Path ist die Eigenschaft (`Value`, `Text`, `Content`, ...) an welche die Daten gebunden werden (optional).
+* **Path:** Path ist die Eigenschaft (`Value`, `Text`, `Content`, ...) an welche die Daten gebunden werden (Standard, Angabe optional).
 
 * **Mode:** Definiert den Bindungsmodus zwischen UI und Datenobjekt. Dieser kann einseitig (`OneWay`) oder beidseitig (`TwoWay`) sein.
 
@@ -674,11 +674,12 @@ Beschreibt die Bindung von Datenquelle zur gebundenen Komponente.
 * **UpdateSourceTrigger:** Definiert, wann die Datenquelle aktualisiert werden soll (z.B. jedesmal wenn sich die die Daten ändern).
 
 Note:
-* OneWay: Daten fließen nur von der Quelle (Source) zum Ziel (UI-Element).
-* TwoWay: Daten fließen in beide Richtungen
-* OneTime: Daten werden nur einmalig von der Quelle ins Ziel geladen.
-* OneWayToSource: Daten fließen nur vom Ziel (UI) zur Quelle (Daten).
-* Default: Default ist ja nach Eigenschaft unterschiedlich.
+* `OneWay`: Daten fließen nur von der Quelle (Source) zum Ziel (UI-Element).
+* `TwoWay`: Daten fließen in beide Richtungen
+* `OneTime`: Daten werden nur einmalig von der Quelle ins Ziel geladen.
+* `OneWayToSource`: Daten fließen nur vom Ziel (UI) zur Quelle (Daten).
+* `Default`: Default ist ja nach Eigenschaft unterschiedlich.
+* `UpdateSourceTrigger`: Bestimmt, wann die Datenquelle aktualisiert wird (PropertyChanged, LostFocus, Default).
 
 ---
 
@@ -698,19 +699,19 @@ Das Interface definiert ein Ereignis namens `PropertyChanged`, das ausgelöst wi
 ```csharp
 public class Medien : INotifyPropertyChanged
 {
-  private string _titel;
+  private string titel;
 
   public string Titel
   {
-    get { return _titel; }
+    get { return titel; }
     set
     {
       // Sicher stellen das sich der Wert geändert hat
-      if (_titel != value)
+      if (titel != value)
       {
-        _titel = value;
+        titel = value;
         // Das Ereignis auslösen, um die UI zu informieren
-        OnPropertyChanged(nameof(Titel));
+        OnPropertyChanged(nameof(titel));
       }
     }
   }
@@ -739,7 +740,7 @@ DataContext = medien;
 <TextBox Text="{Binding Titel}"/>
 ```
 
-In diesem Fall ist keine explizite Angabe von `ElementName` oder ähnliches notwendig.
+In diesem Fall ist keine explizite Angabe von `Path`, `ElementName` oder ähnliches notwendig.
 
 Note: 
 * Path ist optional
@@ -748,6 +749,7 @@ Note:
   * `Content` vom `Button` an Textbox binden.
   * Eigenschaft wird nicht aktualisiert --> `INotifyPropertyChanged` bei eigenen Klassen.
   * Unterschied zu `ObservableCollection` zeigen mit "14_ObservableCollection"
-*  DataContext Binding auf Eigenschaft; 
-*  Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button; ToolbarTry -> Toolbar -> Button -> Image
+* DataContext Binding auf Eigenschaft; 
+* Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button; ToolbarTry -> Toolbar -> Button -> Image
 * **ÜBUNG** Formular
+* **ÜBUNG** Buecherfilter
