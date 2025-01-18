@@ -30,6 +30,7 @@ public class Medien : INotifyPropertyChanged
 
     protected void OnPropertyChanged(string propertyName)
     {
+        // Ereignis auslösen (neue Instanz von PropertyChangedEventArgs übergeben, die den Namen der geänderten Eigenschaft enthält.)
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

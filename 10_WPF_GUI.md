@@ -745,11 +745,11 @@ In diesem Fall ist keine explizite Angabe von `Path`, `ElementName` oder ähnlic
 Note: 
 * Path ist optional
 * **VS** zeigen: 
-  * neues Projekt mit Textbox, Button und Elementdatenbindung. 
-  * `Content` vom `Button` an Textbox binden.
-  * Eigenschaft wird nicht aktualisiert --> `INotifyPropertyChanged` bei eigenen Klassen.
+  * Projekt mit Textbox, Button und Elementdatenbindung. 
+  * `Button.Content` an Textbox binden.
+  * Eigenschaft wird nicht aktualisiert --> `INotifyPropertyChanged` nutzen.
+  * Beispiel "13
   * Unterschied zu `ObservableCollection` zeigen mit "14_ObservableCollection"
 * DataContext Binding auf Eigenschaft; 
-* Maus Event; Point; Linien; Farbe; Children.Add; e.Position; e.Button; ToolbarTry -> Toolbar -> Button -> Image
 * **ÜBUNG** Formular
 * **ÜBUNG** Buecherfilter
