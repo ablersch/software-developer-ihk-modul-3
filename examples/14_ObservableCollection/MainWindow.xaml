@@ -4,18 +4,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="500">
+        Title="MainWindow" Height="450" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <ListView x:Name="lsvView" Margin="5,5,5,5" Grid.Row="0" Grid.RowSpan="2">
+        <ListView x:Name="lsvView" Margin="5,5,5,5" Grid.Row="0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Signatur" Width="80" DisplayMemberBinding="{Binding Signatur}" />
@@ -23,7 +22,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Objekt hinzufügen" Height="25" Width="150" Click="Button_Click" Grid.Row="2" />
-        <Button Content="Objekt entfernen" Height="25" Width="150" Grid.Row="3" Click="Button_Click_1" />
+        <Button Content="Objekt hinzufügen" Height="25" Width="150" Click="Button_Click" Grid.Row="1" />
+        <Button Content="Objekt entfernen" Height="25" Width="150" Grid.Row="2" Click="Button_Click_1" />
     </Grid>
 </Window>

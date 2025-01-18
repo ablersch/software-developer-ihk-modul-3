@@ -671,7 +671,9 @@ Beschreibt die Bindung von Datenquelle zur gebundenen Komponente.
 
 * **Source:** Legt das Objekt fest, welches als Quelle der Datenbindung dient.
 
-* **UpdateSourceTrigger:** Definiert, wann die Datenquelle aktualisiert werden soll (z.B. jedesmal wenn sich die die Daten ändern).
+* **UpdateSourceTrigger:** Definiert, wann die Datenquelle aktualisiert werden soll:
+  * `LostFocus`: Dann wenn das Feld den Fokus verloren hat.
+  * `PropertyChanged`: Jedesmal wenn sich die die Daten ändern.
 
 Note:
 * `OneWay`: Daten fließen nur von der Quelle (Source) zum Ziel (UI-Element).
@@ -690,6 +692,11 @@ Wenn eine Eigenschaft eines Objekts geändert wird, muss die Benutzeroberfläche
 
 
 Das Interface definiert ein Ereignis namens `PropertyChanged`, das ausgelöst wird, wenn sich der Wert einer Eigenschaft ändert. UI-Elemente, die an diese Eigenschaft gebunden sind, "lauschen" auf dieses Ereignis. Sobald das Ereignis ausgelöst wird, aktualisiert die WPF-Bindungs-Engine automatisch die betroffenen UI-Elemente.
+
+Note:
+* Ohne `INotifyPropertyChanged`: Änderungen im UI werden ins Modell übernommen, aber Änderungen im Modell werden nicht automatisch im UI angezeigt.
+* Mit `INotifyPropertyChanged`: Änderungen im Modell werden zusätzlich automatisch im UI reflektiert.
+* Für TwoWay-Binding braucht man `INotifyPropertyChanged` nur dann, wenn man möchte, dass sich Änderungen im Modell auch direkt im UI widerspiegeln.
 
 ---
 
