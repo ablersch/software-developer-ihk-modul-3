@@ -18,7 +18,7 @@ public partial class MainWindow : Window
             new("Medium 2", 12222),
         };
 
-        lsvView.ItemsSource = MedienCollection;
+        DataContext = this;
     }
 
     public ObservableCollection<Medien> MedienCollection { get; set; }
