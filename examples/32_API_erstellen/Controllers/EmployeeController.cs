@@ -6,7 +6,7 @@ namespace API_erstellen.Controllers;
 [Route("[controller]")]
 public class EmployeeController : ControllerBase
 {
-    private static List<string> testData = new List<string>(new String[] { "Max", "Andreas", "Hans", "Eddy" });
+    private static List<string> testData = new List<string>(["Max", "Andreas", "Hans", "Eddy"]);
 
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)

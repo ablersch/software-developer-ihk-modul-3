@@ -120,6 +120,5 @@ p.CloseMainWindow();
 ```
 
 Note: 
-
 * **ÜBUNG** AppStarter
   * MSPaint (c:\\windows\\system32\\mspaint32.exe)

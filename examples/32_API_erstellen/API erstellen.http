@@ -1,6 +1,11 @@
 @API_erstellen_HostAddress = http://localhost:5114
 
-GET {{API_erstellen_HostAddress}}/weatherforecast/
+GET {{API_erstellen_HostAddress}}/employee/
+Accept: application/json
+
+###
+
+GET {{API_erstellen_HostAddress}}/employee/1
 Accept: application/json
 
 ###

@@ -9,12 +9,17 @@
 
 API (Application Programming Interface)
 
-* Schnittstelle zur Anwendungsprogrammierung.
-* Kommunikationen und Datenaustausch zwischen Programmen.
-* Eine Anwendung stellt eine API bereit um dritt Programmen zu ermöglicht darauf zuzugreifen.
-    * Schnittstelle für andere Programme und Entwickler.
-    * Ein Programm kann die Funktionen (Businesslogik) eines anderen Programms nutzen bzw. einbinden.
-* Dies kann ein Webservice, ein SDK (Software Development Kit) oder eine Kernel API sein.
+* Schnittstelle zwischen verschiedenen Anwendungen für Kommunikationen und Datenaustausch.
+* APIs sind nicht an das Web gebunden
+* Eine Anwendung kann eine API bereit stellen um dritt Programmen zu ermöglicht darauf zuzugreifen.
+    * Schnittstelle für andere Anwendungen und Entwickler.
+    * Eine Anwendung kann die Funktionen (Businesslogik) einer anderen Anwendung nutzen bzw. einbinden.
+
+**Zum Beispiel**:
+
+* Webservice
+* SDK (Software Development Kit) oder Softwarebibliotheken (`Math`)
+* Kernel-API
 
 ---
 
@@ -23,13 +28,13 @@ API (Application Programming Interface)
 
 Ein Webservice (Web-API) ermöglicht eine reine Computer-zu-Computer-Kommunikation.
 
-* Ein Webservice ist eine Art API welcher meist über http oder https funktioniert.
-* Er bietet einen Dienst über ein Netzwerk an.
-* Ein Webservice bietet einen automatisierten Datenaustausch und Nutzung von Funktionalitäten an.
+* Ein Webservice ist ein spezieller Typ von API, der über das Web (HTTP/HTTPS) verfügbar ist.
+* Er stellt Daten oder Funktionen über das Internet oder ein Netzwerk zur Verfügung.
 * Der Austausch von Daten und Funktionalität erfolgt unabhängig von der Programmiersprache bzw. Hardware und kann somit in unterschiedlichen Systemen integriert werden.
 
 Note:
-* Shopsystem welches Artikel über Webservices abruft.
+* Web-Shopsystem welches Artikel über Webservices abruft.
+* Wetter-App welche Wetterdaten von einem externen Service abruft.
 * Kamera hat API um diese von dritt Programmen steuern zu lassen
 
 ---
@@ -55,7 +60,7 @@ Note:
 ![servicebasierte Architektur](Images/webservicemodel.png)
 
 Note: 
-* Application kann den Service aufrufen/beenden, je nach Bedarf. 
+* Anwendung kann den Service aufrufen/beenden, je nach Bedarf. 
 * Benötigt nur die URL für den Abruf. 
 * Was im Service gemacht wird ist eine Blackbox
 
@@ -66,23 +71,20 @@ Note:
 
 Es gibt verschiedene Implementierungen eines Webservices
 
-* SOAP (Simple Object Access Protocol)
-  * Kann Nachrichten über HTTP aber auch über SMTP usw. übertragen
-  * Nutzt XML
-  * WCF (Windows Communication Foundation)
-* REST (Representational State Transfer)
-  * An HTTP angelehnt
-  * Operationen wie GET, PUT, POST, DELETE
-* gRPC (Remote Procedure Call)
-  * von Google entwickelt
-  * basiert auf RPC
-  * Entfernte Funktionsaufrufe (Interprozesskommunikation)
-* GraphQL
-  * Abfragesprache um genau die Daten abzurufen welche der Client benötigt.
+| Technologie  | Beschreibung                                                   | Datenformat     | Protokolle        | Verwendung                       |
+|--------------|---------------------------------------------------------------|-----------------|------------------|----------------------------------|
+| **SOAP**     | Strenges Protokoll und umfangreiche Standards | XML             | HTTP, SMTP, etc. | Unternehmensanwendungen, hohe Sicherheit |
+|              | **Bedeutung**: Simple Object Access Protocol                   |                 |                  |                                  |
+| **REST**     | Architekturstil, nutzt HTTP und einfache Datenformate (JSON, XML) | JSON, XML       | HTTP/HTTPS       | Webanwendungen, mobile Apps      |
+|              | **Bedeutung**: Representational State Transfer                 |                 |                  |                                  |
+| **gRPC**     | Remote Procedure Calls mit HTTP/2 und Protobuf für Performance   | Protobuf        | HTTP/2           | Microservices, interne Systeme   |
+|              | **Bedeutung**: Google Remote Procedure Call                    |                 |                  |                                  |
+| **GraphQL**  | Abfragesprache, bei der der Client die Datenanforderungen bestimmt | JSON            | HTTP/HTTPS       | Flexible APIs, Datenabfragen     |
+|              | **Bedeutung**: Graph Query Language                            |                 |                  |                                  |
+
 
 Note: 
 * Bsp für REST Services von Facebook, Twitter, Netflix...
-TODO mehr die Unterschiede erklären.
 
 ---
 
@@ -99,7 +101,7 @@ TODO mehr die Unterschiede erklären.
 ---
 
 <!-- .slide: class="left" -->
-### REST Webservice abfragen mit C#
+### REST Webservice abfragen
 
 ```csharp []
 public BookItem GetReleases(string url)
@@ -166,54 +168,114 @@ Note:
   * Console mit `HttpClient` Star Wars API abrufen. 
   * [Json2CSharp](https://json2csharp.com/) 
   * Deserialisierung des Ergebnis
-* **ÜBUNG** REST Webservice abfragen
+* **ÜBUNG** Webservice abrufen
 
 ---
 
 <!-- .slide: class="left" -->
 ## REST Webservice erstellen
 
-Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller mehrere Endpunkte bereitstellen.
+Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller mehrere Endpunkte bereitstellen. Zum Beispiel EmployeeController: aufrufbar über `http://localhost/item`.
 
-z.B. EmployeeController: aufrufbar über `http://localhost/api/employee`
-
-**POST** – Wird benutzt um einen neuen Mitarbeiter anzulegen
-
-**GET** - Wird benutzt um einen oder eine Liste von Mitarbeitern abzurufen
-
-**PUT** - Wird benutzt um einen Mitarbeiter upzudaten
-
-**DELETE** - Wird benutzt um einen Mitarbeiter zu löschen
-
----
-
-<!-- .slide: class="left" -->
-## Beispiel Controller Methode
-
-```csharp []
-private static List<string> testData = new List<string>(new String[] { "Max", "Andreas", "Hans", "Eddy" });
-
-[HttpGet]
-public ActionResult<List<string>> Get()
-{
-    return Ok(testData);
-}
-
-[HttpDelete("{id}")]
-public ActionResult Delete(int id)
-{
-    testData.RemoveAt(id);
-    return NoContent();
-}
-```
+Die Controller stellen einige oder alle CRUD-Operationen bereit: Create, Read, Update, Delete.
 
 Je nach Ergebnis liefert jede Controller-Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode) zurück der anzeigt ob die Aktion erfolgreich war oder warum nicht.
 
 weitere Informationen: [Status Code Map](https://www.talend.com/http-status-map)
+
+---
+
+<!-- .slide: class="left" -->
+### Create (POST)
+
+* **Zweck**: Erstellen einer neuen Ressource.
+* **HTTP-Method**: `POST`
+* **Rückgabewert**: `Created` oder `CreatedAtAction` mit der URL der erstellten Ressource und optional dem erstellten Objekt.
+
+* **Beispiel**:
+```csharp
+[HttpPost]
+public ActionResult<Item> CreateItem([FromBody] Item item)
+{
+  var createdItem = itemService.CreateItem(item);
+  return Created();
+}
+```
+
+---
+
+<!-- .slide: class="left" -->
+### Read (GET)
+
+* **Zweck**: Abrufen einer oder mehrerer Ressourcen.
+* **HTTP-Method**: `GET`
+* **Rückgabewert**: `Ok` mit der Ressource oder einer Liste von Ressourcen.
+* **Beispiel**:
+```csharp
+[HttpGet("{id}")]
+public ActionResult<Item> GetItem(int id)
+{
+  var item = itemService.GetItem(id);
+  if (item == null)
+  {
+    return NotFound($"Id '{id}' nicht gefunden.");
+  }
+  return Ok(item);
+}
+```
+
+---
+
+<!-- .slide: class="left" -->
+### Update (PUT)
+
+* **Zweck**: Aktualisieren einer bestehenden Ressource.
+* **HTTP-Method**: `PUT`
+* **Rückgabewert**: `NoContent` (wenn erfolgreich, ohne Rückgabeinhalt) oder `Ok` (mit der aktualisierten Ressource).
+* **Beispiel**:
+```csharp
+[HttpPut("{id}")]
+public ActionResult<Item> UpdateItem(int id, [FromBody] Item item)
+{
+  if (id != item.Id) 
+  {
+    return BadRequest();
+  }
+  
+  var updatedItem = itemService.UpdateItem(item);
+  if (updatedItem == null)
+  {
+    return NotFound();
+  }
+  return Ok(updatedItem);
+}
+```
+
+---
+
+<!-- .slide: class="left" -->
+### Delete (DELETE)
+
+* **Zweck**: Löschen einer Ressource.
+* **HTTP-Method**: `DELETE`
+* **Rückgabewert**: `NoContent` (wenn erfolgreich) oder `NotFound`, wenn die Ressource nicht gefunden wurde.
+* **Beispiel**
+```csharp
+[HttpDelete("{id}")]
+public ActionResult DeleteItem(int id)
+{
+  var success = itemService.DeleteItem(id);
+  if (!success) 
+  {
+      return NotFound();
+  }
+  return NoContent();
+}
+```
 
 Note:
 **VS** zeigen neues API Projekt "32_API_erstellen"
   * eigenen Controller
   * Swagger (Swashbuckle von NuGet)
 
-**ÜBUNG** Webservice erstellen; HTTP Response Message [Route("api/xxx/{id}")];
+**ÜBUNG** Webservice erstellen

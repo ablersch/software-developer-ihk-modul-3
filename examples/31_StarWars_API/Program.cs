@@ -1,21 +1,21 @@
 ﻿using System.Text.Json;
 using StarWars;
 
-var people = GetPeopleFromApi(10);
+var starship = GetStarshipFromApi(10);
 
-Console.WriteLine($"Name: {people?.Name}");
+Console.WriteLine($"Name: {starship?.Name}");
 
-static People GetPeopleFromApi(int id)
+static Starship GetStarshipFromApi(int id)
 {
     using var httpClient = new HttpClient();
 
     try
     {
-        using var response = httpClient.GetAsync($"https://swapi.dev/api/people/{id}").Result;
+        using var response = httpClient.GetAsync($"https://swapi.dev/api/starships/{id}").Result;
 
         response.EnsureSuccessStatusCode();
 
-        return JsonSerializer.Deserialize<People>(response.Content.ReadAsStringAsync().Result);
+        return JsonSerializer.Deserialize<Starship>(response.Content.ReadAsStringAsync().Result);
     }
     catch (Exception e)
     {
