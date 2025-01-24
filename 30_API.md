@@ -71,14 +71,14 @@ Note:
 <!-- .slide: class="left" -->
 ## verschiedene Implementierungen
 
-Es gibt verschiedene Implementierungen eines Webservices
+Es gibt verschiedene Implementierungen eines Webservices:
 
 |   | Beschreibung                                                    | Protokolle        | Verwendung                       |
 |--------------|------------------------------------------------------|------------------|----------------------------------|
 | **SOAP**     | Strenges Protokoll und umfangreiche Standards (XML) |  HTTP, SMTP, etc. | Unternehmensanwendungen, hohe Sicherheit |
-| **REST**     | Architekturstil, nutzt HTTP und einfache Datenformate (JSON, XML)   | HTTP/HTTPS       | Webanwendungen, mobile Apps      |
+| **REST**     | Architekturstil, nutzt HTTP und einfache Datenformate (JSON, XML)   | HTTP, HTTPS       | Webanwendungen, mobile Apps      |
 | **gRPC**     | RPC mit HTTP/2 und Protobuf für Performance    | HTTP/2           | Microservices, interne Systeme   |
-| **GraphQL**  | Abfragesprache, bei der der Client die Datenanforderungen bestimmt (JSON)  | HTTP/HTTPS       | Flexible APIs, Datenabfragen     |
+| **GraphQL**  | Abfragesprache, bei der der Client die Datenanforderungen bestimmt (JSON)  | HTTP, HTTPS       | Flexible APIs, Datenabfragen     |
 
 
 Note: 
@@ -108,39 +108,41 @@ Note:
 public Account GetAccount(string url)
 {
   using var httpClient = new HttpClient();
-  try
+
+  // GET Anfrage an den Endpunkt senden und Ergebnis abrufen.
+  using var response = httpClient.GetAsync(url).Result;
+
+  // Sicherstellen, dass die Anfrage erfolgreich war.
+  // EnsureSuccessStatusCode();
+  if (response.IsSuccessStatusCode)
   {
-    // GET Anfrage an den Endpunkt senden und Ergebnis abrufen.
-    var response = httpClient.GetAsync(url).Result;
-
-    // Sicherstellen, dass die Anfrage erfolgreich war.
-    response.EnsureSuccessStatusCode();
-
     // Inhalt der Antwort als String lesen.
-    var responseBody = response.Content.ReadAsStringAsync().Result;
+    var jsonString = response.Content.ReadAsStringAsync().Result;
 
-    // JSON-String als Objekt deserialisieren
-    return JsonSerializer.Deserialize<Account>(responseBody);
-  }
-  catch (Exception e)
+    // JSON-String als Objekt deserialisieren.
+    return JsonSerializer.Deserialize<Account>(jsonString);
+  } 
+  else 
   {
+    // Fehlerfall behandeln.
     return null;
   }
 }
 ```
 
 Note:
-* `EnsureSuccessStatusCode():` Wirft eine `Exception` wenn die Abfrage kein Success Status Code geliefert hat.
+* `EnsureSuccessStatusCode()`: Wirft eine `Exception` wenn die Abfrage kein Success Status Code geliefert hat. Später, in anderer Methode, `Exception` abfangen.
+* `response.IsSuccessStatusCode`: Prüfen und eventuell im else Zweig auf den Fehlerfall reagieren
 
 ---
 
 <!-- .slide: class="left" -->
 ### Daten umwandeln
 
-REST-Webservice liefern Ergebnisse als JSON oder XML. Deshalb müssen die Daten in Objekte umgewandelt (deserialisiert) werden.
+REST-Webservice liefert Ergebnis als JSON oder XML. Deshalb müssen die Daten in Objekte umgewandelt (deserialisiert) werden.
 
 ```csharp []
-// Klasse Account kann über Tools automatisch aus dem JSON-String generiert werden
+// Klasse Account kann über Tools automatisch aus dem JSON-String generiert werden.
 public class Account
 {
   public string Email { get; set; }
@@ -149,7 +151,7 @@ public class Account
   public IList<string> Roles { get; set; }
 }
 
-// JSON-String, z.B. Abfrage Ergebnis eines Webservice
+// JSON-String, z.B. Abfrage Ergebnis eines Webservice.
 string json = @"
 {
   'Email': 'james@example.com',
@@ -161,12 +163,12 @@ string json = @"
 }";
 
 // JSON-String wird in ein Objekt der Klasse Account umgewandelt
-Account account = JsonConvert.DeserializeObject<Account>(json);
+var account = JsonConvert.DeserializeObject<Account>(json);
 ```
 
 Note:
 * In **VS** zeigen mit Beispiel: "31_StarWars_API" 
-  * Console mit `HttpClient` Star Wars API abrufen. 
+  * Console mit `HttpClient` die [Star Wars API](https://swapi.dev/) abrufen. 
   * [Json2CSharp](https://json2csharp.com/) 
   * Deserialisierung des Ergebnis
 * **ÜBUNG** Webservice abrufen
