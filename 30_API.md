@@ -112,7 +112,7 @@ public Account GetAccount(string url)
   // GET Anfrage an den Endpunkt senden und Ergebnis abrufen.
   using var response = httpClient.GetAsync(url).Result;
 
-  // Sicherstellen, dass die Anfrage erfolgreich war.
+  // Sicherstellen, dass die Abfrage erfolgreich war.
   // EnsureSuccessStatusCode();
   if (response.IsSuccessStatusCode)
   {
@@ -180,7 +180,7 @@ Note:
 
 Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller mehrere Endpunkte bereitstellen. 
 
-Z. B. EmployeeController: aufrufbar über `http://localhost/item`.
+Z. B. ItemController: aufrufbar über `http://localhost/item`.
 
 Die Controller stellen einige oder alle CRUD-Operationen bereit: Create, Read, Update, Delete.
 
@@ -195,7 +195,7 @@ weitere Informationen: [Status Code Map](https://www.talend.com/http-status-map)
 
 * **Zweck**: Erstellen einer neuen Ressource.
 * **HTTP-Method**: `POST`
-* **Rückgabewert**: `Created` oder `CreatedAtAction` mit der URL der erstellten Ressource und optional dem erstellten Objekt.
+* **Rückgabewert**: `Created` oder `CreatedAtAction` welche die URL mit der die neu erstellte Ressource abgerufen werden kann und dem erstellten Objekt zurückgibt.
 * **Beispiel**:
 
 ```csharp
@@ -203,9 +203,18 @@ weitere Informationen: [Status Code Map](https://www.talend.com/http-status-map)
 public ActionResult<Item> CreateItem([FromBody] Item item)
 {
   var createdItem = itemService.CreateItem(item);
-  return Created();
+  return CreatedAtAction(nameof(GetItem), new { id = createdItem.Id }, createdItem);
+  return Created($"http://example.com/api/item/{createdItem.Id}", createdItem);
 }
 ```
+
+Note:
+* `CreatedAtAction` generiert eine URL, die auf die Methode GetItem verweist, weil diese genutzt wird, um Details des neu erstellten Objekts abzurufen.
+* Der Zweck des HTTP-Statuscodes "201 Created" besteht darin, dem Client mitzuteilen:
+  * Die Ressource wurde erfolgreich erstellt.
+  * Hier ist die URL, unter der du sie abrufen kannst (Location-Header).
+* Der Unterschied zwischen `Created` und `CreatedAtAction` liegt darin, wie die URL zur neu erstellten Ressource generiert wird.
+* Das erstellte Objekt wird zusätzlich zur URL zurückgegeben, um dem Client sofortigen Zugriff auf die Ressource zu ermöglichen, ohne eine weitere Anfrage (z. B. einen GET-Aufruf) senden zu müssen.
 
 ---
 
