@@ -71,8 +71,6 @@ Note:
 <!-- .slide: class="left" -->
 ## verschiedene Implementierungen
 
-Es gibt verschiedene Implementierungen eines Webservices:
-
 |   | Beschreibung                                                    | Protokolle        | Verwendung                       |
 |--------------|------------------------------------------------------|------------------|----------------------------------|
 | **SOAP**     | Strenges Protokoll und umfangreiche Standards (XML) |  HTTP, SMTP, etc. | Unternehmensanwendungen, hohe Sicherheit |
