@@ -72,11 +72,11 @@ Note:
 
 Es gibt verschiedene Implementierungen eines Webservices
 
-| Technologie  | Beschreibung                                                   | Datenformat     | Protokolle        | Verwendung                       |
+|   | Beschreibung                                                   | Datenformat     | Protokolle        | Verwendung                       |
 |--------------|---------------------------------------------------------------|-----------------|------------------|----------------------------------|
 | **SOAP**     | Strenges Protokoll und umfangreiche Standards | XML             | HTTP, SMTP, etc. | Unternehmensanwendungen, hohe Sicherheit |
 | **REST**     | Architekturstil, nutzt HTTP und einfache Datenformate (JSON, XML) | JSON, XML       | HTTP/HTTPS       | Webanwendungen, mobile Apps      |
-| **gRPC**     | Remote Procedure Calls mit HTTP/2 und Protobuf für Performance   | Protobuf        | HTTP/2           | Microservices, interne Systeme   |
+| **gRPC**     | RPC mit HTTP/2 und Protobuf für Performance   | Protobuf        | HTTP/2           | Microservices, interne Systeme   |
 | **GraphQL**  | Abfragesprache, bei der der Client die Datenanforderungen bestimmt | JSON         | HTTP/HTTPS       | Flexible APIs, Datenabfragen     |
 
 
