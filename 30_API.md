@@ -35,14 +35,14 @@ Ein Webservice (Web-API) ermöglicht eine reine Computer-zu-Computer-Kommunikati
 Note:
 * Web-Shop-System welches Artikel über Webservices abruft.
 * Wetter-App welche Wetterdaten von einem externen Service abruft.
-* Kamera hat Web-API um diese von dritt Programmen steuern zu lassen.
+* Kamera bietet eine Web-API um diese von dritt Programmen steuern zu lassen.
 
 ---
 
 <!-- .slide: class="left" -->
 ### Warum Webservices
 
-* Webservices arbeiten mit einer servicebasierten Modellarchitektur (siehe Schaubild).
+* Webservices arbeiten mit einer servicebasierten Architektur (siehe Schaubild).
 * UI von der Anwendungslogik trennen.
 * Webservices verwenden ein textbasiertes Protokoll, das alle Anwendungen verstehen können.
 * Nicht auf spezielle Protokolle angewiesen (meist HTTPS).
@@ -63,7 +63,8 @@ Note:
 Note: 
 * Anwendung kann den Service aufrufen/beenden, je nach Bedarf. 
 * Benötigt nur die URL für den Aufruf. 
-* Was im Service gemacht wird ist eine Blackbox
+* Zugriff von Web, Desktop, Mobile.
+* Der Webservice ist für die Anwendung eine Blackbox.
 
 ---
 
@@ -72,12 +73,12 @@ Note:
 
 Es gibt verschiedene Implementierungen eines Webservices
 
-|   | Beschreibung                                                   | Datenformat     | Protokolle        | Verwendung                       |
-|--------------|---------------------------------------------------------------|-----------------|------------------|----------------------------------|
-| **SOAP**     | Strenges Protokoll und umfangreiche Standards | XML             | HTTP, SMTP, etc. | Unternehmensanwendungen, hohe Sicherheit |
-| **REST**     | Architekturstil, nutzt HTTP und einfache Datenformate (JSON, XML) | JSON, XML       | HTTP/HTTPS       | Webanwendungen, mobile Apps      |
-| **gRPC**     | RPC mit HTTP/2 und Protobuf für Performance   | Protobuf        | HTTP/2           | Microservices, interne Systeme   |
-| **GraphQL**  | Abfragesprache, bei der der Client die Datenanforderungen bestimmt | JSON         | HTTP/HTTPS       | Flexible APIs, Datenabfragen     |
+|   | Beschreibung                                                    | Protokolle        | Verwendung                       |
+|--------------|------------------------------------------------------|------------------|----------------------------------|
+| **SOAP**     | Strenges Protokoll und umfangreiche Standards (XML) |  HTTP, SMTP, etc. | Unternehmensanwendungen, hohe Sicherheit |
+| **REST**     | Architekturstil, nutzt HTTP und einfache Datenformate (JSON, XML)   | HTTP/HTTPS       | Webanwendungen, mobile Apps      |
+| **gRPC**     | RPC mit HTTP/2 und Protobuf für Performance    | HTTP/2           | Microservices, interne Systeme   |
+| **GraphQL**  | Abfragesprache, bei der der Client die Datenanforderungen bestimmt (JSON)  | HTTP/HTTPS       | Flexible APIs, Datenabfragen     |
 
 
 Note: 
