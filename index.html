@@ -19,13 +19,17 @@
 
 		<link href="/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
 
-		<!-- Printing and PDF exports -->
 		<script>
+			// Change layout for printing and PDF export
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+		 	// Change highlight theme
+			var highlightThemeLink = document.getElementById('highlight-theme');
+			highlightThemeLink.href = (window.location.search.match(/print-pdf/gi)) ? 'plugin/highlight/grayscale.css' : 'plugin/highlight/monokai.css';
 		</script>
 
 <style>

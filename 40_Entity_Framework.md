@@ -35,6 +35,7 @@ Note:
 
 
 Note: 
+
 * Intern Zugriff auf die Daten über ADO.NET (EF ist im Wesentlichen eine Abstraktionsebene über ADO.NET, die den Umgang mit Datenbanken einfacher und objektorientierter macht)
 * Zugriff mit ADO.NET ist schneller wie mit Entity Framework.
 
