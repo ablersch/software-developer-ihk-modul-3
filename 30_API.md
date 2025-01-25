@@ -111,7 +111,7 @@ public Account GetAccount(string url)
   using var response = httpClient.GetAsync(url).Result;
 
   // Sicherstellen, dass die Abfrage erfolgreich war.
-  // EnsureSuccessStatusCode();
+  // response.EnsureSuccessStatusCode();
   if (response.IsSuccessStatusCode)
   {
     // Inhalt der Antwort als String lesen.
@@ -176,13 +176,13 @@ Note:
 <!-- .slide: class="left" -->
 ## REST Webservice erstellen
 
-Ein API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller mehrere Endpunkte bereitstellen. 
+Ein Web-API Projekt besteht normalerweise aus einer Sammlung an Controllern die je Controller mehrere Endpunkte bereitstellen. 
 
 Z. B. ItemController: aufrufbar über `http://localhost/item`.
 
 Die Controller stellen einige oder alle CRUD-Operationen bereit: Create, Read, Update, Delete.
 
-Je nach Ergebnis liefert jede Controller-Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode) zurück der anzeigt ob die Aktion erfolgreich war oder warum nicht.
+Je nach Ergebnis liefert jede Controller-Methode einen [HTTP Status Code ](https://docs.microsoft.com/de-de/dotnet/api/system.net.httpstatuscode) der anzeigt ob die Aktion erfolgreich war oder warum nicht.
 
 weitere Informationen: [Status Code Map](https://www.talend.com/http-status-map)
 
@@ -202,7 +202,7 @@ public ActionResult<Item> CreateItem([FromBody] Item item)
 {
   var createdItem = itemService.CreateItem(item);
   return CreatedAtAction(nameof(GetItem), new { id = createdItem.Id }, createdItem);
-  return Created($"http://example.com/api/item/{createdItem.Id}", createdItem);
+  // return Created($"http://example.com/api/item/{createdItem.Id}", createdItem);
 }
 ```
 

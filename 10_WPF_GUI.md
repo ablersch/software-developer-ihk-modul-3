@@ -312,6 +312,12 @@ Grid Beispiel 1            |  Grid Beispiel (mit Span) 2
 
 Note: 
 * In **VS** zeigen Grid mit Spalten, Zeilen und Span anlegen mit dem Designer.
+* Größe kann per Pixel bestimmt werden oder im Verhältnis:
+
+```csharp
+<ColumnDefinition Width="2*" /> // Spalte 2/5
+<ColumnDefinition Width="3*" /> // Spalte 3/5
+```
 
 ---
 
