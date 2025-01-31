@@ -20,7 +20,7 @@ Es können Datenbestände aus verschiedenen Teilmengen zusammengestellt und beda
 
    * Daten werden in Tabellen organisiert, und die Beziehungen zwischen den Tabellen werden definiert.
    * Beispiele: MySQL, PostgreSQL, Microsoft SQL.
-   * Abfragesprache: SQL (Structured Query Language).
+   * Abfragesprache: SQL (Structured Query Language) mit Dialekten.
 
 2. **NoSQL-Datenbanken**:
 
@@ -50,8 +50,9 @@ Es erleichtert die Arbeit mit Datenbanken, indem es Entwicklern ermöglicht, mit
 
 Note: 
 
+* Entity Framework untersützt viele relationale Datenbanken (MS SQL, PostgreSQL, SQLite, MySQl, Oracle, ...)
 * Klassen werden auf Tabellen, oder auch andersrum, gemappt.
-* Bei Java: Hibernate; bei PHP: Doctrine.
+* Bei Java: Hibernate; bei PHP: Doctrine; bei Python: SQLAlchemy
 * Über NuGet installieren
 
 ---
@@ -65,6 +66,7 @@ Note:
 Note: 
 
 * Intern Zugriff auf die Daten über ADO.NET (EF ist im Wesentlichen eine Abstraktionsebene über ADO.NET, die den Umgang mit Datenbanken einfacher und objektorientierter macht)
+* Je nach Datenbank wird ein anderer ADO.NET Treiber genutzt.
 * Zugriff mit ADO.NET ist schneller wie mit Entity Framework.
 
 ---
@@ -72,7 +74,7 @@ Note:
 <!-- .slide: class="left" -->
 ### Vorteile
  
-* **Abstraktion von SQL:** Entwickler können Datenbankoperationen mit LINQ oder Methodenaufrufen durchführen, ohne SQL direkt schreiben zu müssen.
+* **Abstraktion von SQL:** Entwickler können Datenbankoperationen oder Methodenaufrufe mit LINQ durchführen, ohne SQL nutzen zu müssen.
 
 * **Produktivität:** Schnellere Entwicklung durch automatisiertes Mapping von Datenbanktabellen auf C#-Klassen.
 
@@ -94,9 +96,9 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen:
 ---
 
 <!-- .slide: class="left" -->
-### Migrationen bei Code-First Ansatz
+### Migrationen beim Code-First Ansatz
 
-Migrationen ermöglichen es, Änderungen am Datenmodell (Klassen) automatisch in die Datenbank zu übertragen. Dabei ist keine manuell Erstellung/Anpassung an der DB notwendig.
+Migrationen ermöglichen es, Änderungen am Datenmodell (Klassen) automatisch in die Datenbank zu übertragen. Dabei ist keine manuelle Erstellung/Anpassung an der DB notwendig.
 
 1. **Migration erstellen:** `Add-Migration <Name>` generiert eine Datei, die die Änderungen am Schema beschreibt (z. B. das Erstellen von Tabellen).
 
@@ -120,19 +122,24 @@ Note:
   * `Microsoft.EntityFrameworkCore`
   * `Microsoft.EntityFrameworkCore.SqlServer`
   * `Microsoft.EntityFrameworkCore.Tools`
+  * `Microsoft.EntityFrameworkCore.Design` bei DB-First
 
-* Model Struktur aufbauen
-* DB-Kontext-Klasse hinzufügen 
-* Optional bei Code-First Ansatz: Tabelle über Migration anlegen.
-  * `Add-Migration <Name>`
-  * `Update-Database`
+* Bei Database-First Ansatz:
+  * Scaffolding ausführen um DB-Kontext-Klasse und Modelle zu erstellen.
+* Bei Code-First Ansatz:
+  * Modell Struktur aufbauen
+  * DB-Kontext-Klasse hinzufügen 
+  * Tabelle über Migration anlegen.
+    * `Add-Migration <Name>`
+    * `Update-Database`
 * Zugriff auf die Daten über die DB-Kontext-Klasse mit z.B. LINQ
   
 Note:
+* `Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=EF_Test;" Microsoft.EntityFrameworkCore.SqlServer`
 * Kontext Klasse: 
   * Stellt Verbindung zur Datenbank her. Benötigt Connection String (https://www.connectionstrings.com/).
-  * Weitere Konfiguration für Datenbank Tabellen und Views möglich
-
+  * Weitere Konfiguration für Datenbank, Tabellen und Views möglich
+* Zeigen in **VS** 42_Entity_Framework_DB_First
 ---
 
 <!-- .slide: class="left" -->
@@ -149,7 +156,7 @@ public class Benutzer
     public int BenutzerId { get; set; } // Primärschlüssel
 
     [Required]  // Name darf nicht leer sein
-    [MaxLength(50)] // Länge auf 50 Zeihen begrenzen
+    [MaxLength(50)] // Länge auf 50 Zeichen begrenzen
     public string Name { get; set; }
 
     [Column("E_Mail", TypeName = "nvarchar(100)")] // Spalte in der Tabelle umbenennen und Datentyp definieren
@@ -194,7 +201,7 @@ Sie stellt die Verbindung zwischen der Anwendung und der Datenbank her und defin
 
 * Die `DbSet`-Eigenschaften repräsentieren die Tabellen in der Datenbank.
 * In der Methode `OnConfiguring` erfolgt die Konfiguration der Verbindung zur Datenbank.
-* In der Methode `OnModelCreating` kann das Datenmodell anpepasst werden. Alles was im Modell angepasst werden kann, kann auch dort angepasst werden.
+* Anpassungen am Datenmodell kann im Modell oder in der Methode `OnModelCreating` erfolgen.
 * initiale Daten für die Datenbank definieren (Daten-Seed).
  
 ---
@@ -225,7 +232,7 @@ public class AppDbContext : DbContext
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel
+### Beispiel Datenbankzugriff
 
 ```csharp []
 using var context = new AppDbContext();
@@ -285,6 +292,7 @@ Note:
     * `Update-Database <Name>`
     * `Remove-Migration`
 * **ÜBUNG** EntityFramework
+* **ÜBUNG** Medienverwaltung SQL
 
 ---
 

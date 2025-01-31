@@ -7,12 +7,9 @@ Datenbanken mit ADO.Net.
 <!-- .slide: class="left" -->
 ## ADO.Net
 
-Datenbankzugriffe im .NET Framework werden durch die [ADO.Net Klassen](https://docs.microsoft.com/de-de/dotnet/framework/data/adonet/ado-net-overview) abgewickelt. Durch ADO wird die nötige Basisfunktionalität geboten um auf relationale Datenbanken zuzugreifen.
+Datenbankzugriffe werden durch die [ADO.Net Klassen](https://docs.microsoft.com/de-de/dotnet/framework/data/adonet/ado-net-overview)(ActiveX Data Objects for .NET) abgewickelt. Durch ADO.NET wird die nötige Basisfunktionalität geboten um auf relationale Datenbanken zuzugreifen.
 
-Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeicher. Dazu existieren Klassen, die Verbindung zu einer Datenbank (Microsoft SQL Server, Oracle etc.) herstellen (sogenannte Connection-Klassen), Klassen, die Tabellen im Arbeitsspeicher repräsentieren, und es ermöglichen, mit ihnen zu arbeiten (sogenannte DataTables) und Klassen, die für gesamte Datenbanken im Arbeitsspeicher stehen (sogenannte DataSets).
-
-Note:
-* ADO = ActiveX Data Objects
+Aufgabe der Klassen ist die Datenbankanbindung und Datenhaltung im Arbeitsspeicher. Dazu existieren Klassen, die Verbindung zu einer Datenbank (Microsoft SQL Server, Oracle etc.) herstellen (sogenannte Connection-Klassen), Klassen, die Tabellen im Arbeitsspeicher repräsentieren, und es ermöglichen, mit ihnen zu arbeiten (sogenannte DataTables) und Klassen, die die gesamten Daten im Arbeitsspeicher halten (sogenannte DataSets).
 
 ---
 
@@ -21,7 +18,7 @@ Note:
 
 Durch die [`SqlConnection`](https://learn.microsoft.com/de-de/dotnet/api/system.data.sqlclient.sqlconnection) wird eine Verbindung zur Datenbank repräsentiert. Sie stellt die Methoden `Open()` und `Close()` bereit um eine Verbindung herzustellen oder zu schließen. Mittels einer Verbindungszeichenfolge ([ConnectionString](https://www.connectionstrings.com)) ist es möglich ein solches Objekt zu erstellen.
 
-Um z.B. eine Verbindung mit der lokalen DB und der Datenbank "Test" aufzubauen könnte man wie folgt vorgehen:
+Um z.B. eine Verbindung mit dem lokalen DB-Server und der Datenbank "Test" aufzubauen könnte man wie folgt vorgehen:
 
 ```csharp
 var connectionString = @"Server = (localdb)\.;Initial Catalog=Test; Integrated Security = true;";
@@ -57,14 +54,13 @@ SqlCommand command = new SqlCommand(queryString, connection);
 <!-- .slide: class="left" -->
 ### SqlCommand-Klasse Methoden
 
-* `ExecuteReader()`: Ruft Ergebnisse in ein `SqlDataReader`-Objekt ab
-.
+* `ExecuteReader()`: Ruft Ergebnisse in ein `SqlDataReader`-Objekt ab.
 * `ExecuteNonQuery()`: Erwartet keine Rückgabe (Insert, Update, Delete, Stored Procedures)
 
 * `ExecuteScalar()`: Führt Abfrage aus, ruft erste Spalte der ersten Zeile ab (der Rest wird ignoriert).
 
 Note: 
-* `ExecuteScalar()` für `true`/`false` oder ID-Abfragen
+* `ExecuteScalar()` für `true`/`false` oder ID-Abfragen.
 
 ---
 
@@ -79,7 +75,7 @@ Typischerweise verwendet man einen `SqlDataReader` wenn man nur lesenden Zugriff
 
 ```csharp []
 SqlDataReader reader = command.ExecuteReader();
-while(reader.read()) // Solange es Datensätze gibt diese lesen
+while(reader.read()) // Solange es Datensätze gibt, diese lesen.
 {
     // Zugriff per Spaltenname oder per Index
     Console.WriteLine("ID: {0}", reader["CustomerID"]);
@@ -168,7 +164,3 @@ using (SqlConnection connection = new SqlConnection(connectionString))
     }
 }
 ```
-
-Note: 
-* Zeigen in **VS** arbeiten mit SQL (lokale DB Anlegen, Connection String, Daten schreiben, Daten lesen)
-* **ÜBUNG** SQL Datenbanken
