@@ -122,17 +122,17 @@ Note:
   * `Microsoft.EntityFrameworkCore`
   * `Microsoft.EntityFrameworkCore.SqlServer`
   * `Microsoft.EntityFrameworkCore.Tools`
-  * `Microsoft.EntityFrameworkCore.Design` bei DB-First
+  * `Microsoft.EntityFrameworkCore.Design` (bei DB-First)
 
 * Bei Database-First Ansatz:
   * Scaffolding ausführen um DB-Kontext-Klasse und Modelle zu erstellen.
 * Bei Code-First Ansatz:
-  * Modell Struktur aufbauen
-  * DB-Kontext-Klasse hinzufügen 
+  * Modell Struktur aufbauen.
+  * DB-Kontext-Klasse hinzufügen.
   * Tabelle über Migration anlegen.
     * `Add-Migration <Name>`
     * `Update-Database`
-* Zugriff auf die Daten über die DB-Kontext-Klasse mit z.B. LINQ
+* Zugriff auf die Daten über die DB-Kontext-Klasse mit z.B. LINQ.
   
 Note:
 * `Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=EF_Test;" Microsoft.EntityFrameworkCore.SqlServer`
@@ -150,17 +150,20 @@ Jede Tabelle benötigt einen Primärschlüssel. EF erkennt automatisch eine Eige
 Standardmäßig wird der Property-Name als Spaltenname verwendet, aber man kann diesen anpassen. Außerdem kann der Datentyp explizit angegeben werden.
 
 ```csharp
-[Table("UserTable")] // Tabellenname festlegen
+// Tabellenname festlegen
+[Table("UserTable")] 
 public class Benutzer
 {
-    public int BenutzerId { get; set; } // Primärschlüssel
+  // Primärschlüssel
+  public int BenutzerId { get; set; } 
 
-    [Required]  // Name darf nicht leer sein
-    [MaxLength(50)] // Länge auf 50 Zeichen begrenzen
-    public string Name { get; set; }
+  [Required]  // Name darf nicht leer sein
+  [MaxLength(50)] // Länge auf 50 Zeichen begrenzen
+  public string Name { get; set; }
 
-    [Column("E_Mail", TypeName = "nvarchar(100)")] // Spalte in der Tabelle umbenennen und Datentyp definieren
-    public string Email { get; set; }
+  // Spalte in der Tabelle umbenennen und Datentyp definieren
+  [Column("E_Mail", TypeName = "nvarchar(100)")] 
+  public string Email { get; set; }
 }
 ```
 
@@ -202,7 +205,7 @@ Sie stellt die Verbindung zwischen der Anwendung und der Datenbank her und defin
 * Die `DbSet`-Eigenschaften repräsentieren die Tabellen in der Datenbank.
 * In der Methode `OnConfiguring` erfolgt die Konfiguration der Verbindung zur Datenbank.
 * Anpassungen am Datenmodell kann im Modell oder in der Methode `OnModelCreating` erfolgen.
-* initiale Daten für die Datenbank definieren (Daten-Seed).
+* Initiale Daten für die Datenbank definieren (Daten-Seed).
  
 ---
 
@@ -223,8 +226,9 @@ public class AppDbContext : DbContext
     // Wird beim Erstellen einer Instanz autom. aufgerufen.
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // Datenbankverbindung konfigurieren
-        optionsBuilder.UseSqlServer("Data Source = (localdb)\\mssqllocaldb; Initial Catalog = Benutzerverwaltung; Integrated Security = true;");
+        // Datenbankverbindung konfigurieren.
+        optionsBuilder.UseSqlServer(
+          "Data Source = (localdb)\\mssqllocaldb; Initial Catalog = Benutzerverwaltung; Integrated Security = true;");
     }
 }
 ```
@@ -237,24 +241,23 @@ public class AppDbContext : DbContext
 ```csharp []
 using var context = new AppDbContext();
 
-// Daten lesen
+// Daten lesen.
 var list = context.Benutzer.ToList();
 
-// Daten löschen
+// Daten löschen.
 context.Benutzer.Remove(list[0]);
 context.SaveChanges();
 
-// Daten updaten
+// Daten updaten.
 list[0].Name = "Tom Ate";
 context.SaveChanges();
 ```
 
 ```csharp []
-// Daten schreiben
+// Daten schreiben.
 using var context = new AppDbContext();
 
 var benutzer = new Benutzer();
-// Guid erzeugen
 benutzer.Id = Guid.NewGuid();
 benutzer.Name = "Max Mustermann";
 
@@ -281,8 +284,6 @@ Mit Rechtsklick auf **Datenbanken** kann eine neue DB erzeugt werden.
 Note: 
 * **SQL Server Express LocalDB:** Dabei handelt es sich um eine leichte Version des Microsoft SQL Servers, die speziell für Entwickler entwickelt wurde, um Datenbanken lokal und ohne aufwändige Installation zu verwalten.
 * Über Properties Daten abrufen wie ConnectionString und Speicherort.
-
-Note:
 * Zeigen in **VS** 41_Entity_Framework_Code_First
   * neues Property hinzufügen z.B. `int Semester`
   * neue Migration erstellen und DB updaten
@@ -307,7 +308,7 @@ Note:
 
 4. Nun muss der verwendete Connection String in eurem Projekt angepasst werden.
     1. Im SQL Server Objekt Explorer rechtsklick auf eure mdf Datei und Eigenschaften wählen.
-    2. Im Eigenschaften Fenster kann dann der Connection String (Verbindungszeichenfolge) kopiert werden.
-    3. Diesen in euer Projekt übernehmen.
+    2. Im Eigenschaften Fenster kann dann der Connection String kopiert werden.
+    3. Diesen in das Projekt übernehmen.
 
-5. Jetzt nutzt euer Projekt die lokale *.mdf Datei.
+5. Jetzt nutzt das Projekt die lokale *.mdf Datei.
