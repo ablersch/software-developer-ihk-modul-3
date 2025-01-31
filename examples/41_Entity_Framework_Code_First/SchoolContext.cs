@@ -13,6 +13,6 @@ public class SchoolContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Datenbankverbindung konfigurieren
-        optionsBuilder.UseSqlServer("Data Source = (localdb)\\mssqllocaldb; Initial Catalog = EF_Test; Integrated Security = true;");
+        optionsBuilder.UseSqlServer("Data Source = (localdb)\\mssqllocaldb; Initial Catalog = EF_Test2; Integrated Security = true;");
     }
 }

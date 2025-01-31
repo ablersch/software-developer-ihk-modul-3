@@ -203,7 +203,7 @@ public class Post
 Sie stellt die Verbindung zwischen der Anwendung und der Datenbank her und definiert, wie die Datenmodelle (C#-Klassen) mit der Datenbank interagieren.
 
 * Die `DbSet`-Eigenschaften repräsentieren die Tabellen in der Datenbank.
-* In der Methode `OnConfiguring` erfolgt die Konfiguration der Verbindung zur Datenbank.
+* In der Methode `OnConfiguring` erfolgt die Konfiguration der Verbindung zur Datenbank. Dazu wird ein [Connection String](https://www.connectionstrings.com/) genutzt.
 * Anpassungen am Datenmodell kann im Modell oder in der Methode `OnModelCreating` erfolgen.
 * Initiale Daten für die Datenbank definieren (Daten-Seed).
  
