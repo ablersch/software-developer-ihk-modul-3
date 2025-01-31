@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace EntityFramework;
+﻿namespace EntityFramework;
 
 public class Student
 {
@@ -8,7 +6,5 @@ public class Student
 
     public string Name { get; set; }
 
-    // Primärschlüssel
-    [Key]
     public int StudentId { get; set; }
 }

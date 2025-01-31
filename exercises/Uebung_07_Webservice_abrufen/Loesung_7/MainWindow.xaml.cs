@@ -14,6 +14,7 @@ public partial class MainWindow : Window
     private void btnReset_Click(object sender, RoutedEventArgs e)
     {
         gridDetails.Visibility = Visibility.Collapsed;
+        tbxSuche.Text = string.Empty;
         EnableToogle();
     }
 
@@ -21,10 +22,10 @@ public partial class MainWindow : Window
     {
         if (!string.IsNullOrWhiteSpace(tbxSuche.Text))
         {
-            var results = CallAPI($"https://swapi.dev/api/people?search={tbxSuche.Text}");
-            if (results.Count > 0)
+            var result = CallAPI($"https://swapi.dev/api/item/1");
+            if (result.Count > 0)
             {
-                DataContext = results.Results.First();
+                DataContext = result.Results.First();
                 gridDetails.Visibility = Visibility.Visible;
                 EnableToogle();
             }
@@ -40,19 +41,19 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// API aufrufen
+    /// API aufrufen.
     /// </summary>
     private Result CallAPI(string url)
     {
         Result result = null;
         using var httpClient = new HttpClient();
 
-        HttpResponseMessage response = httpClient.GetAsync(url).Result;
+        using var response = httpClient.GetAsync(url).Result;
 
-        // Bei erfolgreicher Anfrage
+        // Bei erfolgreicher Anfrage.
         if (response.IsSuccessStatusCode)
         {
-            // Inhalt der Antwort als String lesen
+            // Inhalt der Antwort als JSON-String lesen.
             string responseBody = response.Content.ReadAsStringAsync().Result;
             result = JsonSerializer.Deserialize<Result>(responseBody);
         }

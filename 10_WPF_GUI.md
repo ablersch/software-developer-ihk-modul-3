@@ -675,18 +675,20 @@ Beschreibt die Bindung von Datenquelle zur gebundenen Komponente.
 
 * **Mode:** Definiert den Bindungsmodus zwischen UI und Datenobjekt. Dieser kann einseitig (`OneWay`) oder beidseitig (`TwoWay`) sein.
 
-* **Source:** Legt das Objekt fest, welches als Quelle der Datenbindung dient.
+* **Source:** Legt ein Objekt als Quelle für die Datenbindung fest ohne auf den `DataContext` zuzugreifen.
 
 * **UpdateSourceTrigger:** Definiert, wann die Datenquelle aktualisiert werden soll:
   * `LostFocus`: Dann wenn das Feld den Fokus verloren hat.
   * `PropertyChanged`: Jedesmal wenn sich die die Daten ändern.
 
 Note:
-* `OneWay`: Daten fließen nur von der Quelle (Source) zum Ziel (UI-Element).
-* `TwoWay`: Daten fließen in beide Richtungen
-* `OneTime`: Daten werden nur einmalig von der Quelle ins Ziel geladen.
-* `OneWayToSource`: Daten fließen nur vom Ziel (UI) zur Quelle (Daten).
-* `Default`: Default ist ja nach Eigenschaft unterschiedlich.
+* `Mode`:
+  * `OneWay`: Daten fließen nur von der Quelle (Source) zum Ziel (UI-Element).
+  * `TwoWay`: Daten fließen in beide Richtungen
+  * `OneTime`: Daten werden nur einmalig von der Quelle ins Ziel geladen.
+  * `OneWayToSource`: Daten fließen nur vom Ziel (UI) zur Quelle (Daten).
+  * `Default`: Default ist ja nach Eigenschaft unterschiedlich.
+* `Source`: `<TextBlock Text="{Binding Path=Name, Source={x:Static local:MyData.Instance}}" />`
 * `UpdateSourceTrigger`: Bestimmt, wann die Datenquelle aktualisiert wird (PropertyChanged, LostFocus, Default).
 
 ---

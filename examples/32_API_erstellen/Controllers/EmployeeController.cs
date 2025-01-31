@@ -9,7 +9,7 @@ public class EmployeeController : ControllerBase
     private static List<string> testData = new List<string>(["Max", "Andreas", "Hans", "Eddy"]);
 
     [HttpDelete("{id}")]
-    public ActionResult Delete(int id)
+    public ActionResult Delete(int id, string name, int wert)
     {
         testData.RemoveAt(id);
         return NoContent();
@@ -26,7 +26,7 @@ public class EmployeeController : ControllerBase
     {
         if (id >= testData.Count || id < 0)
         {
-            return NotFound();
+            return NotFound($"Id '{id}' nicht gefunden");
         }
         return Ok(testData[id]);
     }
@@ -35,6 +35,6 @@ public class EmployeeController : ControllerBase
     public ActionResult Post(string value)
     {
         testData.Add(value);
-        return Created();
+        return Created("http://localhost:5114/employee/1", value);
     }
 }

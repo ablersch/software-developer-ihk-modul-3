@@ -198,7 +198,7 @@ weitere Informationen: [Status Code Map](https://www.talend.com/http-status-map)
 
 ```csharp
 [HttpPost]
-public ActionResult<Item> CreateItem([FromBody] Item item)
+public ActionResult<Item> CreateItem(Item item)
 {
   var createdItem = itemService.CreateItem(item);
   return CreatedAtAction(nameof(GetItem), new { id = createdItem.Id }, createdItem);
@@ -213,6 +213,7 @@ Note:
   * Hier ist die URL, unter der du sie abrufen kannst (Location-Header).
 * Der Unterschied zwischen `Created` und `CreatedAtAction` liegt darin, wie die URL zur neu erstellten Ressource generiert wird.
 * Das erstellte Objekt wird zusätzlich zur URL zurückgegeben, um dem Client sofortigen Zugriff auf die Ressource zu ermöglichen, ohne eine weitere Anfrage (z. B. einen GET-Aufruf) senden zu müssen.
+* `ActionResult<>` ist ein Rückgabewerttyp, der in .NET Controllern verwendet. Er kombiniert die Möglichkeit den HTTP-Statuscode mit einem bestimmten Datentyp zurückzugeben.
 
 ---
 
@@ -248,14 +249,9 @@ public ActionResult<Item> GetItem(int id)
 * **Beispiel**:
 
 ```csharp
-[HttpPut("{id}")]
-public ActionResult<Item> UpdateItem(int id, [FromBody] Item item)
+[HttpPut]
+public ActionResult<Item> UpdateItem(Item item)
 {
-  if (id != item.Id) 
-  {
-    return BadRequest();
-  }
-  
   var updatedItem = itemService.UpdateItem(item);
   if (updatedItem == null)
   {

@@ -14,11 +14,39 @@ Es können Datenbestände aus verschiedenen Teilmengen zusammengestellt und beda
 ---
 
 <!-- .slide: class="left" -->
+## Arten von Datenbanken
+
+1. **Relationale Datenbanken**:
+
+   * Daten werden in Tabellen organisiert, und die Beziehungen zwischen den Tabellen werden definiert.
+   * Beispiele: MySQL, PostgreSQL, Microsoft SQL.
+   * Abfragesprache: SQL (Structured Query Language).
+
+2. **NoSQL-Datenbanken**:
+
+   * Verwendet nicht die klassische Tabellenstruktur, sondern speichert Daten in anderen Formaten wie Dokumenten, Schlüssel-Wert-Paaren oder Graphen.
+   * Beispiele: Elasticsearch, MongoDB, Cassandra.
+
+3. **In-Memory-Datenbanken**:
+
+   * Speichern Daten im Arbeitsspeicher statt auf der Festplatte, um eine sehr schnelle Verarbeitung zu ermöglichen.
+   * Beispiel: Redis.
+
+Note:
+
+Einsatzbereiche:
+* **Webanwendungen**: Speicherung von Benutzerdaten, Produktinformationen usw.
+* **Unternehmenssoftware**: Buchhaltung, CRM, Lagerverwaltung.
+* **Datenanalyse**: Speichern großer Datenmengen für Auswertungen (Data Warehousing).
+* **Mobile Apps**: Lokale oder serverseitige Datenspeicherung.
+---
+
+<!-- .slide: class="left" -->
 ## Entity Framework
 
 Das [Entity Framework](https://docs.microsoft.com/de-de/ef/) ist ein Framework für objektrelationale Abbildungen (ORM = Object-Relational Mapping).
 
-Es erleichtert die Arbeit mit Datenbanken, indem es Entwicklern ermöglicht, mit Objekten und LINQ zu arbeiten, anstatt direkten SQL-Abfragen. Mit dem Entity Framework wird der Datenbankzugriff abstrahiert, wodurch der Entwickler sich mehr auf die Anwendungslogik konzentrieren kann.
+Es erleichtert die Arbeit mit Datenbanken, indem es Entwicklern ermöglicht, mit Objekten und LINQ zu arbeiten, anstatt direkten SQL-Abfragen. Mit dem Entity Framework wird der Datenbankzugriff abstrahiert.
 
 Note: 
 
@@ -68,7 +96,7 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen:
 <!-- .slide: class="left" -->
 ### Migrationen bei Code-First Ansatz
 
-Migrationen ermöglichen es, Änderungen am Datenmodellen (Klassen) automatisch in die Datenbank zu übertragen. Dabei ist keine manuell Erstellung/Anpassung an der DB notwendig.
+Migrationen ermöglichen es, Änderungen am Datenmodell (Klassen) automatisch in die Datenbank zu übertragen. Dabei ist keine manuell Erstellung/Anpassung an der DB notwendig.
 
 1. **Migration erstellen:** `Add-Migration <Name>` generiert eine Datei, die die Änderungen am Schema beschreibt (z. B. das Erstellen von Tabellen).
 
@@ -89,9 +117,9 @@ Note:
 ### Entity Framework verwenden
 
 * Folgende NuGet Pakete im Projekt installieren:
-  * Microsoft.EntityFrameworkCore
-  * Microsoft.EntityFrameworkCore.SqlServer
-  * Microsoft.EntityFrameworkCore.Tools
+  * `Microsoft.EntityFrameworkCore`
+  * `Microsoft.EntityFrameworkCore.SqlServer`
+  * `Microsoft.EntityFrameworkCore.Tools`
 
 * Model Struktur aufbauen
 * DB-Kontext-Klasse hinzufügen 
@@ -103,29 +131,93 @@ Note:
 Note:
 * Kontext Klasse: 
   * Stellt Verbindung zur Datenbank her. Benötigt Connection String (https://www.connectionstrings.com/).
-  * Weiter Konfiguration für Datenbank Tabellen und Views möglich
+  * Weitere Konfiguration für Datenbank Tabellen und Views möglich
 
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel DbContext Klasse
+#### Model aufbauen
+
+Jede Tabelle benötigt einen Primärschlüssel. EF erkennt automatisch eine Eigenschaft namens `Id` oder `KlassennameId` als Primärschlüssel.
+
+Standardmäßig wird der Property-Name als Spaltenname verwendet, aber man kann diesen anpassen. Außerdem kann der Datentyp explizit angegeben werden.
+
+```csharp
+[Table("UserTable")] // Tabellenname festlegen
+public class Benutzer
+{
+    public int BenutzerId { get; set; } // Primärschlüssel
+
+    [Required]  // Name darf nicht leer sein
+    [MaxLength(50)] // Länge auf 50 Zeihen begrenzen
+    public string Name { get; set; }
+
+    [Column("E_Mail", TypeName = "nvarchar(100)")] // Spalte in der Tabelle umbenennen und Datentyp definieren
+    public string Email { get; set; }
+}
+```
+
+Note:
+* Nullable
+* Automatische Schlüssel (ID) Generierung
+
+```csharp
+[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+public Guid BenutzerId { get; set; }
+```
+
+* Beziehungen zu anderen Tabellen z.B. 1:n
+
+```csharp
+public class Benutzer
+{
+    public int BenutzerId { get; set; }
+    public string Name { get; set; }
+    public List<Post> Posts { get; set; }
+}
+
+public class Post
+{
+    public int PostId { get; set; }
+    public string Titel { get; set; }
+    public int BenutzerId { get; set; }
+    public Benutzer Benutzer { get; set; }
+}
+```
+
+---
+
+<!-- .slide: class="left" -->
+#### DbContext-Klasse definieren
+
+Sie stellt die Verbindung zwischen der Anwendung und der Datenbank her und definiert, wie die Datenmodelle (C#-Klassen) mit der Datenbank interagieren.
+
+* Die `DbSet`-Eigenschaften repräsentieren die Tabellen in der Datenbank.
+* In der Methode `OnConfiguring` erfolgt die Konfiguration der Verbindung zur Datenbank.
+* In der Methode `OnModelCreating` kann das Datenmodell anpepasst werden. Alles was im Modell angepasst werden kann, kann auch dort angepasst werden.
+* initiale Daten für die Datenbank definieren (Daten-Seed).
+ 
+---
+
+<!-- .slide: class="left" -->
+### Beispiel DbContext-Klasse
 
 ```csharp []
 // Verwaltet die Verbindung zur Datenbank.
-public class MedienverwaltungContext : DbContext
+public class AppDbContext : DbContext
 {
-    public MedienverwaltungContext()
+    public AppDbContext()
     {
     }
 
-    // Definiert eine Datenbank-Tabelle, die die Entität Medien repräsentiert.
-    public DbSet<Medien> Medien { get; set; }
+    // Definiert eine Datenbank-Tabelle, die das Modell (Entität) Benutzer repräsentiert.
+    public DbSet<Benutzer> Benutzer { get; set; }
 
     // Wird beim Erstellen einer Instanz autom. aufgerufen.
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // Datenbankverbindung konfigurieren
-        optionsBuilder.UseSqlServer("Data Source = (localdb)\\mssqllocaldb; Initial Catalog = Medienverwaltung; Integrated Security = true;");
+        optionsBuilder.UseSqlServer("Data Source = (localdb)\\mssqllocaldb; Initial Catalog = Benutzerverwaltung; Integrated Security = true;");
     }
 }
 ```
@@ -136,41 +228,32 @@ public class MedienverwaltungContext : DbContext
 ### Beispiel
 
 ```csharp []
-using (var context = new MedienverwaltungContext())
-{
-    // Daten lesen
-    var list = context.Medien.ToList();
+using var context = new AppDbContext();
 
-    // Daten löschen
-    context.Medien.Remove(list[0]);
-    context.SaveChanges();
+// Daten lesen
+var list = context.Benutzer.ToList();
 
-    // Daten updaten
-    list[0].Titel = "neuer Titel";
-    context.SaveChanges();
-}
+// Daten löschen
+context.Benutzer.Remove(list[0]);
+context.SaveChanges();
+
+// Daten updaten
+list[0].Name = "Tom Ate";
+context.SaveChanges();
 ```
 
 ```csharp []
 // Daten schreiben
-using (var context = new MedienverwaltungContext())
-{
-    var buch = new Buch();
-    // Guid erzeugen
-    buch.Id = Guid.NewGuid();
-    buch.Titel = "neuer Buch Titel";
+using var context = new AppDbContext();
 
-    context.Medien.Add(buch);
-    context.SaveChanges();
-}
+var benutzer = new Benutzer();
+// Guid erzeugen
+benutzer.Id = Guid.NewGuid();
+benutzer.Name = "Max Mustermann";
+
+context.Benutzer.Add(benutzer);
+context.SaveChanges();
 ```
-
-Note:
-* Zeigen in **VS** 41_Entity_Framework
-  * neues Property hinzufügen z.B. `int Semester`
-  * neue Migration erstellen und DB updaten
-  * Feld wieder entfernen, DB zurücksetzen, Migration entfernen
-* **ÜBUNG** EntityFramework
 
 ---
 
@@ -190,7 +273,18 @@ Mit Rechtsklick auf **Datenbanken** kann eine neue DB erzeugt werden.
 
 Note: 
 * **SQL Server Express LocalDB:** Dabei handelt es sich um eine leichte Version des Microsoft SQL Servers, die speziell für Entwickler entwickelt wurde, um Datenbanken lokal und ohne aufwändige Installation zu verwalten.
-* Über Properties Daten abrufen wie ConnectionString und Speicherort
+* Über Properties Daten abrufen wie ConnectionString und Speicherort.
+
+Note:
+* Zeigen in **VS** 41_Entity_Framework_Code_First
+  * neues Property hinzufügen z.B. `int Semester`
+  * neue Migration erstellen und DB updaten
+    * `Add-Migration <Name>`
+    * `Update-Database`
+  * Feld wieder entfernen, DB zurücksetzen, Migration entfernen
+    * `Update-Database <Name>`
+    * `Remove-Migration`
+* **ÜBUNG** EntityFramework
 
 ---
 
