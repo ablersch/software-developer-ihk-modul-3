@@ -1,4 +1,4 @@
-﻿namespace EntityFramework;
+﻿namespace DbFirst;
 
 internal class Program
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace EntityFramework;
+namespace CodeFirst;
 
 public class SchoolContext : DbContext
 {
