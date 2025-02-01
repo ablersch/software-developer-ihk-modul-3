@@ -98,7 +98,12 @@ Die Oberflächen können mit dem Designer von Visual Studio erstellt werden. Die
 
 Änderungen an der Oberfläche können aber auch direkt in der XAML-Datei gemacht werden.
 
-![Steuerelemente direkt in XAML erstellen](Images/xaml.png)
+```xml
+<DockPanel HorizontalAlignment="Center" Height="72"  VerticalAlignment="Center" Width="220">
+  <Label x:Name="lblTemperatur" Content="" Height="25" DockPanel.Dock="Top" FontSize="14" />
+  <TextBox x:Name="tbxInput" Height="25" TextWrapping="Wrap" DockPanel.Dock="Bottom" />
+</DockPanel>
+```
 
 ---
 
@@ -115,13 +120,6 @@ Note:
 * Elemente aus der GUI können autom. Elemente aus dem Code beeinflussen (oder andersrum)
 * Elemente können mit dem Fenster vergrößert werden
 * Es können Templates definiert werden
-
----
-
-<!-- .slide: class="left" -->
-### Entwurfsumgebung in Visual Studio
-
-![Entwurfsumgebung](Images/VSEntwurfsumgebung.png)
 
 ---
 
@@ -195,23 +193,111 @@ Note:
 ---
 
 <!-- .slide: class="left" -->
-## Layout-Steuerelemente
+## Layout
 
-In WPF gibt es mehrere Layout-Steuerelemente (Panels), die für die Anordnung von UI-Elementen verwendet werden. Jedes Layout-Element hat seine spezifische Funktion.
+WPF bietet sehr viele Möglichkeiten das UI nach seinen eigenen Wünschen zu gestalten. Nachfolgend ein paar Beispiele um die Grundlagen zu erklären.
+
+---
+
+<!-- .slide: class="left" -->
+### Höhe und Breite eines Controls
+
+Die Größe eines Controls kann auf drei Arten gesteuert werden:
+
+1. Feste Werte (`Width`, `Height`).
+2. Automatische Anpassung (`Auto`).
+3. Relative Größen (`*` oder `%` im Grid).
+
+```xml
+<!-- Der Button wird genau 200 Pixel breit und 50 Pixel hoch -->
+<Button Content="Feste Größe" Width="200" Height="50"/>
+```
+
+```xml
+<!-- Der Button wird so groß, wie der Inhalt es benötigt. -->
+<Button Content="Automatisch" Width="Auto" Height="Auto"/>
+```
+
+---
+
+<!-- .slide: class="left" -->
+### Ausrichtung (Alignment)
+
+In WPF gibt es zwei Eigenschaften zur Ausrichtung eines Elements:
+
+1. **HorizontalAlignment**: Steuert die horizontale Position innerhalb des Eltern-Containers.
+
+2. **VerticalAlignment**: Steuert die vertikale Position innerhalb des Eltern-Containers.
+
+Mögliche Werte für beide Eigenschaften:
+
+* `Left`: Links ausgerichtet.
+* `Right`: Rechts ausgerichtet.
+* `Center`: Zentriert.
+* `Stretch`: Dehnt sich aus, um den gesamten verfügbaren Platz zu nutzen (Standard).
+
+
+---
+
+<!-- .slide: class="left" -->
+### Ausrichtung (Alignment)
+
+**Beispiel**:
+
+```xml
+<Grid>
+  <Button Content="Links oben" HorizontalAlignment="Left" VerticalAlignment="Top" />
+  <Button Content="Zentriert" HorizontalAlignment="Center" VerticalAlignment="Center" />
+  <Button Content="Rechts unten" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+</Grid>
+```
+
+**Besonderheit von `Stretch`**:
+
+Wenn `Stretch` gesetzt ist, füllt das Element den gesamten verfügbaren Platz aus. `Stretch` funktioniert nur, wenn die `Width` bzw. `Height` nicht explizit gesetzt wurde.
+
+```xml
+<Button Content="Gestreckt" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+```
+
+---
+
+<!-- .slide: class="left" -->
+### Margin (Außenabstand)
+
+* Fügt einen Abstand außerhalb des Elements hinzu, d. h., es wird vom nächsten Element oder vom Rand des Containers entfernt.
+* Die Werte werden im Format: `Margin="links, oben, rechts, unten"` angegeben.
+
+```xml
+<!-- Fügt 20 Pixel Abstand auf allen Seiten hinzu. -->
+<Button Content="Mit Abstand" Margin="20"/>
+```
+
+```xml
+<!-- Setzt links 10, oben 5, rechts 30 und unten 15 Pixel Abstand. -->
+<Button Content="Asymmetrischer Abstand" Margin="10,5,30,15"/>
+```
+
+---
+
+<!-- .slide: class="left" -->
+### Layout-Steuerelemente
+
+In WPF gibt es mehrere Layout-Steuerelemente, die für die Anordnung von UI-Elementen verwendet werden.
 
 | **Layout**       | **Anwendungsfall**  | **Besonderheiten** |
 |------------------|---------------------|--------------------|
 | **Canvas** | Absolute Positionierung mit Koordinaten (x und y) | Ideal für Spiele oder frei angeordnete Elemente |
 | **DockPanel** | Ausrichtung an Rändern | Menüs, Toolbars, etc. |
 | **Grid** | Komplexe Layouts  | Flexibel und dynamisch|
-| **UniformGrid**   | Gleichmäßige Verteilung | Für gleichförmige Layouts z.B. Schachbretter |
+| **UniformGrid**   | Gleichmäßige Verteilung | Für gleichförmige Layouts |
 | **StackPanel** | Lineare Anordnung (vertikal/horizontal)  | Einfach und schnell |
 | **WrapPanel** | Dynamische Anordnung (vertikal/horizontal) | Elemente brechen um |
 
 ---
 
 <!-- .slide: class="left" -->
-### Canvas
+#### Canvas
 
 Ein `Canvas` erlaubt die absolute Positionierung von Elementen basierend auf Koordinaten.
 
@@ -220,7 +306,7 @@ Ein `Canvas` erlaubt die absolute Positionierung von Elementen basierend auf Koo
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel Canvas
+#### Beispiel Canvas
 
 ```xml
 <Canvas>
@@ -237,7 +323,7 @@ Ein `Canvas` erlaubt die absolute Positionierung von Elementen basierend auf Koo
 ---
 
 <!-- .slide: class="left" -->
-### DockPanel
+#### DockPanel
 
 Ein `DockPanel` richtet seine Kinder an den Rändern (oben, unten, links, rechts) aus. Es wird der gesamte Platz, welcher das `DockPanel` erhalten hat genutzt.
 
@@ -246,7 +332,7 @@ Ein `DockPanel` richtet seine Kinder an den Rändern (oben, unten, links, rechts
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel DockPanel
+#### Beispiel DockPanel
 
 ```xml
 <DockPanel>
@@ -264,7 +350,7 @@ Ein `DockPanel` richtet seine Kinder an den Rändern (oben, unten, links, rechts
 ---
 
 <!-- .slide: class="left" -->
-### Grid
+#### Grid
 
 Ein `Grid` teilt den verfügbaren Platz in Zeilen und Spalten auf.
 
@@ -279,13 +365,14 @@ Grid Beispiel 1            |  Grid Beispiel (mit Span) 2
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel Grid
+#### Beispiel Grid
 
 ```xml
 <!-- Erster Screenshot -->
 <Grid>
-  <!-- Standard Spalten und Zeilen Kofiguration -->
+  <!-- Konfiguration der Spalten und Zeilen -->
   <Grid.ColumnDefinitions>
+    <!-- Width und Height sind in diesem Fall auf "Auto" gesetzt -->
     <ColumnDefinition />
     <ColumnDefinition />
   </Grid.ColumnDefinitions>
@@ -312,17 +399,40 @@ Grid Beispiel 1            |  Grid Beispiel (mit Span) 2
 
 Note: 
 * In **VS** zeigen Grid mit Spalten, Zeilen und Span anlegen mit dem Designer.
-* Größe kann per Pixel bestimmt werden oder im Verhältnis:
-
-```csharp
-<ColumnDefinition Width="2*" /> // Spalte 2/5
-<ColumnDefinition Width="3*" /> // Spalte 3/5
-```
 
 ---
 
 <!-- .slide: class="left" -->
-### UniformGrid
+#### Beispiel Grid Größenaufteilung
+
+```xml
+<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="300"/> <!-- Pixel genaue Größenangabe -->
+        <ColumnDefinition Width="100"/>
+        <!-- Spalte passt sich automatisch an je nach dem wieviel Platz von den Elementen 
+          in der Spalte benötigt wird -->
+        <ColumnDefinition Width="Auto"/> 
+    </Grid.ColumnDefinitions>
+</Grid>
+```
+
+```xml
+<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1*"/> <!-- 1/3 des Platzes -->
+        <ColumnDefinition Width="2*"/> <!-- 2/3 des Platzes -->
+    </Grid.ColumnDefinitions>
+
+    <Button Content="Klein" Grid.Column="0"/>
+    <Button Content="Groß" Grid.Column="1"/>
+</Grid>
+
+```
+---
+
+<!-- .slide: class="left" -->
+#### UniformGrid
 
 Ein `UniformGrid` teilt den verfügbaren Platz gleichmäßig auf, sodass alle Kinder die gleiche Größe haben.
 
@@ -333,7 +443,7 @@ Ein `UniformGrid` teilt den verfügbaren Platz gleichmäßig auf, sodass alle Ki
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel UniformGrid
+#### Beispiel UniformGrid
 
 ```xml
 <UniformGrid>
@@ -352,7 +462,7 @@ Ein `UniformGrid` teilt den verfügbaren Platz gleichmäßig auf, sodass alle Ki
 ---
 
 <!-- .slide: class="left" -->
-### StackPanel
+#### StackPanel
 
 Ein `StackPanel` ordnet seine Kinder in einer einzigen Richtung (vertikal oder horizontal) an. Verschachtelungen sind möglich.
 
@@ -361,7 +471,7 @@ Ein `StackPanel` ordnet seine Kinder in einer einzigen Richtung (vertikal oder h
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel StackPanel
+#### Beispiel StackPanel
 
 ```xml
 <!-- Vertikal ist der Standard -->
@@ -385,7 +495,7 @@ Ein `StackPanel` ordnet seine Kinder in einer einzigen Richtung (vertikal oder h
 ---
 
 <!-- .slide: class="left" -->
-### WrapPanel
+#### WrapPanel
 
 Ein `WrapPanel` platziert Kinder vertikal oder horizontal, wenn der verfügbare Platz nicht ausreicht wird umgebrochen.
 
@@ -394,7 +504,7 @@ Untergeordnete Steuerelemente werden der Reihenfolge nach von links nach rechts 
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel WrapPanel
+#### Beispiel WrapPanel
 
 WrapPanel horizontal            |  WrapPanel vertikal
 :-------------------------:|:-------------------------:
@@ -403,7 +513,7 @@ WrapPanel horizontal            |  WrapPanel vertikal
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel WrapPanel
+#### Beispiel WrapPanel
 
 ```xml
 <!-- Horizontal ist der Standard -->
@@ -492,20 +602,8 @@ Der `ToolBarTray` ist ein Container für mehrere `ToolBar`-Instanzen. Er ermögl
 </ToolBarTray>
 ```
 
----
-
-<!-- .slide: class="left" -->
-## ToolBarPanel
-
-Das `ToolBarPanel` ist der Standard-Layout-Container, den eine `ToolBarTray` intern verwendet. Es ist für die Anordnung von Toolbars zuständig. Normalerweise arbeitet man nicht direkt mit einem `ToolBarPanel`, da es automatisch von der `ToolBarTray` verwaltet wird.
-
-**Eigenschaften**:
-
-* Verwaltet das Layout der Toolbars in einem `ToolBarTray`.
-* Arbeitet mit `Band` und `BandIndex`, um die Positionen von Toolbars zu steuern.
-* Wird selten direkt in XAML oder Code verwendet.
-
 Note:
+* Das `ToolBarPanel` ist der Standard-Layout-Container, den eine `ToolBarTray` intern verwendet. Es ist für die Anordnung von Toolbars zuständig. Normalerweise arbeitet man nicht direkt mit einem `ToolBarPanel`, da es automatisch von der `ToolBarTray` verwaltet wird.
 * In **VS** zeigen:
   * anhand des Beispiel "12_Menu_Toolbar"
   * Menü mit MenüItems geschachtelt

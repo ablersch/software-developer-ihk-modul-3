@@ -96,50 +96,40 @@ Es gibt verschiedene Implementierungen eine Datenbank zu nutzen:
 ---
 
 <!-- .slide: class="left" -->
-### Migrationen beim Code-First Ansatz
-
-Migrationen ermöglichen es, Änderungen am Datenmodell (Klassen) automatisch in die Datenbank zu übertragen. Dabei ist keine manuelle Erstellung/Anpassung an der DB notwendig.
-
-1. **Migration erstellen:** `Add-Migration <Name>` generiert eine Datei, die die Änderungen am Schema beschreibt (z. B. das Erstellen von Tabellen).
-
-2. **Migration anwenden:** Mit `Update-Database` werden die Änderungen auf die Datenbank angewendet.
-
-3. **Nachträgliche Änderungen:** Wenn das Datenmodell geändert wird, können neue Migrationen hinzugefügt werden um das Schema zu aktualisieren.
-
-4. **Entfernen von Migrationen:** Beim entfernen einer Migration muss zuerst die DB auf die vorletzte Migration zurückgesetzt werden: `Update-Database <Name>`. Dann kann die letzte Migration entfernt werden `Remove-Migration`.
-
-
-Note:
-* Migrations in der "Package Manager Console" ausführen
-* Beim entfernen von Migrations muss die DB zuvor auf die vorletzte Migration zurückgesetzt werden
-
----
-
-<!-- .slide: class="left" -->
-### Entity Framework verwenden
+#### Entity Framework mit Database-First
 
 * Folgende NuGet Pakete im Projekt installieren:
   * `Microsoft.EntityFrameworkCore`
   * `Microsoft.EntityFrameworkCore.SqlServer`
   * `Microsoft.EntityFrameworkCore.Tools`
-  * `Microsoft.EntityFrameworkCore.Design` (bei DB-First)
-
-* Bei Database-First Ansatz:
-  * Scaffolding ausführen um DB-Kontext-Klasse und Modelle zu erstellen.
-* Bei Code-First Ansatz:
-  * Modell Struktur aufbauen.
-  * DB-Kontext-Klasse hinzufügen.
-  * Tabelle über Migration anlegen.
-    * `Add-Migration <Name>`
-    * `Update-Database`
+  * `Microsoft.EntityFrameworkCore.Design`
+* Scaffolding Befehl ausführen in der "Package Manager Console" um DB-Kontext-Klasse und Modelle zu erzeugen.
+  * `Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=EF_Test;" Microsoft.EntityFrameworkCore.SqlServer`
 * Zugriff auf die Daten über die DB-Kontext-Klasse mit z.B. LINQ.
-  
+
 Note:
-* `Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=EF_Test;" Microsoft.EntityFrameworkCore.SqlServer`
-* Kontext Klasse: 
+* DB-Kontext Klasse: 
   * Stellt Verbindung zur Datenbank her. Benötigt Connection String (https://www.connectionstrings.com/).
   * Weitere Konfiguration für Datenbank, Tabellen und Views möglich
-* Zeigen in **VS** 42_Entity_Framework_DB_First
+* Zeigen in **VS** 41_Entity_Framework_DB_First
+
+---
+
+<!-- .slide: class="left" -->
+#### Entity Framework mit Code-First
+
+* Folgende NuGet Pakete im Projekt installieren:
+  * `Microsoft.EntityFrameworkCore`
+  * `Microsoft.EntityFrameworkCore.SqlServer`
+  * `Microsoft.EntityFrameworkCore.Tools`
+  * `Microsoft.EntityFrameworkCore.Design`
+* Modell Struktur aufbauen.
+* DB-Kontext-Klasse hinzufügen.
+* Datenbank/Tabelle über Migration anlegen.
+  * `Add-Migration <Name>`
+  * `Update-Database`
+* Zugriff auf die Daten über die DB-Kontext-Klasse mit z.B. LINQ.
+
 ---
 
 <!-- .slide: class="left" -->
@@ -200,7 +190,7 @@ public class Post
 <!-- .slide: class="left" -->
 #### DbContext-Klasse definieren
 
-Sie stellt die Verbindung zwischen der Anwendung und der Datenbank her und definiert, wie die Datenmodelle (C#-Klassen) mit der Datenbank interagieren.
+Die Klasse stellt die Verbindung zwischen der Anwendung und der Datenbank her und definiert, wie die Datenmodelle (Klassen) mit der Datenbank interagieren.
 
 * Die `DbSet`-Eigenschaften repräsentieren die Tabellen in der Datenbank.
 * In der Methode `OnConfiguring` erfolgt die Konfiguration der Verbindung zur Datenbank. Dazu wird ein [Connection String](https://www.connectionstrings.com/) genutzt.
@@ -210,7 +200,7 @@ Sie stellt die Verbindung zwischen der Anwendung und der Datenbank her und defin
 ---
 
 <!-- .slide: class="left" -->
-### Beispiel DbContext-Klasse
+#### Beispiel DbContext-Klasse
 
 ```csharp []
 // Verwaltet die Verbindung zur Datenbank.
@@ -232,6 +222,26 @@ public class AppDbContext : DbContext
     }
 }
 ```
+
+---
+
+<!-- .slide: class="left" -->
+#### Migrationen
+
+Migrationen ermöglichen es, Änderungen am Datenmodell (Klassen) automatisch in die Datenbank zu übertragen. Dabei ist keine manuelle Erstellung/Anpassung an der DB notwendig.
+
+1. **Migration erstellen:** `Add-Migration <Name>` generiert eine Datei, die die Änderungen am Schema beschreibt (z. B. das Erstellen von Tabellen).
+
+2. **Migration anwenden:** Mit `Update-Database` werden die Änderungen auf die Datenbank angewendet.
+
+3. **Nachträgliche Änderungen:** Wenn das Datenmodell geändert wird, können neue Migrationen hinzugefügt werden um das Schema zu aktualisieren.
+
+4. **Entfernen von Migrationen:** Beim entfernen einer Migration muss zuerst die DB auf die vorletzte Migration zurückgesetzt werden: `Update-Database <Name>`. Dann kann die letzte Migration entfernt werden `Remove-Migration`.
+
+
+Note:
+* Migrations in der "Package Manager Console" ausführen
+* Beim entfernen von Migrations muss die DB zuvor auf die vorletzte Migration zurückgesetzt werden
 
 ---
 
